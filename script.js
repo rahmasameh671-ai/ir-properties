@@ -1,6 +1,6 @@
-/**
+﻿/**
  * IR-PROPERTIES - CORPORATE HOMEPAGE LOGIC
- * WhatsApp Integration: +201033373331
+ * WhatsApp Integration: +201277752731
  * Zero Gold / Clean Minimalist Luxury
  */
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalWhatsappLink = document.getElementById('modalWhatsappLink');
 
   // WhatsApp Base Config
-  const WHATSAPP_NUMBER = '201033373331';
+  const WHATSAPP_NUMBER = '201277752731';
 
   // Handle Form Submission
   if (leadForm) {
@@ -95,11 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Local File Protocol Fallback for Standalone Legal Links
+  // Local File Protocol Fallback for Standalone Legal Links & Portfolio Routes
   if (window.location.protocol === 'file:') {
     const linkPrivacy = document.getElementById('linkPrivacy');
     const linkTerms = document.getElementById('linkTerms');
     if (linkPrivacy) linkPrivacy.setAttribute('href', 'privacy-policy.html');
     if (linkTerms) linkTerms.setAttribute('href', 'terms-conditions.html');
+
+    document.querySelectorAll('a[href="/sodic"]').forEach(a => {
+      a.setAttribute('href', 'sodic.html');
+    });
   }
 });

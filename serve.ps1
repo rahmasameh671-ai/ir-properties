@@ -16,7 +16,7 @@ try {
         $request = $context.Request
         $response = $context.Response
 
-        $rawPath = $request.Url.LocalPath.TrimStart('/')
+        $rawPath = $request.Url.LocalPath.Trim('/')
         if ([string]::IsNullOrEmpty($rawPath) -or $rawPath -eq "index.html") {
             $localFile = Join-Path $rootPath "index.html"
         } else {
@@ -26,10 +26,10 @@ try {
 
             if (Test-Path $candidate1 -PathType Leaf) {
                 $localFile = $candidate1
-            } elseif (Test-Path $candidate2 -PathType Leaf) {
-                $localFile = $candidate2
             } elseif (Test-Path $candidate3 -PathType Leaf) {
                 $localFile = $candidate3
+            } elseif (Test-Path $candidate2 -PathType Leaf) {
+                $localFile = $candidate2
             } else {
                 $localFile = Join-Path $rootPath "index.html"
             }
