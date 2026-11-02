@@ -1,4 +1,4 @@
-﻿# IR-PROPERTIES Corporate Platform & SODIC Portfolio
+# IR-PROPERTIES Corporate Platform & SODIC Portfolio
 
 Official digital platform for **ir-properties**, an Independent Real Estate Consultancy & Strategic Marketing Partner in Egypt.
 
@@ -52,6 +52,7 @@ Nested under the `ir-properties.com` architecture:
 - `sodic/sodic.js` & `sodic.js` — SODIC lead capture form & modal interaction
 - `App.jsx` & `App.tsx` — React application routing configuration mapping `path="/sodic"`
 - `src/pages/SodicLandingPage.jsx` — Reusable React landing page component
+- `public/images/` & `images/` — Semantic high-resolution project images (`sodic-east.jpg`, `ogami.jpg`, `east-vale.jpg`) & official SODIC branding (`sodic-logo.png`, `sodic-logo.svg`)
 - `privacy-policy/index.html` & `privacy-policy.html` — Standalone Privacy Policy
 - `terms-conditions/index.html` & `terms-conditions.html` — Standalone Terms & Conditions
 - `serve.ps1` — Local testing HTTP server supporting `/sodic`, `/privacy-policy`, and `/terms-conditions`

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import '../../sodic/sodic.css';
 
 /**
@@ -69,19 +69,18 @@ export default function SodicLandingPage() {
 
           {/* Top Brand & Advisory Context Bar (Non-fixed, top of hero) */}
           <div className="sodic-top-brand-bar">
-            <div className="brand-identity-group">
-              <div className="sodic-vector-logo" aria-label="SODIC">
-                <svg width="128" height="32" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <text x="0" y="27" fontFamily="'Plus Jakarta Sans', sans-serif" fontWeight="900" fontSize="28" letterSpacing="0.22em" fill="#1A202C">SODIC</text>
-                </svg>
-              </div>
-
-              <div className="brand-divider-pipe"></div>
-
-              <div className="brand-parent-tag">
-                <span className="parent-label">Exclusively Presented</span>
-                <span className="parent-name">By ir-properties</span>
-              </div>
+            
+            {/* Official Centered SODIC Logo & 'By ir-properties' directly underneath */}
+            <div className="sodic-brand-centered-header">
+              <a href="/sodic" className="sodic-logo-link" aria-label="SODIC Portfolio Home">
+                <img
+                  src="/images/sodic-logo.png"
+                  alt="SODIC Logo"
+                  className="sodic-main-logo"
+                  loading="lazy"
+                />
+              </a>
+              <span className="sodic-brand-subtext">By ir-properties</span>
             </div>
 
             <a href="/" className="top-return-link" title="Return to IR-PROPERTIES Corporate Portal">
@@ -279,7 +278,7 @@ export default function SodicLandingPage() {
               
               <div className="sodic-project-visual">
                 <img
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/sodic-east.jpg"
                   alt="The Lakes at SODIC East Master Community"
                   className="sodic-project-img"
                   loading="lazy"
@@ -363,7 +362,7 @@ export default function SodicLandingPage() {
               
               <div className="sodic-project-visual">
                 <img
-                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/ogami.jpg"
                   alt="Ogami by SODIC Ras El Hekma Sanctuary"
                   className="sodic-project-img"
                   loading="lazy"
@@ -444,7 +443,7 @@ export default function SodicLandingPage() {
               
               <div className="sodic-project-visual">
                 <img
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/east-vale.jpg"
                   alt="East Vale Mostakbal City Master Community"
                   className="sodic-project-img"
                   loading="lazy"
@@ -539,7 +538,7 @@ export default function SodicLandingPage() {
                 className="btn-sodic-green"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.988 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
                 </svg>
                 CONTACT US
               </a>
@@ -557,7 +556,12 @@ export default function SodicLandingPage() {
           <div className="sodic-footer-inner">
 
             <div className="footer-branding-block">
-              <div className="footer-brand-title">IR-PROPERTIES</div>
+              <img
+                src="/images/sodic-logo.png"
+                alt="SODIC Logo"
+                className="sodic-footer-logo"
+                loading="lazy"
+              />
               <div className="footer-brand-subtext">By ir-properties</div>
             </div>
 
@@ -621,4 +625,3 @@ export default function SodicLandingPage() {
     </div>
   );
 }
-
