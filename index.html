@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>IR-PROPERTIES | Independent Real Estate Consultancy & Authorized Advisory Partner</title>
+  <meta name="description" content="Your Gateway to Egypt’s Premier Real Estate Destinations. Objective market advisory connecting you seamlessly with leading developments across residential, coastal, and commercial sectors.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%231A202C'>IR</text></svg>">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. HERO SECTION (EXPANSIVE DESTINATION ADVISORY)
+       Starts directly at top: 0 (No Top Fixed Navbar)
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      
+      <!-- Top Center Branding -->
+      <div class="hero-brand-top">
+        <div class="brand-wordmark">
+          IR-PROPERTIES
+        </div>
+        <div class="brand-subtext">By ir-properties</div>
+      </div>
+
+      <div class="hero-grid">
+        <!-- Hero Left Column: Editorial & Value Proposition -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="badge-dot"></span>
+            INDEPENDENT REAL ESTATE CONSULTANCY
+          </div>
+
+          <h1 class="hero-headline">
+            Your Gateway to Egypt’s Premier Real Estate Destinations
+          </h1>
+
+          <p class="hero-subtitle">
+            As your independent strategic property partner, ir-properties provides objective market advisory, connecting you seamlessly with the nation’s leading developments across residential, coastal, and commercial sectors.
+          </p>
+
+          <!-- Quick Highlight Badges -->
+          <div class="hero-highlight-badges">
+            <div class="highlight-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span>Nationwide Destination Footprint</span>
+            </div>
+
+            <div class="highlight-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>100% Unbiased Strategic Advisory</span>
+            </div>
+
+            <div class="highlight-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span>Priority Launch Access & Flexible Terms</span>
+            </div>
+          </div>
+
+          <!-- Direct Hero Action Buttons -->
+          <div class="hero-actions">
+            <a href="https://wa.me/201033373331?text=Hello%20ir-properties,%20I%20would%20like%20to%20speak%20to%20a%20consultant%20regarding%20Egypt%20real%20estate." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-green">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+              </svg>
+              Speak to a Consultant
+            </a>
+            <a href="#destinations" class="btn btn-outline-charcoal">
+              Explore Destinations
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Frosted Glass Lead Capture Form -->
+        <div class="hero-form-wrapper">
+          <div class="hero-form-card">
+            <div class="form-header">
+              <h2 class="form-title">SCHEDULE A PRIVATE CONSULTATION</h2>
+              <p class="form-subtitle">Receive customized property portfolios and market comparisons</p>
+            </div>
+
+            <form id="consultationForm" class="lead-form" novalidate>
+              <!-- Full Name (Clean UI: Blank input, NO placeholder examples) -->
+              <div class="form-group">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input 
+                  type="text" 
+                  id="fullName" 
+                  name="fullName" 
+                  class="form-input-text" 
+                  required 
+                  autocomplete="name"
+                  placeholder=""
+                >
+              </div>
+
+              <!-- Phone Number (Split Input Layout) -->
+              <div class="form-group">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <div class="phone-split-container">
+                  <!-- Country Code dropdown on the left with properly encoded UTF-8 flags, defaulting to Egypt +20 -->
+                  <div class="country-code-select-wrapper">
+                    <select id="countryCode" name="countryCode" class="country-code-select" aria-label="Country Code">
+                      <option value="+20" selected>🇪🇬 +20</option>
+                      <option value="+966">🇸🇦 +966</option>
+                      <option value="+971">🇦🇪 +971</option>
+                      <option value="+965">🇰🇼 +965</option>
+                      <option value="+974">🇶🇦 +974</option>
+                      <option value="+968">🇴🇲 +968</option>
+                      <option value="+973">🇧🇭 +973</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+1">🇨🇦 +1</option>
+                      <option value="+49">🇩🇪 +49</option>
+                      <option value="+33">🇫🇷 +33</option>
+                      <option value="+41">🇨🇭 +41</option>
+                      <option value="+962">🇯🇴 +962</option>
+                      <option value="+961">🇱🇧 +961</option>
+                    </select>
+                    <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+
+                  <!-- Clean Blank input on the right (NO placeholder examples) -->
+                  <input 
+                    type="tel" 
+                    id="phoneNumber" 
+                    name="phoneNumber" 
+                    class="phone-number-input" 
+                    required 
+                    autocomplete="tel-national"
+                    placeholder=""
+                  >
+                </div>
+              </div>
+
+              <!-- Submit Button: Solid Dark Charcoal Button -->
+              <button type="submit" class="btn btn-charcoal btn-form-submit">
+                SUBMIT
+              </button>
+
+              <!-- Form Disclaimer Below -->
+              <p class="form-disclaimer">
+                By submitting, you agree to receive communications from ir-properties regarding real estate projects. This platform is operated by ir-properties, an independent real estate consultancy. Prices and availability are subject to change.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. NATIONWIDE DESTINATIONS SECTION (EVERY MAJOR HORIZON)
+       ========================================================================== -->
+  <section class="destinations-section" id="destinations">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-heading-wrapper text-center">
+        <div class="section-badge">
+          <span class="badge-dot"></span>
+          COMPREHENSIVE COVERAGE
+        </div>
+        <h2 class="section-title">Handpicked Projects Across Every Premier Destination</h2>
+        <p class="section-subtitle">
+          From high-appreciation urban growth corridors to tranquil Mediterranean coastlines and coastal sanctuaries, our advisory spans Egypt’s most prestigious developments.
+        </p>
+      </div>
+
+      <!-- Modern Editorial Asymmetric Cards Grid -->
+      <div class="destinations-grid">
+
+        <!-- Destination 1: East Cairo (Col Span 7) -->
+        <article class="destination-card col-span-7">
+          <div class="destination-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" 
+              alt="East Cairo Master Communities" 
+              loading="lazy"
+            >
+            <div class="destination-image-overlay"></div>
+            <span class="destination-tag-pill">Urban Epicenter</span>
+            <div class="destination-badge-bottom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>New Cairo Prime & Mostakbal City Masterplans</span>
+            </div>
+          </div>
+          <div class="destination-body">
+            <h3 class="destination-title">East Cairo</h3>
+            <div class="destination-locations">New Cairo & Mostakbal City</div>
+            <p class="destination-desc">
+              Integrated master communities, private compounds, and thriving business hubs. Exceptional connectivity to the New Administrative Capital, world-class international academies, and high-capital-growth commercial corridors.
+            </p>
+            <div class="destination-footer">
+              <div class="destination-metrics">
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Primary Inventory
+                </span>
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Up to 8-10 Yr Plans
+                </span>
+              </div>
+              <a href="#" class="destination-action-link" data-destination="East Cairo (New Cairo & Mostakbal City)">
+                Inquire on WhatsApp →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Destination 2: North Coast (Col Span 5) -->
+        <article class="destination-card col-span-5">
+          <div class="destination-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80" 
+              alt="North Coast Mediterranean Luxury" 
+              loading="lazy"
+            >
+            <div class="destination-image-overlay"></div>
+            <span class="destination-tag-pill">Mediterranean Sanctuary</span>
+            <div class="destination-badge-bottom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Ras El Hekma & Sidi Heneish</span>
+            </div>
+          </div>
+          <div class="destination-body">
+            <h3 class="destination-title">North Coast</h3>
+            <div class="destination-locations">Ras El Hekma & Sidi Heneish</div>
+            <p class="destination-desc">
+              Mediterranean coastal sanctuaries, pristine beachfronts, and signature chalets. Sovereign mega-developments and luxury hospitality brands redefining global beachfront living.
+            </p>
+            <div class="destination-footer">
+              <div class="destination-metrics">
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Prime Beachfront
+                </span>
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  High FX Capital Yield
+                </span>
+              </div>
+              <a href="#" class="destination-action-link" data-destination="North Coast (Ras El Hekma & Sidi Heneish)">
+                Inquire on WhatsApp →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Destination 3: West Cairo (Col Span 5) -->
+        <article class="destination-card col-span-5">
+          <div class="destination-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" 
+              alt="West Cairo Exclusive Family Estates" 
+              loading="lazy"
+            >
+            <div class="destination-image-overlay"></div>
+            <span class="destination-tag-pill">Refined Living</span>
+            <div class="destination-badge-bottom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Sheikh Zayed & New Zayed</span>
+            </div>
+          </div>
+          <div class="destination-body">
+            <h3 class="destination-title">West Cairo</h3>
+            <div class="destination-locations">Sheikh Zayed & New Zayed</div>
+            <p class="destination-desc">
+              Established luxury living, vast green expanses, and exclusive family estates. Signature golf communities, boutique commercial districts, and private villa enclaves.
+            </p>
+            <div class="destination-footer">
+              <div class="destination-metrics">
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Established Communities
+                </span>
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Signature Estates
+                </span>
+              </div>
+              <a href="#" class="destination-action-link" data-destination="West Cairo (Sheikh Zayed & New Zayed)">
+                Inquire on WhatsApp →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Destination 4: Red Sea & Coastal Retreats (Col Span 7) -->
+        <article class="destination-card col-span-7">
+          <div class="destination-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80" 
+              alt="Red Sea and Coastal Residences" 
+              loading="lazy"
+            >
+            <div class="destination-image-overlay"></div>
+            <span class="destination-tag-pill">Year-Round Leisure</span>
+            <div class="destination-badge-bottom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>El Gouna, Somabay & Coastal Retreats</span>
+            </div>
+          </div>
+          <div class="destination-body">
+            <h3 class="destination-title">Red Sea & Coastal Retreats</h3>
+            <div class="destination-locations">El Gouna & Prime Coastal Lagoons</div>
+            <p class="destination-desc">
+              Year-round leisure, resort residences, and high-yield holiday assets. Water-front lagoons, marina berths, kitesurfing bays, and international community hubs delivering reliable rental yields.
+            </p>
+            <div class="destination-footer">
+              <div class="destination-metrics">
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Lagoon & Marina Front
+                </span>
+                <span class="metric-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Proven Short-Term Yield
+                </span>
+              </div>
+              <a href="#" class="destination-action-link" data-destination="Red Sea & Coastal Retreats">
+                Inquire on WhatsApp →
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Section CTA: Solid Green button reading 'Inquire About Destinations' linked to exact URL -->
+      <div class="destinations-cta-wrapper">
+        <a 
+          href="https://wa.me/201033373331?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20available%20destinations%20via%20ir-properties" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-whatsapp-green"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+          </svg>
+          Inquire About Destinations
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. OUR ROLE AS AN AUTHORIZED INDEPENDENT ADVISOR
+       ========================================================================== -->
+  <section class="role-section" id="role">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-heading-wrapper text-center">
+        <div class="section-badge">
+          <span class="badge-dot"></span>
+          THE IR-PROPERTIES STANDARD
+        </div>
+        <h2 class="section-title">Why Partner with an Independent Consultant?</h2>
+        <p class="section-subtitle">
+          In an expansive real estate market with over 200 developers, having an authorized independent consultant protects your capital, streamlines your portfolio research, and secures optimal contract terms.
+        </p>
+      </div>
+
+      <!-- Core Value Pillars Grid -->
+      <div class="pillars-grid">
+        
+        <!-- Pillar 1 -->
+        <div class="pillar-card">
+          <span class="pillar-number">01</span>
+          <div class="pillar-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Unbiased Client Representation</h3>
+          <p class="pillar-desc">
+            We represent your investment goals, not the sales quota of a single developer. Our advisory prioritizes your financial objectives, capital horizons, and lifestyle standards across the entire marketplace.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar-card">
+          <span class="pillar-number">02</span>
+          <div class="pillar-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Direct Developer Access</h3>
+          <p class="pillar-desc">
+            Official authorized partnership ensuring verified primary pricing, official payment plans, and zero hidden costs. You receive direct developer contractual standing with full independent guidance.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar-card">
+          <span class="pillar-number">03</span>
+          <div class="pillar-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Curated Selection</h3>
+          <p class="pillar-desc">
+            We filter through hundreds of market options to present only reputable developers and high-potential projects. We analyze delivery track records, construction velocity, master-plan density, and resale liquidity.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Advisory Banner with WhatsApp Green Action Button -->
+      <div class="advisory-banner">
+        <div class="advisory-banner-content">
+          <h3>Complimentary Advisory for Primary Market Buyers</h3>
+          <p>
+            Our advisory services on developer primary launches are 100% complimentary to buyers. Enjoy unbiased advisory, official pricing, and dedicated portfolio consultation.
+          </p>
+        </div>
+        <a 
+          href="https://wa.me/201033373331?text=Hello%20ir-properties,%20I%20would%20like%20to%20speak%20to%20a%20consultant%20regarding%20property%20advisory." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-whatsapp-green"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+          </svg>
+          Speak to a Consultant
+        </a>
+      </div>
+
+      <!-- Developer Network Trust Grid (Advisory Context) -->
+      <div class="developer-trust-strip">
+        <div class="developer-trust-title">Authorized Advisory Across Egypt's Top-Tier Developers</div>
+        <div class="developer-badges-row">
+          <span class="developer-badge-item">Emaar Misr</span>
+          <span class="developer-badge-item">SODIC</span>
+          <span class="developer-badge-item">Palm Hills</span>
+          <span class="developer-badge-item">Hassan Allam Properties</span>
+          <span class="developer-badge-item">Ora Developers</span>
+          <span class="developer-badge-item">Mountain View</span>
+          <span class="developer-badge-item">Tatweer Misr</span>
+          <span class="developer-badge-item">Talaat Moustafa Group</span>
+          <span class="developer-badge-item">Misr Italia</span>
+          <span class="developer-badge-item">Inertia</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. TECHNICAL FOOTER & COMPLIANCE
+       ========================================================================== -->
+  <footer class="corporate-footer">
+    <div class="container">
+      <div class="footer-content">
+        
+        <!-- Centered Branding 'By ir-properties' -->
+        <div class="footer-branding">
+          <div class="footer-brand-title">IR-PROPERTIES</div>
+          <div class="footer-brand-signature">By ir-properties</div>
+        </div>
+
+        <!-- Mandatory Disclaimer -->
+        <p class="footer-disclaimer">
+          This platform is operated by ir-properties, an independent real estate consultancy and authorized marketing partner. ir-properties does not own the listed projects. Prices, unit availability, and specifications are subject to developer modifications without prior notice.
+        </p>
+
+        <!-- Centered Standalone Clickable Links to 'Privacy Policy' and 'Terms & Conditions' -->
+        <div class="footer-legal-links">
+          <a href="/privacy-policy" id="linkPrivacy">Privacy Policy</a>
+          <span style="color: var(--border-subtle);">|</span>
+          <a href="/terms-conditions" id="linkTerms">Terms & Conditions</a>
+        </div>
+
+        <!-- Signature -->
+        <div class="footer-signature">
+          © 2026 ir-properties — Strategic Partners
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       FLOATING WHATSAPP ICON
+       Fixed bottom-right round green icon (#25D366) linking to +201033373331
+       ========================================================================== -->
+  <a 
+    href="https://wa.me/201033373331" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="floating-whatsapp-btn" 
+    aria-label="Direct WhatsApp Consultation with ir-properties"
+  >
+    <span class="whatsapp-tooltip">Chat with a Consultant</span>
+    <svg viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+    </svg>
+  </a>
+
+  <!-- ==========================================================================
+       CONFIRMATION TOAST / MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="confirmationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 class="modal-title" id="modalTitle">Consultation Request Received</h3>
+      <p class="modal-desc">
+        Thank you. An ir-properties senior consultant has received your inquiry. Connect immediately via WhatsApp for instant priority portfolio access:
+      </p>
+      <div class="modal-actions">
+        <a href="https://wa.me/201033373331" id="modalWhatsappLink" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-green">
+          Open Direct WhatsApp Chat
+        </a>
+        <button type="button" id="closeModalBtn" class="btn btn-outline-charcoal">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
