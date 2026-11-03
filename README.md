@@ -28,21 +28,23 @@ Nested under the `ir-properties.com` architecture:
     - Disclaimers: Full disclosure under "By ir-properties".
 
 ### City Gate Featured Inventory & Specifications:
-- **Master Scale**: 8.5 Million M² City • 18-Hole Championship USGA Golf Course • 1M M² Ring Park (80% Green) • 5 Mins to AUC New Cairo.
-1. **Collection 01: Luxury Apartments**
-   - Finishing: Fully Finished
-   - Payment Terms: 5% Down Payment • 5% after 3 months • 10 Years Equal Installments • Delivery in 4 Years
-   - Units:
-     - 2 Bedrooms: From 107 SQM Built-up Area | Starting from 11.2M EGP
-     - 3 Bedrooms: From 138 SQM Built-up Area | Starting from 14.6M EGP
-     - 3 Bedrooms + Maid: 160 SQM Built-up Area | Starting from 17.4M EGP
-2. **Collection 02: Jade Hills Signature Villas**
-   - Finishing: Core & Shell
-   - Payment Terms: 5% Down Payment • 5% after 3 months • 8 Years Equal Installments • Delivery in 4 Years
-   - Units:
-     - Standalone Villas (V36 / V43): BUA 356m² • Land 524m² | Golf & Park Views | Starting from 68.9M EGP
-     - One-Story Golf Villas (GV51): BUA 565m² • Land up to 931m² | Starting from 117.4M EGP
-     - Signature Master Villas (GV73): BUA 714m² • Land 1,325m² | 1st Row Golf | Starting from 182.4M EGP
+- **Core Offers**:
+  - Badge/Eyebrow: `BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO`
+  - Main Title: `City Gate New Cairo`
+  - Subtitle: `Fully Finished Riverside Apartments & Signature Golf Villas. Secure your premium residence with a 5% Down Payment and equal installments up to 10 Years.`
+- **Section A: Riverside (Fully Finished Apartments)**:
+  - Description: Move into City Gate's exclusive fully finished apartments.
+  - 1 Bedroom (89m²): Starting from **9.07M EGP**
+  - 3 Bedrooms Typical (138m² - 160m²): Starting from **14.63M EGP** (Available options up to 17.3M EGP)
+  - Payment Plan: 5% Down Payment | 10 Years Equal Installments
+  - Direct CTA: `https://wa.me/201277752731?text=Hello%2C%20I%20am%20inquiring%20about%20Riverside%20Apartments%20at%20City%20Gate`
+- **Section B: Signature Golf Villas**:
+  - Description: Ultra-luxury standalone villas with sweeping golf views.
+  - V36 (3rd Row Golf): BUA 356m² | Land 524m² — Starting from **68.93M EGP**
+  - V43: BUA 423m² | Land 561m² — Starting from **70.5M EGP**
+  - GV73 One-Story (2nd Row Golf): BUA 714m² | Land 1,201m² — Starting from **142.95M EGP**
+  - Payment Plan: 5% Down Payment | 8 Years Equal Installments
+  - Direct CTA: `https://wa.me/201277752731?text=Hello%2C%20I%20am%20inquiring%20about%20Golf%20Villas%20at%20City%20Gate`
 
 ---
 

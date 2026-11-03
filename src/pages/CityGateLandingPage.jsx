@@ -3,14 +3,16 @@ import '../../city-gate/city-gate.css';
 
 /**
  * City Gate New Cairo Internal Landing Page Component
- * Internal Route: ir-properties.com/city-gate
+ * Internal Route: ir-properties.com/city-gate & ir-properties.com/citygate
  * Entity: By ir-properties — Independent Real Estate Consultancy
  * Aesthetic: Ultra-Chic Editorial Luxury | Strict Zero Gold Policy
  * WhatsApp Number: +201277752731
  */
 export default function CityGateLandingPage() {
   const WHATSAPP_NUMBER = '201277752731';
-  const WHATSAPP_CTA_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20City%20Gate%20New%20Cairo`;
+  const WHATSAPP_HERO_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20City%20Gate%20New%20Cairo`;
+  const WHATSAPP_RIVERSIDE_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20Riverside%20Apartments%20at%20City%20Gate`;
+  const WHATSAPP_VILLAS_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20Golf%20Villas%20at%20City%20Gate`;
 
   // Form State
   const [fullName, setFullName] = useState('');
@@ -74,7 +76,7 @@ export default function CityGateLandingPage() {
           <div className="cg-internal-meta-desk">
             <span className="cg-internal-pill">Independent Real Estate Consultancy</span>
             <a 
-              href={WHATSAPP_CTA_LINK} 
+              href={WHATSAPP_HERO_LINK} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="cg-internal-wa-link"
@@ -89,7 +91,7 @@ export default function CityGateLandingPage() {
       </aside>
 
       {/* ==========================================================================
-           1. HERO SECTION (HIGH-FASHION EDITORIAL LUXURY)
+           1. HERO SECTION (CORE OFFERS - BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO)
            ========================================================================== */}
       <header className="cg-hero-section" id="hero">
         <div className="cg-container">
@@ -124,44 +126,44 @@ export default function CityGateLandingPage() {
                 </div>
               </div>
 
-              {/* Badges */}
+              {/* Eyebrow Badge as requested: BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO */}
               <div className="cg-badge-row">
                 <div className="cg-status-badge">
                   <span className="cg-pulse-dot"></span>
-                  NEW RELEASE &bull; NEW CAIRO
+                  BY IR-PROPERTIES &bull; EXCLUSIVE PORTFOLIO
                 </div>
                 <div className="cg-price-badge">
-                  Starting from 9M EGP
+                  Starting from 9.07M EGP
                 </div>
               </div>
 
+              {/* Main Title as requested: City Gate New Cairo */}
               <h1 className="cg-hero-title">
-                An Integrated City in the Heart of New Cairo
+                City Gate New Cairo
               </h1>
 
+              {/* Subtitle as requested: Fully Finished Riverside Apartments & Signature Golf Villas */}
               <div className="cg-hero-subtitle-bar">
-                <span>5% Down Payment</span>
-                <span className="cg-sub-bullet">&bull;</span>
-                <span>Installments Up to 10 Years</span>
+                <span>Fully Finished Riverside Apartments &amp; Signature Golf Villas</span>
               </div>
 
               <p className="cg-hero-desc">
-                Spanning 8.5 million square meters by Qatari Diar, featuring an 18-hole championship USGA golf course, 1M m² ring park, and luxury living spaces crafted for generational prestige.
+                Secure your premium residence with a 5% Down Payment and equal installments up to 10 Years. Spanning 8.5 million square meters by Qatari Diar with an 18-hole championship USGA golf course and expansive green parks.
               </p>
 
               {/* Metric Highlights Strip */}
               <div className="cg-hero-metrics-grid">
                 <div className="cg-hero-metric-card">
-                  <div className="cg-metric-value">8.5M M²</div>
-                  <div className="cg-metric-label">Master Development</div>
+                  <div className="cg-metric-value">5% DP</div>
+                  <div className="cg-metric-label">Down Payment</div>
+                </div>
+                <div className="cg-hero-metric-card">
+                  <div className="cg-metric-value">Up to 10 Yrs</div>
+                  <div className="cg-metric-label">Equal Installments</div>
                 </div>
                 <div className="cg-hero-metric-card">
                   <div className="cg-metric-value">18-Hole</div>
-                  <div className="cg-metric-label">Championship Golf</div>
-                </div>
-                <div className="cg-hero-metric-card">
-                  <div className="cg-metric-value">1M M²</div>
-                  <div className="cg-metric-label">Ring Park (80% Green)</div>
+                  <div className="cg-metric-label">USGA Championship Golf</div>
                 </div>
                 <div className="cg-hero-metric-card">
                   <div className="cg-metric-value">5 Mins</div>
@@ -171,9 +173,8 @@ export default function CityGateLandingPage() {
 
               {/* Hero Action CTAs */}
               <div className="cg-hero-cta-group">
-                {/* Solid Vibrant Green CTA Button (#25D366) */}
                 <a 
-                  href={WHATSAPP_CTA_LINK} 
+                  href={WHATSAPP_HERO_LINK} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-cg-green"
@@ -284,13 +285,13 @@ export default function CityGateLandingPage() {
       </header>
 
       {/* ==========================================================================
-           2. RESIDENTIAL COLLECTIONS, PRICING & PAYMENT TERMS
+           2. UPDATED PROJECT PRICING & AVAILABILITY (SECTIONS A & B)
            ========================================================================== */}
       <section className="cg-section cg-section-alabaster" id="collections">
         <div className="cg-container">
           
           <div className="cg-section-header">
-            <span className="cg-section-eyebrow">VERIFIED PROJECT INVENTORY</span>
+            <span className="cg-section-eyebrow">VERIFIED PROJECT INVENTORY &amp; PRICING</span>
             <h2 className="cg-section-title">City Gate Residential Collections &amp; Terms</h2>
             <p className="cg-section-lead">
               Select from City Gate's premier residential collections. Featuring verified starting prices, tailored developer installment horizons, and delivery schedules crafted for discerning buyers.
@@ -299,13 +300,15 @@ export default function CityGateLandingPage() {
 
           <div className="cg-collections-stack">
             
-            {/* Collection 1: Luxury Apartments */}
-            <article className="cg-collection-card">
+            {/* ==========================================
+                 SECTION A: RIVERSIDE (FULLY FINISHED APARTMENTS)
+                 ========================================== */}
+            <article className="cg-collection-card" id="riverside">
               <div className="cg-collection-media">
                 <img 
                   src="/apartment-interior.jpg" 
                   onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/apartment-interior.jpg'; }}
-                  alt="Luxury Apartments at City Gate New Cairo" 
+                  alt="Riverside Fully Finished Apartments at City Gate New Cairo" 
                   className="cg-collection-img" 
                   loading="lazy" 
                   width="600" 
@@ -316,43 +319,32 @@ export default function CityGateLandingPage() {
 
               <div className="cg-collection-details">
                 <div>
-                  <span className="cg-collection-eyebrow">COLLECTION 01</span>
-                  <h3 className="cg-collection-title">Luxury Apartments</h3>
+                  <span className="cg-collection-eyebrow">SECTION A &bull; RIVERSIDE</span>
+                  <h3 className="cg-collection-title">Riverside (Fully Finished Apartments)</h3>
                   <p className="cg-collection-desc">
-                    Elegantly appointed fully-finished residences designed for contemporary urban living. Featuring floor-to-ceiling glass and panoramic green vistas over championship fairways.
+                    Move into City Gate's exclusive fully finished apartments. Elegantly designed contemporary residences with expansive glass facades and picturesque panoramic views.
                   </p>
 
                   <div className="cg-unit-breakdown-list">
                     <div className="cg-unit-row">
                       <div>
-                        <div className="cg-unit-title">2 Bedrooms</div>
-                        <div className="cg-unit-specs">From 107 SQM Built-up Area</div>
+                        <div className="cg-unit-title">1 Bedroom</div>
+                        <div className="cg-unit-specs">89m² Built-up Area &bull; Fully Finished</div>
                       </div>
                       <div className="cg-unit-pricing-col">
                         <div className="cg-price-label">Starting From</div>
-                        <div className="cg-price-num">11.2M EGP</div>
+                        <div className="cg-price-num">9.07M EGP</div>
                       </div>
                     </div>
 
                     <div className="cg-unit-row">
                       <div>
-                        <div className="cg-unit-title">3 Bedrooms</div>
-                        <div className="cg-unit-specs">From 138 SQM Built-up Area</div>
+                        <div className="cg-unit-title">3 Bedrooms Typical</div>
+                        <div className="cg-unit-specs">138m² &ndash; 160m² Built-up Area &bull; Options up to 17.3M EGP</div>
                       </div>
                       <div className="cg-unit-pricing-col">
                         <div className="cg-price-label">Starting From</div>
-                        <div className="cg-price-num">14.6M EGP</div>
-                      </div>
-                    </div>
-
-                    <div className="cg-unit-row">
-                      <div>
-                        <div className="cg-unit-title">3 Bedrooms + Maid</div>
-                        <div className="cg-unit-specs">160 SQM Built-up Area</div>
-                      </div>
-                      <div className="cg-unit-pricing-col">
-                        <div className="cg-price-label">Starting From</div>
-                        <div className="cg-price-num">17.4M EGP</div>
+                        <div className="cg-price-num">14.63M EGP</div>
                       </div>
                     </div>
                   </div>
@@ -365,16 +357,16 @@ export default function CityGateLandingPage() {
                       <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
                     <div>
-                      <div className="cg-payment-title">Payment Terms</div>
+                      <div className="cg-payment-title">Payment Plan</div>
                       <div className="cg-payment-content">
-                        5% Down Payment &bull; 5% after 3 months &bull; 10 Years Equal Installments &bull; Delivery in 4 Years
+                        5% Down Payment | 10 Years Equal Installments
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <a 
-                  href={WHATSAPP_CTA_LINK} 
+                  href={WHATSAPP_RIVERSIDE_LINK} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-cg-green"
@@ -387,60 +379,62 @@ export default function CityGateLandingPage() {
               </div>
             </article>
 
-            {/* Collection 2: Jade Hills Signature Villas */}
-            <article className="cg-collection-card reverse-grid">
+            {/* ==========================================
+                 SECTION B: SIGNATURE GOLF VILLAS
+                 ========================================== */}
+            <article className="cg-collection-card reverse-grid" id="villas">
               <div className="cg-collection-media">
                 <img 
                   src="/villas-exterior.jpg" 
                   onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/villas-exterior.jpg'; }}
-                  alt="Jade Hills Signature Villas at City Gate New Cairo" 
+                  alt="Signature Golf Villas at City Gate New Cairo" 
                   className="cg-collection-img" 
                   loading="lazy" 
                   width="600" 
                   height="420"
                 />
-                <div className="cg-collection-tag">CORE &amp; SHELL &bull; 8 YEARS INSTALLMENTS</div>
+                <div className="cg-collection-tag">SIGNATURE VILLAS &bull; 8 YEARS INSTALLMENTS</div>
               </div>
 
               <div className="cg-collection-details">
                 <div>
-                  <span className="cg-collection-eyebrow">COLLECTION 02</span>
-                  <h3 className="cg-collection-title">Jade Hills Signature Villas</h3>
+                  <span className="cg-collection-eyebrow">SECTION B &bull; ULTRA LUXURY</span>
+                  <h3 className="cg-collection-title">Signature Golf Villas</h3>
                   <p className="cg-collection-desc">
-                    Grand private estates overlooking the championship golf course and vast parks, combining Mediterranean grandeur with bespoke exterior architecture and vast private plots.
+                    Ultra-luxury standalone villas with sweeping golf views. Bespoke architectural grandeur, private manicured grounds, and uncompromised privacy along the championship fairways.
                   </p>
 
                   <div className="cg-unit-breakdown-list">
                     <div className="cg-unit-row">
                       <div>
-                        <div className="cg-unit-title">Standalone Villas (V36 / V43)</div>
-                        <div className="cg-unit-specs">BUA 356m² &bull; Land 524m² | Golf &amp; Park Views</div>
+                        <div className="cg-unit-title">V36 (3rd Row Golf)</div>
+                        <div className="cg-unit-specs">BUA 356m² | Land 524m² &bull; Standalone Villa</div>
                       </div>
                       <div className="cg-unit-pricing-col">
                         <div className="cg-price-label">Starting From</div>
-                        <div className="cg-price-num">68.9M EGP</div>
+                        <div className="cg-price-num">68.93M EGP</div>
                       </div>
                     </div>
 
                     <div className="cg-unit-row">
                       <div>
-                        <div className="cg-unit-title">One-Story Golf Villas (GV51)</div>
-                        <div className="cg-unit-specs">BUA 565m² &bull; Land up to 931m²</div>
+                        <div className="cg-unit-title">V43 Standalone Villa</div>
+                        <div className="cg-unit-specs">BUA 423m² | Land 561m² &bull; Grand Layout</div>
                       </div>
                       <div className="cg-unit-pricing-col">
                         <div className="cg-price-label">Starting From</div>
-                        <div className="cg-price-num">117.4M EGP</div>
+                        <div className="cg-price-num">70.5M EGP</div>
                       </div>
                     </div>
 
                     <div className="cg-unit-row">
                       <div>
-                        <div className="cg-unit-title">Signature Master Villas (GV73)</div>
-                        <div className="cg-unit-specs">BUA 714m² &bull; Land 1,325m² | 1st Row Golf</div>
+                        <div className="cg-unit-title">GV73 One-Story (2nd Row Golf)</div>
+                        <div className="cg-unit-specs">BUA 714m² | Land 1,201m² &bull; Rare Single-Story Master Villa</div>
                       </div>
                       <div className="cg-unit-pricing-col">
                         <div className="cg-price-label">Starting From</div>
-                        <div className="cg-price-num">182.4M EGP</div>
+                        <div className="cg-price-num">142.95M EGP</div>
                       </div>
                     </div>
                   </div>
@@ -453,16 +447,16 @@ export default function CityGateLandingPage() {
                       <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
                     <div>
-                      <div className="cg-payment-title">Payment Terms</div>
+                      <div className="cg-payment-title">Payment Plan</div>
                       <div className="cg-payment-content">
-                        5% Down Payment &bull; 5% after 3 months &bull; 8 Years Equal Installments &bull; Delivery in 4 Years
+                        5% Down Payment | 8 Years Equal Installments
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <a 
-                  href={WHATSAPP_CTA_LINK} 
+                  href={WHATSAPP_VILLAS_LINK} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-cg-green"
@@ -478,7 +472,7 @@ export default function CityGateLandingPage() {
           </div>
 
           <div className="cg-transparency-note">
-            *All prices, payment terms, and inventory availability are starting figures provided for guidance by Qatari Diar and are subject to developer contract terms and updates without prior notice.
+            *All prices, installment plans, and unit availabilities are starting figures provided for guidance by Qatari Diar and are subject to developer contract terms and change without prior notice.
           </div>
 
         </div>
@@ -768,7 +762,7 @@ export default function CityGateLandingPage() {
             </div>
 
             <a 
-              href={WHATSAPP_CTA_LINK} 
+              href={WHATSAPP_HERO_LINK} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn-cg-green"
@@ -821,7 +815,7 @@ export default function CityGateLandingPage() {
             <div className="cg-footer-corporate-info">
               <div className="cg-footer-corp-line"><strong>Operating Entity:</strong> ir-properties &mdash; Independent Real Estate Consultancy</div>
               <div className="cg-footer-corp-line"><strong>Physical Headquarters:</strong> New Cairo, Cairo, Egypt</div>
-              <div className="cg-footer-corp-line"><strong>Direct Support Desk:</strong> WhatsApp: <a href={WHATSAPP_CTA_LINK} target="_blank" rel="noopener noreferrer">+20 127 775 2731</a> &bull; <a href="mailto:info@ir-properties.com">info@ir-properties.com</a></div>
+              <div className="cg-footer-corp-line"><strong>Direct Support Desk:</strong> WhatsApp: <a href={WHATSAPP_HERO_LINK} target="_blank" rel="noopener noreferrer">+20 127 775 2731</a> &bull; <a href="mailto:info@ir-properties.com">info@ir-properties.com</a></div>
             </div>
 
             <div className="cg-footer-legal-nav">
@@ -841,7 +835,7 @@ export default function CityGateLandingPage() {
            7. FLOATING WHATSAPP BUTTON (#25D366)
            ========================================================================== */}
       <a 
-        href={WHATSAPP_CTA_LINK} 
+        href={WHATSAPP_HERO_LINK} 
         className="cg-floating-whatsapp" 
         target="_blank" 
         rel="noopener noreferrer" 
