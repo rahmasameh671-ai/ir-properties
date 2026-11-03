@@ -1501,27 +1501,73 @@ button, input, select, textarea {
 
 .cg-modal-text {
   font-size: 13.5px;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--cg-slate-mid);
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
-.btn-cg-modal-close {
-  padding: 12px 24px;
-  background-color: var(--cg-charcoal);
-  color: #FFFFFF;
+/* Primary WhatsApp Action Button */
+.btn-cg-modal-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 24px;
+  background-color: #25D366;
+  color: #FFFFFF !important;
   border: none;
   border-radius: var(--cg-radius-sm);
-  font-size: 12px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
   transition: var(--cg-transition);
+  margin-bottom: 14px;
+  box-sizing: border-box;
 }
 
+.btn-cg-modal-whatsapp:hover {
+  background-color: #20bd5a;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  transform: translateY(-1px);
+  color: #FFFFFF !important;
+}
+
+.btn-cg-modal-whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: #FFFFFF;
+  flex-shrink: 0;
+}
+
+/* Secondary Dismiss Action: Subtle Underline Link Text */
+.btn-cg-modal-dismiss,
+.btn-cg-modal-close {
+  display: inline-block;
+  background: transparent !important;
+  border: none !important;
+  padding: 6px 14px;
+  color: var(--cg-slate-muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: var(--cg-transition);
+  margin: 0 auto;
+}
+
+.btn-cg-modal-dismiss:hover,
 .btn-cg-modal-close:hover {
-  background-color: #000000;
+  color: var(--cg-charcoal);
+  text-decoration-color: var(--cg-charcoal);
+  background: transparent !important;
 }
 
 /* ==========================================================================

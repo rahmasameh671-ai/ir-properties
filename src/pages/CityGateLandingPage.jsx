@@ -835,9 +835,26 @@ export default function CityGateLandingPage() {
             </div>
             <h3 className="cg-modal-title" id="cgModalTitle">Inquiry Received</h3>
             <p className="cg-modal-text">
-              Thank you <strong style={{ color: '#111827' }}>{submittedName}</strong>! Your registration has been securely dispatched to our senior consultancy team at <strong>ir-properties</strong>. A dedicated property advisor will contact you shortly with full brochures, master plans, and unit availability.
+              Thank you <strong style={{ color: '#111827' }}>{submittedName}</strong>! Your registration has been securely dispatched to our senior consultancy team. A dedicated property advisor will contact you shortly with full brochures, master plans, and unit availability.
             </p>
-            <button type="button" className="btn-cg-modal-close" onClick={closeModal}>Close Window</button>
+
+            {/* Primary Action: Solid Vibrant Green WhatsApp Button (#25D366) */}
+            <a 
+              href="https://wa.me/201277752731?text=Hello%20I%20have%20just%20submitted%20my%20inquiry%20for%20City%20Gate%20on%20the%20website%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-cg-modal-whatsapp"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+              </svg>
+              CHAT ON WHATSAPP
+            </a>
+
+            {/* Secondary Dismiss Action: Subtle Underline Link Text */}
+            <button type="button" className="btn-cg-modal-dismiss" onClick={closeModal}>
+              Close Window
+            </button>
           </div>
         </div>
       )}
