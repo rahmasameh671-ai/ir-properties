@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SodicLandingPage from './src/pages/SodicLandingPage';
+import CityGateLandingPage from './src/pages/CityGateLandingPage';
 
 /**
  * Main Application Routing Configuration
- * Directives: Explicit Route for path="/sodic" under ir-properties.com architecture
+ * Directives: Explicit Routes under ir-properties.com architecture
+ * - /sodic: SODIC Signature Living
+ * - /city-gate: City Gate New Cairo by Qatari Diar
  */
 export default function App() {
   return (
@@ -13,8 +16,11 @@ export default function App() {
         {/* Dedicated SODIC Portfolio Route */}
         <Route path="/sodic" element={<SodicLandingPage />} />
         <Route path="/sodic/" element={<SodicLandingPage />} />
+
+        {/* Dedicated City Gate New Cairo Route */}
+        <Route path="/city-gate" element={<CityGateLandingPage />} />
+        <Route path="/city-gate/" element={<CityGateLandingPage />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
