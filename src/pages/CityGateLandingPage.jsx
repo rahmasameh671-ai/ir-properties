@@ -54,44 +54,8 @@ export default function CityGateLandingPage() {
   return (
     <div className="city-gate-page">
       {/* ==========================================================================
-           INTERNAL PAGE TOP ARCHITECTURAL BAR (TOP: 0, NON-FIXED)
-           ir-properties.com / city-gate
-           ========================================================================== */}
-      <aside className="cg-internal-top-bar">
-        <div className="cg-container cg-internal-bar-inner">
-          <nav className="cg-breadcrumb-nav" aria-label="Breadcrumb">
-            <a href="/" className="cg-breadcrumb-link" title="Return to ir-properties Corporate Platform">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-              ir-properties.com
-            </a>
-            <span className="cg-breadcrumb-sep">/</span>
-            <span className="cg-breadcrumb-link">developments</span>
-            <span className="cg-breadcrumb-sep">/</span>
-            <span className="cg-breadcrumb-current">city-gate</span>
-          </nav>
-
-          <div className="cg-internal-meta-desk">
-            <span className="cg-internal-pill">Independent Real Estate Consultancy</span>
-            <a 
-              href={WHATSAPP_HERO_LINK} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="cg-internal-wa-link"
-            >
-              <svg viewBox="0 0 24 24">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
-              </svg>
-              Direct Desk: +20 127 775 2731
-            </a>
-          </div>
-        </div>
-      </aside>
-
-      {/* ==========================================================================
            1. HERO SECTION (CORE OFFERS - BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO)
+           Starts directly at top: 0 (No Top Fixed Navbar)
            ========================================================================== */}
       <header className="cg-hero-section" id="hero">
         <div className="cg-container">

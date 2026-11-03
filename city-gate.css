@@ -126,6 +126,7 @@ button, input, select, textarea {
    ir-properties.com / city-gate
    ========================================================================== */
 .cg-internal-top-bar {
+  display: none !important;
   width: 100%;
   background: #FFFFFF;
   border-bottom: 1px solid var(--cg-border);
@@ -584,13 +585,16 @@ button, input, select, textarea {
 /* Split Input Layout for Phone Number */
 .cg-phone-split {
   display: flex;
+  align-items: center;
   gap: 8px;
   width: 100%;
 }
 
 .cg-country-select-wrapper {
   position: relative;
-  flex: 0 0 120px;
+  flex: 0 0 115px;
+  width: 115px;
+  min-width: 115px;
 }
 
 .cg-country-select {
@@ -1668,13 +1672,37 @@ button, input, select, textarea {
   }
 
   .cg-phone-split {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
     gap: 8px;
+    width: 100%;
   }
 
   .cg-country-select-wrapper {
-    flex: 1 1 100%;
-    width: 100%;
+    flex: 0 0 102px !important;
+    width: 102px !important;
+    min-width: 102px !important;
+    max-width: 102px !important;
+  }
+
+  .cg-country-select {
+    height: 48px;
+    padding: 0 22px 0 8px;
+    font-size: 13px;
+  }
+
+  .cg-select-chevron {
+    right: 6px;
+  }
+
+  .cg-phone-input {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 48px;
+    padding: 0 12px;
+    font-size: 14px;
   }
 
   /* Sections */
