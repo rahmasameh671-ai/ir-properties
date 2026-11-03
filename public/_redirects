@@ -1,0 +1,5 @@
+# Static redirects & rewrites for ir-properties.com
+/citygate          /city-gate          301
+/citygate/         /city-gate          301
+/city-gate         /city-gate/index.html 200
+/sodic             /sodic/index.html   200

@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/citygate", "destination": "/city-gate" },
+    { "source": "/citygate/", "destination": "/city-gate" },
+    { "source": "/city-gate", "destination": "/city-gate/index.html" },
+    { "source": "/sodic", "destination": "/sodic/index.html" }
+  ]
+}
