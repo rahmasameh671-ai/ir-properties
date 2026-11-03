@@ -112,7 +112,7 @@ export default function CityGateLandingPage() {
               </div>
 
               <p className="cg-hero-desc">
-                Secure your premium residence with a 5% Down Payment and equal installments up to 10 Years. Spanning 8.5 million square meters by Qatari Diar with an 18-hole championship USGA golf course and expansive green parks.
+                Secure your premium residence with a 5% Down Payment and equal installments up to 10 Years. Spanning 9 million square meters by Qatari Diar with an 18-hole championship USGA golf course and expansive green parks.
               </p>
 
               {/* Metric Highlights Strip */}
@@ -665,16 +665,27 @@ export default function CityGateLandingPage() {
             <div className="cg-dev-top-row">
               <div className="cg-dev-logo-badge">
                 <img 
+                  src="/citygate-official.png" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/citygate-official.png'; }}
+                  alt="City Gate New Cairo Official Logo" 
+                  className="cg-dev-citygate-logo" 
+                  width="135" 
+                  height="45" 
+                  loading="lazy"
+                />
+                <div className="cg-dev-badge-divider"></div>
+                <img 
                   src="/qatari-diar-official.png" 
                   onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
                   alt="Qatari Diar Egypt Official Logo" 
-                  width="140" 
-                  height="50" 
+                  className="cg-dev-qatari-logo" 
+                  width="130" 
+                  height="48" 
                   loading="lazy"
                 />
               </div>
               <div className="cg-dev-intro-text">
-                <h2>About Qatari Diar Egypt</h2>
+                <h2>About Qatari Diar Egypt &amp; City Gate</h2>
                 <p>Global Sovereign Developer &bull; Iconic Master Communities</p>
               </div>
             </div>
