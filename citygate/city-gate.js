@@ -44,6 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
         timestamp: new Date().toISOString()
       });
 
+      // Google Tag Lead Conversion Event
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'form',
+          event_label: 'City Gate Lead Inquiry'
+        });
+      }
+
       // Update modal text
       if (modalLeadName) {
         modalLeadName.textContent = fullName;

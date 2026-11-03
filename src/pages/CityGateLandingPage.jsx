@@ -41,6 +41,14 @@ export default function CityGateLandingPage() {
       timestamp: new Date().toISOString()
     });
 
+    // Google Tag Lead Conversion Event
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', {
+        event_category: 'form',
+        event_label: 'City Gate Lead Inquiry'
+      });
+    }
+
     // Reset inputs
     setFullName('');
     setPhoneNumber('');
