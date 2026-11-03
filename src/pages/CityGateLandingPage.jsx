@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../../city-gate/city-gate.css';
 
 /**
- * City Gate New Cairo Landing Page Component
- * Route: /city-gate under ir-properties.com architecture
+ * City Gate New Cairo Internal Landing Page Component
+ * Internal Route: ir-properties.com/city-gate
  * Entity: By ir-properties — Independent Real Estate Consultancy
  * Aesthetic: Ultra-Chic Editorial Luxury | Strict Zero Gold Policy
  * WhatsApp Number: +201277752731
@@ -29,7 +29,7 @@ export default function CityGateLandingPage() {
     setSubmittedName(fullName.trim());
     setIsModalOpen(true);
 
-    // Optional analytics / dispatch
+    // Analytics / Dispatch
     console.log('City Gate Inquiry Dispatched:', {
       project: 'City Gate New Cairo',
       developer: 'Qatari Diar Egypt',
@@ -52,52 +52,79 @@ export default function CityGateLandingPage() {
   return (
     <div className="city-gate-page">
       {/* ==========================================================================
-           1. HERO SECTION (STARTS AT TOP: 0 - NO TOP FIXED NAVBAR)
+           INTERNAL PAGE TOP ARCHITECTURAL BAR (TOP: 0, NON-FIXED)
+           ir-properties.com / city-gate
+           ========================================================================== */}
+      <aside className="cg-internal-top-bar">
+        <div className="cg-container cg-internal-bar-inner">
+          <nav className="cg-breadcrumb-nav" aria-label="Breadcrumb">
+            <a href="/" className="cg-breadcrumb-link" title="Return to ir-properties Corporate Platform">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              ir-properties.com
+            </a>
+            <span className="cg-breadcrumb-sep">/</span>
+            <span className="cg-breadcrumb-link">developments</span>
+            <span className="cg-breadcrumb-sep">/</span>
+            <span className="cg-breadcrumb-current">city-gate</span>
+          </nav>
+
+          <div className="cg-internal-meta-desk">
+            <span className="cg-internal-pill">Independent Real Estate Consultancy</span>
+            <a 
+              href={WHATSAPP_CTA_LINK} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="cg-internal-wa-link"
+            >
+              <svg viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+              </svg>
+              Direct Desk: +20 127 775 2731
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      {/* ==========================================================================
+           1. HERO SECTION (HIGH-FASHION EDITORIAL LUXURY)
            ========================================================================== */}
       <header className="cg-hero-section" id="hero">
         <div className="cg-container">
           
-          {/* Top Brand Bar (Non-fixed, top: 0, editorial luxury flow) */}
-          <div className="cg-hero-top-bar">
-            <div className="cg-hero-brand-group">
-              <img 
-                src="/qatari-diar-official.png" 
-                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
-                alt="Qatari Diar Egypt Official Logo" 
-                className="cg-hero-qatari-logo" 
-                width="140" 
-                height="48"
-              />
-              <div className="cg-brand-divider"></div>
-              <img 
-                src="/citygate-official.png" 
-                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/citygate-official.png'; }}
-                alt="City Gate New Cairo Official Logo" 
-                className="cg-hero-citygate-logo" 
-                width="130" 
-                height="38"
-              />
-              <div className="cg-brand-divider"></div>
-              <div className="cg-brand-signature-wrap">
-                <span className="cg-brand-by-text">By <span>ir-properties</span></span>
-                <span className="cg-brand-role-pill">Independent Real Estate Consultancy</span>
-              </div>
-            </div>
-
-            <a href="/" className="cg-portal-return-link" title="Return to ir-properties Main Portal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-              ir-properties.com
-            </a>
-          </div>
-
-          {/* Hero Asymmetrical Two-Column Grid */}
           <div className="cg-hero-grid">
             
             {/* Hero Left Column: Editorial Narrative & Value Proposition */}
             <div className="cg-hero-narrative">
+              
+              {/* PRISTINE WHITE LOGO PLAQUE: LOGOS ARE 100% CLEAR, SHARP, AND NOT WHITE */}
+              <div className="cg-hero-brand-plaque">
+                <img 
+                  src="/qatari-diar-official.png" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
+                  alt="Qatari Diar Egypt Official Logo" 
+                  className="cg-hero-qatari-logo" 
+                  width="130" 
+                  height="48"
+                />
+                <div className="cg-plaque-divider"></div>
+                <img 
+                  src="/citygate-official.png" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/citygate-official.png'; }}
+                  alt="City Gate New Cairo Official Logo" 
+                  className="cg-hero-citygate-logo" 
+                  width="120" 
+                  height="40"
+                />
+                <div className="cg-plaque-by-box">
+                  <span className="cg-plaque-by-text">By ir-properties</span>
+                  <span className="cg-plaque-role-text">Independent Real Estate Consultancy</span>
+                </div>
+              </div>
+
+              {/* Badges */}
               <div className="cg-badge-row">
                 <div className="cg-status-badge">
                   <span className="cg-pulse-dot"></span>
@@ -119,7 +146,7 @@ export default function CityGateLandingPage() {
               </div>
 
               <p className="cg-hero-desc">
-                Spanning 8.5 million square meters by Qatari Diar, featuring an 18-hole championship USGA golf course, expansive ring parks, and luxury living spaces crafted for discerning generational investment.
+                Spanning 8.5 million square meters by Qatari Diar, featuring an 18-hole championship USGA golf course, 1M m² ring park, and luxury living spaces crafted for generational prestige.
               </p>
 
               {/* Metric Highlights Strip */}
@@ -645,7 +672,7 @@ export default function CityGateLandingPage() {
 
               <div className="cg-loc-item">
                 <div className="cg-loc-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                 </div>
                 <div className="cg-loc-content">
                   <h4>Direct Major Road Links</h4>
@@ -678,7 +705,7 @@ export default function CityGateLandingPage() {
           
           <div className="cg-heritage-box">
             <div className="cg-dev-top-row">
-              <div className="cg-dev-logo-wrap">
+              <div className="cg-dev-logo-badge">
                 <img 
                   src="/qatari-diar-official.png" 
                   onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
@@ -762,14 +789,14 @@ export default function CityGateLandingPage() {
       <footer className="cg-footer">
         <div className="cg-container cg-footer-inner">
           <div className="cg-footer-branding">
-            <div className="cg-footer-logos-row">
+            <div className="cg-footer-logos-card">
               <img 
                 src="/qatari-diar-official.png" 
                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
                 alt="Qatari Diar Egypt Official Logo" 
                 className="cg-footer-qatari-logo" 
                 width="120" 
-                height="42" 
+                height="40" 
                 loading="lazy"
               />
               <img 
@@ -778,7 +805,7 @@ export default function CityGateLandingPage() {
                 alt="City Gate New Cairo Official Logo" 
                 className="cg-footer-citygate-logo" 
                 width="110" 
-                height="32" 
+                height="34" 
                 loading="lazy"
               />
             </div>
@@ -788,7 +815,7 @@ export default function CityGateLandingPage() {
 
           <div className="cg-footer-disclaimer-box">
             <p className="cg-footer-disclaimer-text">
-              <strong>Advertiser &amp; Agency Disclosure:</strong> This advertising campaign and landing page are managed and operated by <strong>ir-properties</strong>, an Independent Real Estate Consultancy and authorized marketing partner. This page is designed to provide consultations, master plans, and unit pricing for City Gate New Cairo on behalf of prospective buyers and investors. This is not the official corporate website of the master developer, Qatari Diar Egypt. All project names, renderings, logos, and trademarks are the property of their respective owners.
+              <strong>Advertiser &amp; Agency Disclosure:</strong> This advertising campaign and internal landing page are managed and operated by <strong>ir-properties</strong>, an Independent Real Estate Consultancy and authorized marketing partner. This page is designed to provide consultations, master plans, and unit pricing for City Gate New Cairo on behalf of prospective buyers and investors. This is not the official corporate website of the master developer, Qatari Diar Egypt. All project names, renderings, logos, and trademarks are the property of their respective owners.
             </p>
 
             <div className="cg-footer-corporate-info">
@@ -839,7 +866,7 @@ export default function CityGateLandingPage() {
             </div>
             <h3 className="cg-modal-title" id="cgModalTitle">Inquiry Received</h3>
             <p className="cg-modal-text">
-              Thank you <strong style={{ color: '#1A202C' }}>{submittedName}</strong>! Your registration has been securely dispatched to our senior consultancy team at <strong>ir-properties</strong>. A dedicated property advisor will contact you shortly with full brochures, master plans, and unit availability.
+              Thank you <strong style={{ color: '#111827' }}>{submittedName}</strong>! Your registration has been securely dispatched to our senior consultancy team at <strong>ir-properties</strong>. A dedicated property advisor will contact you shortly with full brochures, master plans, and unit availability.
             </p>
             <button type="button" className="btn-cg-modal-close" onClick={closeModal}>Close Window</button>
           </div>
