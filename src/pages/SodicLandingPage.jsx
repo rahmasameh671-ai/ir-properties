@@ -127,6 +127,22 @@ export default function SodicLandingPage() {
                 </div>
               </div>
 
+              {/* Quick Compound Nav Pills with Dedicated Project Logos */}
+              <div className="hero-compound-selector">
+                <a href="#the-lakes" className="hero-compound-pill" title="Jump to The Lakes at SODIC East">
+                  <img src="/images/sodic-east-logo.png" alt="SODIC East" loading="lazy" />
+                  <span>The Lakes</span>
+                </a>
+                <a href="#ogami" className="hero-compound-pill" title="Jump to Ogami by SODIC">
+                  <img src="/images/ogami-logo.webp" alt="Ogami" loading="lazy" />
+                  <span>Ogami</span>
+                </a>
+                <a href="#east-vale" className="hero-compound-pill dark-pill" title="Jump to East Vale Mostakbal City">
+                  <img src="/images/east-vale-logo.webp" alt="East Vale" loading="lazy" />
+                  <span>East Vale</span>
+                </a>
+              </div>
+
               {/* CTAs */}
               <div className="sodic-hero-cta-row">
                 <a
@@ -285,6 +301,12 @@ export default function SodicLandingPage() {
                 />
                 <div className="sodic-visual-overlay"></div>
                 <div className="visual-top-badge">New Launch • East Cairo</div>
+                
+                {/* Inset Official Logo Emblem */}
+                <div className="visual-emblem-badge" title="Official SODIC East Development">
+                  <img src="/images/sodic-east-logo.png" alt="SODIC East Logo" loading="lazy" />
+                </div>
+
                 <div className="visual-bottom-marker">
                   <div className="marker-title">The Lakes at SODIC East</div>
                   <div className="marker-subtitle">655-Acre Master Community • 6,000 Private Residences</div>
@@ -293,6 +315,11 @@ export default function SodicLandingPage() {
 
               <div className="sodic-project-info">
                 <div>
+                  {/* Dedicated Project Brand Logo Badge */}
+                  <div className="project-brand-badge">
+                    <img src="/images/sodic-east-logo.png" alt="SODIC East Official Logo" className="project-badge-logo" loading="lazy" />
+                  </div>
+
                   <div className="project-subtitle-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -369,6 +396,12 @@ export default function SodicLandingPage() {
                 />
                 <div className="sodic-visual-overlay"></div>
                 <div className="visual-top-badge">Coastal Sanctuary • Ras El Hekma</div>
+                
+                {/* Inset Official Logo Emblem */}
+                <div className="visual-emblem-badge" title="Official Ogami Development">
+                  <img src="/images/ogami-logo.webp" alt="Ogami Logo" loading="lazy" />
+                </div>
+
                 <div className="visual-bottom-marker">
                   <div className="marker-title">Ogami by SODIC</div>
                   <div className="marker-subtitle">440-Acre Coastal Masterpiece • 800m Beachfront</div>
@@ -377,6 +410,11 @@ export default function SodicLandingPage() {
 
               <div className="sodic-project-info">
                 <div>
+                  {/* Dedicated Project Brand Logo Badge */}
+                  <div className="project-brand-badge">
+                    <img src="/images/ogami-logo.webp" alt="Ogami by SODIC Official Logo" className="project-badge-logo" loading="lazy" />
+                  </div>
+
                   <div className="project-subtitle-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -450,6 +488,12 @@ export default function SodicLandingPage() {
                 />
                 <div className="sodic-visual-overlay"></div>
                 <div className="visual-top-badge">Flagship Community • Mostakbal City</div>
+                
+                {/* Inset Official Logo Emblem (Dark Badge for White Lettering) */}
+                <div className="visual-emblem-badge dark-badge" title="Official East Vale Development">
+                  <img src="/images/east-vale-logo.webp" alt="East Vale Logo" loading="lazy" />
+                </div>
+
                 <div className="visual-bottom-marker">
                   <div className="marker-title">East Vale</div>
                   <div className="marker-subtitle">Serene Greenery • Clean Architectural Geometry</div>
@@ -458,6 +502,11 @@ export default function SodicLandingPage() {
 
               <div className="sodic-project-info">
                 <div>
+                  {/* Dedicated Project Brand Logo Badge (Dark Badge for Crisp White Typography) */}
+                  <div className="project-brand-badge dark-badge">
+                    <img src="/images/east-vale-logo.webp" alt="East Vale Official Logo" className="project-badge-logo" loading="lazy" />
+                  </div>
+
                   <div className="project-subtitle-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -522,9 +571,12 @@ export default function SodicLandingPage() {
             </div>
           </article>
 
-          {/* Strategic Advisory Banner */}
+          {/* Strategic Advisory Banner with Official SODIC Co-Branding */}
           <section className="sodic-partnership-banner">
             <div className="partnership-inner">
+              <div className="partnership-brand-col">
+                <img src="/images/sodic-logo.png" alt="SODIC Partner" className="partnership-logo" loading="lazy" />
+              </div>
               <div className="partnership-text">
                 <h3>Strategic Property Advisory</h3>
                 <p>
