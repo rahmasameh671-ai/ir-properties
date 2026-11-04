@@ -43,6 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 3. Setup Modal Close Actions
   setupModalActions();
+
+  // 4. Outbound WhatsApp Click Conversion Tracking (Identical to City Gate)
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion(this.href);
+      }
+    });
+  });
 });
 
 /**
@@ -227,10 +236,16 @@ function setupLeadForm() {
       console.warn("Storage notice:", err);
     }
 
-    // Google Tag Conversion Event Tracking
-    if (typeof window.gtag_report_conversion === "function") {
+    // Google Ads & Tag Lead Conversion Event for Form Submission (Identical to City Gate)
+    if (typeof window.gtag === "function") {
       try {
-        window.gtag_report_conversion();
+        window.gtag("event", "conversion", {
+          "send_to": "AW-18125180547/AZcICJes-qQcEIOd4cJD"
+        });
+        window.gtag("event", "generate_lead", {
+          event_category: "form",
+          event_label: "Madinet Masr Lead Inquiry"
+        });
       } catch (err) {
         console.warn("GTag notice:", err);
       }

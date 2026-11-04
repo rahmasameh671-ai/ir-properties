@@ -293,9 +293,9 @@ button, input, select {
 }
 
 .hero-brand-logo-img {
-  height: 64px;
+  height: clamp(84px, 10vw, 120px);
   width: auto;
-  max-width: 280px;
+  max-width: min(100%, 420px);
   object-fit: contain;
 }
 
@@ -835,34 +835,38 @@ button, input, select {
 }
 
 .project-logo-heading-wrap {
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
 }
 
 .project-hero-logo {
-  height: 56px;
+  height: clamp(80px, 9.5vw, 115px);
   width: auto;
-  max-width: 260px;
+  max-width: min(100%, 380px);
   object-fit: contain;
   object-position: left center;
   transition: var(--transition-smooth);
 }
 
 .project-hero-logo.logo-taj-city {
-  height: 64px;
+  height: clamp(95px, 11vw, 135px);
+  max-width: min(100%, 300px);
 }
 
 .project-hero-logo.logo-butterfly {
-  height: 52px;
+  height: clamp(85px, 10vw, 120px);
+  max-width: min(100%, 380px);
 }
 
 .project-hero-logo.logo-talala {
-  height: 48px;
+  height: clamp(80px, 9.5vw, 115px);
+  max-width: min(100%, 380px);
 }
 
 .project-hero-logo.logo-sarai {
-  height: 44px;
+  height: clamp(85px, 10vw, 125px);
+  max-width: min(100%, 300px);
 }
 
 .project-title-editorial {
@@ -1054,11 +1058,11 @@ button, input, select {
 }
 
 .footer-brand-logo-xl {
-  height: 64px;
+  height: clamp(85px, 10vw, 125px);
   width: auto;
-  max-width: 280px;
+  max-width: min(100%, 420px);
   object-fit: contain;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .footer-signature-bar {
