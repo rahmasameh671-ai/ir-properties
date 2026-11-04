@@ -2,17 +2,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/citygate", "destination": "/city-gate/index.html" },
-    { "source": "/citygate/", "destination": "/city-gate/index.html" },
+    { "source": "/citygate", "destination": "/city-gate" },
+    { "source": "/citygate/", "destination": "/city-gate" },
     { "source": "/city-gate", "destination": "/city-gate/index.html" },
     { "source": "/sodic", "destination": "/sodic/index.html" },
     { "source": "/Madient-Masr", "destination": "/Madient-Masr/index.html" },
-    { "source": "/Madient-Masr/", "destination": "/Madient-Masr/index.html" },
     { "source": "/madient-masr", "destination": "/Madient-Masr/index.html" },
-    { "source": "/madient-masr/", "destination": "/Madient-Masr/index.html" },
     { "source": "/Madinet-Masr", "destination": "/Madient-Masr/index.html" },
-    { "source": "/Madinet-Masr/", "destination": "/Madient-Masr/index.html" },
-    { "source": "/madinet-masr", "destination": "/Madient-Masr/index.html" },
-    { "source": "/madinet-masr/", "destination": "/Madient-Masr/index.html" }
+    { "source": "/madinet-masr", "destination": "/Madient-Masr/index.html" }
   ]
 }
