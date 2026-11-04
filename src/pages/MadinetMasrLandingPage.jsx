@@ -153,7 +153,7 @@ export default function MadinetMasrLandingPage() {
             
             <div className="hero-brand-signature-bar">
               <img 
-                src="https://madientmasr.properties-z.com/assets/icons/madinet-masr-logo.svg" 
+                src="/images/madinet-masr/madinet-masr-official.webp" 
                 alt="Madinet Masr Official Logo" 
                 className="hero-brand-logo-img" 
               />
@@ -190,20 +190,6 @@ export default function MadinetMasrLandingPage() {
                 <span className="term-stat-number">5M EGP</span>
                 <span className="term-stat-label">Starting Unit Rates</span>
               </div>
-            </div>
-
-            {/* Direct Solid Green WhatsApp CTA */}
-            <div className="hero-direct-cta-wrap">
-              <a 
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20the%20Madinet%20Masr%20Portfolio`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-whatsapp-solid">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z"/>
-                </svg>
-                <span>CONNECT ON WHATSAPP</span>
-              </a>
             </div>
 
           </div>
@@ -344,7 +330,7 @@ export default function MadinetMasrLandingPage() {
             <div className="project-visual-column">
               <div className="project-image-frame">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/images/butterfly-official.webp" 
+                  src="/images/madinet-masr/butterfly-official.webp" 
                   alt="The Butterfly Mostakbal City by Madinet Masr" 
                   loading="lazy" 
                 />
@@ -358,14 +344,17 @@ export default function MadinetMasrLandingPage() {
             <div className="project-info-column">
               <div className="project-meta-header">
                 <span className="project-index-number">01 / 04</span>
+              </div>
+
+              {/* Official Project Logo as Prominent Section Heading */}
+              <div className="project-logo-heading-wrap">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/icons/logo-the-butterfly.png" 
-                  alt="The Butterfly Logo" 
-                  className="project-brand-logo-pill" 
+                  src="/images/madinet-masr/the-butterfly-logo.png" 
+                  alt="The Butterfly" 
+                  className="project-hero-logo logo-butterfly" 
                 />
               </div>
 
-              <h3 className="project-title-editorial">The Butterfly</h3>
               <p className="project-subtitle-editorial">Signature Villas in Mostakbal City</p>
 
               <div className="project-terms-matrix">
@@ -427,7 +416,7 @@ export default function MadinetMasrLandingPage() {
             <div className="project-visual-column">
               <div className="project-image-frame">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/images/etaje-main.jpg" 
+                  src="/images/madinet-masr/etaje-main.jpg" 
                   alt="Taj City Etaje Phase by Madinet Masr" 
                   loading="lazy" 
                 />
@@ -441,15 +430,18 @@ export default function MadinetMasrLandingPage() {
             <div className="project-info-column">
               <div className="project-meta-header">
                 <span className="project-index-number">02 / 04</span>
+              </div>
+
+              {/* Official Project Logo as Prominent Section Heading */}
+              <div className="project-logo-heading-wrap">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/icons/logo-taj-city.png" 
-                  alt="Taj City Logo" 
-                  className="project-brand-logo-pill" 
+                  src="/images/madinet-masr/taj-city-logo.png" 
+                  alt="Taj City" 
+                  className="project-hero-logo logo-taj-city" 
                 />
               </div>
 
-              <h3 className="project-title-editorial">Taj City — Etaje Phase</h3>
-              <p className="project-subtitle-editorial">Premium Apartments & Duplexes</p>
+              <p className="project-subtitle-editorial">Etaje Phase — Premium Apartments & Duplexes</p>
 
               <div className="project-terms-matrix">
                 <div className="terms-matrix-grid">
@@ -510,7 +502,7 @@ export default function MadinetMasrLandingPage() {
             <div className="project-visual-column">
               <div className="project-image-frame">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/images/sarai-official.webp" 
+                  src="/images/madinet-masr/sarai-official.webp" 
                   alt="Sarai Lagoon Living by Madinet Masr" 
                   loading="lazy" 
                 />
@@ -524,14 +516,17 @@ export default function MadinetMasrLandingPage() {
             <div className="project-info-column">
               <div className="project-meta-header">
                 <span className="project-index-number">03 / 04</span>
+              </div>
+
+              {/* Official Project Logo as Prominent Section Heading */}
+              <div className="project-logo-heading-wrap">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/icons/logo-sarai.png" 
-                  alt="Sarai Logo" 
-                  className="project-brand-logo-pill" 
+                  src="/images/madinet-masr/logo-sarai.png" 
+                  alt="Sarai" 
+                  className="project-hero-logo logo-sarai" 
                 />
               </div>
 
-              <h3 className="project-title-editorial">Sarai</h3>
               <p className="project-subtitle-editorial">Integrated Community in New Cairo</p>
 
               <div className="project-terms-matrix">
@@ -593,7 +588,7 @@ export default function MadinetMasrLandingPage() {
             <div className="project-visual-column">
               <div className="project-image-frame">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/images/talala-official.png" 
+                  src="/images/madinet-masr/talala-official.png" 
                   alt="Talala Boutique Living by Madinet Masr" 
                   loading="lazy" 
                 />
@@ -607,14 +602,17 @@ export default function MadinetMasrLandingPage() {
             <div className="project-info-column">
               <div className="project-meta-header">
                 <span className="project-index-number">04 / 04</span>
+              </div>
+
+              {/* Official Project Logo as Prominent Section Heading */}
+              <div className="project-logo-heading-wrap">
                 <img 
-                  src="https://madientmasr.properties-z.com/assets/icons/logo-talala.png" 
-                  alt="Talala Logo" 
-                  className="project-brand-logo-pill" 
+                  src="/images/madinet-masr/talala-logo.png" 
+                  alt="Talala" 
+                  className="project-hero-logo logo-talala" 
                 />
               </div>
 
-              <h3 className="project-title-editorial">Talala</h3>
               <p className="project-subtitle-editorial">Exclusive Boutique Living</p>
 
               <div className="project-terms-matrix">
@@ -737,7 +735,7 @@ export default function MadinetMasrLandingPage() {
         <div className="container footer-inner-content">
           
           <img 
-            src="https://madientmasr.properties-z.com/assets/icons/madinet-masr-logo.svg" 
+            src="/images/madinet-masr/madinet-masr-official.webp" 
             alt="Madinet Masr Official Logo" 
             className="footer-brand-logo-xl" 
           />
@@ -824,3 +822,4 @@ export default function MadinetMasrLandingPage() {
     </div>
   );
 }
+
