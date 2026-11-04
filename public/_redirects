@@ -1,15 +1,15 @@
 # Static redirects & rewrites for ir-properties.com & properties-s.com
-/citygate          /city-gate          301
-/citygate/         /city-gate          301
+/citygate          /city-gate/index.html 200
+/citygate/         /city-gate/index.html 200
 /city-gate         /city-gate/index.html 200
 /sodic             /sodic/index.html   200
 
-# Madinet Masr Portfolio Route
-/Madient-Masr      /madient-masr/index.html 200
-/Madient-Masr/     /madient-masr/index.html 200
-/madient-masr      /madient-masr/index.html 200
-/madient-masr/     /madient-masr/index.html 200
-/Madinet-Masr      /madient-masr/index.html 200
-/Madinet-Masr/     /madient-masr/index.html 200
-/madinet-masr      /madient-masr/index.html 200
-/madinet-masr/     /madient-masr/index.html 200
+# Madinet Masr Portfolio Route (Exact slug: /Madient-Masr)
+/Madient-Masr      /Madient-Masr/index.html 200
+/Madient-Masr/     /Madient-Masr/index.html 200
+/madient-masr      /Madient-Masr/index.html 200
+/madient-masr/     /Madient-Masr/index.html 200
+/Madinet-Masr      /Madient-Masr/index.html 200
+/Madinet-Masr/     /Madient-Masr/index.html 200
+/madinet-masr      /Madient-Masr/index.html 200
+/madinet-masr/     /Madient-Masr/index.html 200
