@@ -44,9 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
         timestamp: new Date().toISOString()
       });
 
-      // Google Tag Lead Conversion Event
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', {
+      // Google Ads & Tag Lead Conversion Event for Form Submission
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD'
+        });
+        gtag('event', 'generate_lead', {
           event_category: 'form',
           event_label: 'City Gate Lead Inquiry'
         });
@@ -101,6 +104,16 @@ document.addEventListener('DOMContentLoaded', function () {
             block: 'start'
           });
         }
+      }
+    });
+  });
+
+  // Outbound WhatsApp Click Conversion Tracking
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      if (typeof gtag_report_conversion === 'function') {
+        e.preventDefault();
+        gtag_report_conversion(this.href);
       }
     });
   });

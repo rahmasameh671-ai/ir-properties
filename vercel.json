@@ -5,7 +5,14 @@
     { "source": "/citygate", "destination": "/city-gate" },
     { "source": "/citygate/", "destination": "/city-gate" },
     { "source": "/city-gate", "destination": "/city-gate/index.html" },
-    { "source": "/sodic", "destination": "/sodic/index.html" }
+    { "source": "/sodic", "destination": "/sodic/index.html" },
+    { "source": "/Madient-Masr", "destination": "/madient-masr/index.html" },
+    { "source": "/Madient-Masr/", "destination": "/madient-masr/index.html" },
+    { "source": "/madient-masr", "destination": "/madient-masr/index.html" },
+    { "source": "/madient-masr/", "destination": "/madient-masr/index.html" },
+    { "source": "/Madinet-Masr", "destination": "/madient-masr/index.html" },
+    { "source": "/Madinet-Masr/", "destination": "/madient-masr/index.html" },
+    { "source": "/madinet-masr", "destination": "/madient-masr/index.html" },
+    { "source": "/madinet-masr/", "destination": "/madient-masr/index.html" }
   ]
 }
-

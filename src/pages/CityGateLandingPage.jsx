@@ -41,8 +41,11 @@ export default function CityGateLandingPage() {
       timestamp: new Date().toISOString()
     });
 
-    // Google Tag Lead Conversion Event
+    // Google Ads & Tag Lead Conversion Event for Form Submission
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD'
+      });
       window.gtag('event', 'generate_lead', {
         event_category: 'form',
         event_label: 'City Gate Lead Inquiry'
