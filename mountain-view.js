@@ -1,5 +1,5 @@
 /**
- * MOUNTAIN VIEW PORTFOLIO — INTERACTIVE LOGIC
+ * MOUNTAIN VIEW PORTFOLIO – INTERACTIVE LOGIC
  * By ir-properties | Independent Real Estate Consultancy
  * Global WhatsApp: +201277752731
  */
@@ -264,7 +264,7 @@ function setupLeadForm() {
         body: JSON.stringify({
           name: fullName,
           phone: fullPhoneNumber,
-          source: "Mountain View Portfolio — ir-properties.com",
+          source: "Mountain View Portfolio – ir-properties.com",
           consultancy: "ir-properties Independent Real Estate Consultancy",
           _replyto: "Rahma@irtkaz.com",
           _cc: "Mostafa.a.ashmawy@gmail.com,Mostafa.ashmawy@irtkaz.com",

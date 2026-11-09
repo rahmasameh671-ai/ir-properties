@@ -791,6 +791,38 @@ button, input, select {
   margin-bottom: 14px;
 }
 
+/* Official Project Logo as Prominent Section Heading */
+.project-logo-heading-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.project-hero-logo {
+  height: clamp(65px, 8vw, 85px);
+  width: auto;
+  max-width: min(100%, 280px);
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+.project-hero-logo.logo-mv-1-1 {
+  height: clamp(65px, 8vw, 85px);
+}
+
+.project-hero-logo.logo-mv-icity {
+  height: clamp(65px, 8vw, 85px);
+}
+
+.project-hero-logo.logo-mv-official {
+  height: clamp(60px, 7.5vw, 80px);
+}
+
+.project-hero-logo.logo-aliva {
+  height: clamp(50px, 6vw, 68px);
+}
+
 .project-index-number {
   font-family: var(--font-editorial);
   font-size: 0.95rem;
@@ -1359,6 +1391,20 @@ button, input, select {
 
   .project-title-editorial {
     font-size: 1.4rem;
+  }
+
+  .project-logo-heading-wrap {
+    margin-bottom: 10px;
+  }
+
+  .project-hero-logo {
+    height: 56px;
+    max-width: 220px;
+  }
+
+  .project-hero-logo.logo-aliva {
+    height: 44px;
+    max-width: 170px;
   }
 
   /* Terms Matrix Single Column on Mobile */
