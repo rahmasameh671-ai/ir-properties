@@ -80,10 +80,43 @@ Nested under the `properties-s.com` / `ir-properties.com` domain architecture:
 
 ---
 
+## Dedicated Route: `/mountain-view` (Mountain View Exclusive Portfolio)
+Nested under the `ir-properties.com` domain architecture:
+- **Live URL**: `https://ir-properties.com/mountain-view`
+- **Routing**: Explicitly configured for `/mountain-view` and `/mountain-view/` via `mountain-view/index.html`, `mountain-view.html`, and React Route mapping `<Route path="/mountain-view" element={<MountainViewLandingPage />} />` in `App.jsx` and `App.tsx`.
+- **Branding**: Globally signed with `By ir-properties`. Positioned strictly as an "Independent Real Estate Consultancy". (Zero usage of "brokerage").
+- **Aesthetic**: Radically new, ultra-chic Calm Luxury real estate design.
+  - **Zero Gold Policy**: Crisp pure whites, subtle alabaster (`#FAFCFD`), slate/charcoal `#1A202C`. Absolutely NO gold, bronze, or yellow.
+  - **Layout**: Asymmetrical card layouts, sleek frosted glass overlays (`backdrop-filter: blur(20px)`), crisp high-contrast typography (`Cinzel` & `Plus Jakarta Sans`). Hero section begins directly at `top: 0` (No top fixed navbar).
+  - **Mobile Responsiveness**: 100% thumb-friendly single-column mobile view with zero horizontal scrolling (`overflow-x: hidden`). All WhatsApp buttons span 100% width on mobile.
+- **Global WhatsApp Integration**:
+  - Number: Strictly `+201277752731` for all CTA buttons and floating bottom-right icon.
+  - Style: Solid vibrant Green (`#25D366`).
+  - Zero "Visual Gallery" buttons anywhere.
+- **Lead Capture Form & Success Modal UI**:
+  - Full Name: Clean blank input, NO placeholder text.
+  - Phone Number: Split input layout. Country Code dropdown on the left with proper UTF-8 flags (defaulting to Egypt `+20`, NO mojibake), and blank text input on the right.
+  - Success Modal:
+    - Text: "Thank you {name}! Your registration has been securely dispatched to our senior consultancy team. A dedicated property advisor will contact you shortly with full brochures, master plans, and unit availability."
+    - Button: Solid green button "CHAT ON WHATSAPP" linked to: `https://wa.me/201277752731?text=Hello%20I%20have%20just%20submitted%20my%20inquiry%20for%20Mountain%20View`
+    - Dismiss: Subtle text link "Close Window" at the bottom.
+- **Dedicated Project Sections (One Compound Per Section)**:
+  1. **Mountain View 1.1 (New Cairo)**: Fully finished units, ready to move in. Starting from **14,500,000 EGP** | **10% Down Payment** | **7 Years Installments**.
+  2. **Mountain View iCity (New Cairo)**: Integrated city living, central green parks, and premium entertainment facilities. Starting from **15,000,000 EGP** | **5% Down Payment** | **8 Years Installments**.
+  3. **Mountain View Hyde Park (New Cairo - 200-Acre Masterpiece)**: Expansive masterplan featuring signature i-Villas. Starting from **28,000,000 EGP** | **15% Down Payment** | **7 Years Installments**.
+  4. **ALIVA (Mostakbal City)**: Integrated living zones interconnected by lush green corridors. Starting from **12,000,000 EGP** | **5% Down Payment** | **12 Years Installments**.
+  5. **Mountain View Grand Valleys**: Highly private, spacious residential units surrounded by breathtaking natural landscapes. Starting from **30,400,000 EGP** | **5% Down Payment** | **10 Years Installments**.
+
+---
+
 ## Platform Architecture & Files
-- `index.html` — Main Homepage & Destination Hub (with links to `/sodic`, `/city-gate`, and `/Madient-Masr`)
+- `index.html` — Main Homepage & Destination Hub (with links to `/sodic`, `/city-gate`, `/Madient-Masr`, and `/mountain-view`)
 - `styles.css` — Global Calm Luxury stylesheet
 - `script.js` — Global logic & WhatsApp integration
+- `mountain-view/index.html` & `mountain-view.html` — Dedicated Mountain View Landing Page (`/mountain-view`)
+- `mountain-view/mountain-view.css` & `mountain-view.css` — Ultra-chic editorial styling for Mountain View (Zero Gold Policy)
+- `mountain-view/mountain-view.js` & `mountain-view.js` — Mountain View country dropdown, lead capture form & modal interaction
+- `src/pages/MountainViewLandingPage.jsx` — Reusable React Mountain View landing page component
 - `madient-masr/index.html` & `Madient-Masr.html` — Dedicated Madinet Masr Landing Page (`/Madient-Masr`)
 - `madient-masr/madient-masr.css` & `madient-masr.css` — Ultra-chic editorial styling for Madinet Masr
 - `madient-masr/madient-masr.js` & `madient-masr.js` — Madinet Masr country dropdown, lead capture form & modal interaction
@@ -94,9 +127,17 @@ Nested under the `properties-s.com` / `ir-properties.com` domain architecture:
 - `sodic/index.html` & `sodic.html` — Dedicated SODIC Landing Page (`/sodic`)
 - `sodic/sodic.css` & `sodic.css` — Editorial styling for SODIC portfolio
 - `sodic/sodic.js` & `sodic.js` — SODIC lead capture form & modal interaction
-- `App.jsx` & `App.tsx` — React application routing configuration mapping `/sodic`, `/city-gate`, and `/Madient-Masr`
+- `App.jsx` & `App.tsx` — React application routing configuration mapping `/sodic`, `/city-gate`, `/Madient-Masr`, and `/mountain-view`
 - `src/pages/CityGateLandingPage.jsx` — Reusable React City Gate landing page component
 - `src/pages/SodicLandingPage.jsx` — Reusable React SODIC landing page component
+- `images/mountain-view/`, `public/images/mountain-view/`:
+  - `hero-bg.webp` — High-resolution hero background visual
+  - `mountain-view-logo.png` — Official Mountain View horizontal logo
+  - `mv-1-1.webp` — Mountain View 1.1 New Cairo visual
+  - `mv-icity.webp` — Mountain View iCity New Cairo visual
+  - `mv-hydepark.webp` — Mountain View Hyde Park visual
+  - `mv-aliva.webp` — ALIVA Mostakbal City visual
+  - `mv-grand-valleys.webp` — Mountain View Grand Valleys visual
 - `images/madinet-masr/`, `public/images/madinet-masr/`, `madient-masr/assets/`:
   - `hero-bg.jpg` — High-resolution hero background visual
   - `madinet-masr-logo.svg` — Official Madinet Masr logo

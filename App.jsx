@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SodicLandingPage from './src/pages/SodicLandingPage';
 import CityGateLandingPage from './src/pages/CityGateLandingPage';
 import MadinetMasrLandingPage from './src/pages/MadinetMasrLandingPage';
+import MountainViewLandingPage from './src/pages/MountainViewLandingPage';
 
 /**
  * Main Application Routing Configuration
@@ -10,6 +11,7 @@ import MadinetMasrLandingPage from './src/pages/MadinetMasrLandingPage';
  * - /sodic: SODIC Signature Living
  * - /city-gate & /citygate: City Gate New Cairo by Qatari Diar
  * - /Madient-Masr: Madinet Masr Curated Portfolio (The Butterfly, Taj City Etaje, Sarai, Talala)
+ * - /mountain-view: Mountain View Exclusive Portfolio (1.1, iCity, Hyde Park, ALIVA, Grand Valleys)
  */
 export default function App() {
   return (
@@ -30,8 +32,10 @@ export default function App() {
         <Route path="/Madient-Masr/" element={<MadinetMasrLandingPage />} />
         <Route path="/madient-masr" element={<MadinetMasrLandingPage />} />
         <Route path="/madient-masr/" element={<MadinetMasrLandingPage />} />
-        <Route path="/madinet-masr" element={<MadinetMasrLandingPage />} />
-        <Route path="/Madinet-Masr" element={<MadinetMasrLandingPage />} />
+
+        {/* Dedicated Mountain View Portfolio Route (Strict route: /mountain-view) */}
+        <Route path="/mountain-view" element={<MountainViewLandingPage />} />
+        <Route path="/mountain-view/" element={<MountainViewLandingPage />} />
       </Routes>
     </BrowserRouter>
   );

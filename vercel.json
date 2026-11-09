@@ -9,6 +9,8 @@
     { "source": "/Madient-Masr", "destination": "/Madient-Masr/index.html" },
     { "source": "/madient-masr", "destination": "/Madient-Masr/index.html" },
     { "source": "/Madinet-Masr", "destination": "/Madient-Masr/index.html" },
-    { "source": "/madinet-masr", "destination": "/Madient-Masr/index.html" }
+    { "source": "/madinet-masr", "destination": "/Madient-Masr/index.html" },
+    { "source": "/mountain-view", "destination": "/mountain-view/index.html" },
+    { "source": "/mountain-view/", "destination": "/mountain-view/index.html" }
   ]
 }
