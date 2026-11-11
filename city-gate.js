@@ -69,6 +69,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }
 
+      // Dispatch to Zapier Webhook (Lead Integration)
+      try {
+        fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+          method: "POST",
+          body: JSON.stringify({
+            fullName: fullName,
+            phoneNumber: countryCode + ' ' + phoneNumber,
+            landingPageUrl: window.location.href,
+            submissionDate: new Date().toISOString()
+          })
+        }).catch(err => console.warn("Zapier notice:", err));
+      } catch (err) {
+        console.warn("Zapier webhook transmission notice:", err);
+      }
+
       // Update modal text
       if (modalLeadName) {
         modalLeadName.textContent = fullName;

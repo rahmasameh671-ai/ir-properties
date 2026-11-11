@@ -272,6 +272,21 @@ function setupLeadForm() {
       }
     }
 
+    // Dispatch to Zapier Webhook (Lead Integration)
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+        method: "POST",
+        body: JSON.stringify({
+          fullName: fullName,
+          phoneNumber: fullPhoneNumber,
+          landingPageUrl: window.location.href,
+          submissionDate: new Date().toISOString()
+        })
+      });
+    } catch (err) {
+      console.warn("Zapier notice:", err);
+    }
+
     // Dispatch lead notification asynchronously
     try {
       fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
