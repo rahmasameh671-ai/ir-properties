@@ -1,20 +1,51 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtm.js & gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MKL52MWH"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18564830215"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18125180547"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
+    gtag('config', 'AW-18564830215');
     gtag('config', 'AW-18125180547');
+
+    function gtag_report_conversion(url) {
+      var navigated = false;
+      var callback = function () {
+        if (!navigated && typeof(url) != 'undefined' && url) {
+          navigated = true;
+          window.location = url;
+        }
+      };
+      if (typeof(url) != 'undefined' && url) {
+        setTimeout(callback, 500);
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP',
+          'event_callback': callback
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+      } else {
+        callback();
+      }
+      return false;
+    }
   </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | ir-properties — Independent Real Estate Consultancy</title>
+  <title>Privacy Policy | ir-properties â€” Independent Real Estate Consultancy</title>
   <meta name="description" content="Privacy Policy for ir-properties, independent real estate consultancy and authorized marketing partner in Egypt.">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23FFFFFF'>IR</text></svg>">
@@ -101,7 +132,7 @@
   <!-- Legal Footer -->
   <footer class="legal-footer">
     <div class="legal-container">
-      <p>© 2026 ir-properties — Strategic Partners. All rights reserved. Operating under the Laws of the Arab Republic of Egypt (Courts of Cairo).</p>
+      <p>Â© 2026 ir-properties â€” Strategic Partners. All rights reserved. Operating under the Laws of the Arab Republic of Egypt (Courts of Cairo).</p>
     </div>
   </footer>
 

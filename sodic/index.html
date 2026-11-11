@@ -1,15 +1,46 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtm.js & gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MKL52MWH"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18564830215"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18125180547"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
+    gtag('config', 'AW-18564830215');
     gtag('config', 'AW-18125180547');
+
+    function gtag_report_conversion(url) {
+      var navigated = false;
+      var callback = function () {
+        if (!navigated && typeof(url) != 'undefined' && url) {
+          navigated = true;
+          window.location = url;
+        }
+      };
+      if (typeof(url) != 'undefined' && url) {
+        setTimeout(callback, 500);
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP',
+          'event_callback': callback
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+      } else {
+        callback();
+      }
+      return false;
+    }
   </script>
 
   <meta charset="UTF-8">
@@ -60,10 +91,10 @@
         <!-- Hero Left Column: Narrative & Offers -->
         <div class="sodic-hero-narrative">
           
-          <!-- Badge / Eyebrow: BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO -->
+          <!-- Badge / Eyebrow: BY IR-PROPERTIES â€¢ EXCLUSIVE PORTFOLIO -->
           <div class="sodic-eyebrow-badge">
             <span class="badge-pulse-dot"></span>
-            BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO
+            BY IR-PROPERTIES â€¢ EXCLUSIVE PORTFOLIO
           </div>
 
           <!-- Headline: SODIC Signature Living: Redefining Modern Spaces -->
@@ -173,21 +204,21 @@
                   <!-- Country Code dropdown on the left with properly encoded UTF-8 flags, defaulting to Egypt +20 -->
                   <div class="sodic-country-select-wrapper">
                     <select id="sodicCountryCode" name="countryCode" class="sodic-country-select" aria-label="Country Code">
-                      <option value="+20" selected>🇪🇬 +20</option>
-                      <option value="+966">🇸🇦 +966</option>
-                      <option value="+971">🇦🇪 +971</option>
-                      <option value="+965">🇰🇼 +965</option>
-                      <option value="+974">🇶🇦 +974</option>
-                      <option value="+968">🇴🇲 +968</option>
-                      <option value="+973">🇧🇭 +973</option>
-                      <option value="+44">🇬🇧 +44</option>
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+1">🇨🇦 +1</option>
-                      <option value="+49">🇩🇪 +49</option>
-                      <option value="+33">🇫🇷 +33</option>
-                      <option value="+41">🇨🇭 +41</option>
-                      <option value="+962">🇯🇴 +962</option>
-                      <option value="+961">🇱🇧 +961</option>
+                      <option value="+20" selected>ðŸ‡ªðŸ‡¬ +20</option>
+                      <option value="+966">ðŸ‡¸ðŸ‡¦ +966</option>
+                      <option value="+971">ðŸ‡¦ðŸ‡ª +971</option>
+                      <option value="+965">ðŸ‡°ðŸ‡¼ +965</option>
+                      <option value="+974">ðŸ‡¶ðŸ‡¦ +974</option>
+                      <option value="+968">ðŸ‡´ðŸ‡² +968</option>
+                      <option value="+973">ðŸ‡§ðŸ‡­ +973</option>
+                      <option value="+44">ðŸ‡¬ðŸ‡§ +44</option>
+                      <option value="+1">ðŸ‡ºðŸ‡¸ +1</option>
+                      <option value="+1">ðŸ‡¨ðŸ‡¦ +1</option>
+                      <option value="+49">ðŸ‡©ðŸ‡ª +49</option>
+                      <option value="+33">ðŸ‡«ðŸ‡· +33</option>
+                      <option value="+41">ðŸ‡¨ðŸ‡­ +41</option>
+                      <option value="+962">ðŸ‡¯ðŸ‡´ +962</option>
+                      <option value="+961">ðŸ‡±ðŸ‡§ +961</option>
                     </select>
                     <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="6 9 12 15 18 9"></polyline>
@@ -264,7 +295,7 @@
               loading="lazy"
             >
             <div class="sodic-visual-overlay"></div>
-            <div class="visual-top-badge">New Launch • East Cairo</div>
+            <div class="visual-top-badge">New Launch â€¢ East Cairo</div>
             
             <!-- Inset Official Logo Emblem -->
             <div class="visual-emblem-badge" title="Official SODIC East Development">
@@ -273,7 +304,7 @@
 
             <div class="visual-bottom-marker">
               <div class="marker-title">The Lakes at SODIC East</div>
-              <div class="marker-subtitle">655-Acre Master Community • 6,000 Private Residences</div>
+              <div class="marker-subtitle">655-Acre Master Community â€¢ 6,000 Private Residences</div>
             </div>
           </div>
 
@@ -372,7 +403,7 @@
               loading="lazy"
             >
             <div class="sodic-visual-overlay"></div>
-            <div class="visual-top-badge">Coastal Sanctuary • Ras El Hekma</div>
+            <div class="visual-top-badge">Coastal Sanctuary â€¢ Ras El Hekma</div>
             
             <!-- Inset Official Logo Emblem -->
             <div class="visual-emblem-badge" title="Official Ogami Development">
@@ -381,7 +412,7 @@
 
             <div class="visual-bottom-marker">
               <div class="marker-title">Ogami by SODIC</div>
-              <div class="marker-subtitle">440-Acre Coastal Masterpiece • 800m Beachfront</div>
+              <div class="marker-subtitle">440-Acre Coastal Masterpiece â€¢ 800m Beachfront</div>
             </div>
           </div>
 
@@ -393,13 +424,13 @@
                 <img src="/images/ogami-logo.webp" onerror="this.onerror=null; this.src='images/ogami-logo.webp';" alt="Ogami by SODIC Official Logo" class="project-badge-logo" loading="lazy">
               </div>
 
-              <!-- Badge / Subtitle: Ras El Hekma • KM 204 Alex-Matrouh Road -->
+              <!-- Badge / Subtitle: Ras El Hekma â€¢ KM 204 Alex-Matrouh Road -->
               <div class="project-subtitle-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                Ras El Hekma • KM 204 Alex-Matrouh Road
+                Ras El Hekma â€¢ KM 204 Alex-Matrouh Road
               </div>
 
               <!-- Title: Ogami by SODIC -->
@@ -477,7 +508,7 @@
               loading="lazy"
             >
             <div class="sodic-visual-overlay"></div>
-            <div class="visual-top-badge">Flagship Community • Mostakbal City</div>
+            <div class="visual-top-badge">Flagship Community â€¢ Mostakbal City</div>
             
             <!-- Inset Official Logo Emblem (Dark Badge for White Lettering) -->
             <div class="visual-emblem-badge dark-badge" title="Official East Vale Development">
@@ -486,7 +517,7 @@
 
             <div class="visual-bottom-marker">
               <div class="marker-title">East Vale</div>
-              <div class="marker-subtitle">Serene Greenery • Clean Architectural Geometry</div>
+              <div class="marker-subtitle">Serene Greenery â€¢ Clean Architectural Geometry</div>
             </div>
           </div>
 
@@ -512,7 +543,7 @@
 
               <!-- Highlights & Narrative -->
               <p class="project-narrative">
-                SODIC’s flagship community in Mostakbal City combining serene greenery with clean architectural design, engineered for quiet elegance and family privacy.
+                SODICâ€™s flagship community in Mostakbal City combining serene greenery with clean architectural design, engineered for quiet elegance and family privacy.
               </p>
 
               <!-- Pricing & Terms -->
@@ -577,7 +608,7 @@
           <div class="partnership-text">
             <h3>Strategic Property Advisory</h3>
             <p>
-              ir-properties acts as an independent real estate consultancy and strategic marketing partner. We secure direct developer pricing, priority unit allotment, and unbiased investment feasibility analysis across Egypt’s tier-one projects.
+              ir-properties acts as an independent real estate consultancy and strategic marketing partner. We secure direct developer pricing, priority unit allotment, and unbiased investment feasibility analysis across Egyptâ€™s tier-one projects.
             </p>
           </div>
           <a 
@@ -632,7 +663,7 @@
 
         <!-- Signature -->
         <div class="footer-copyright-sig">
-          © 2026 ir-properties — Strategic Partners
+          Â© 2026 ir-properties â€” Strategic Partners
         </div>
 
       </div>

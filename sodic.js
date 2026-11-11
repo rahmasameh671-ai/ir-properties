@@ -1,4 +1,4 @@
-﻿م/**
+م/**
  * IR-PROPERTIES | SODIC EXCLUSIVE PORTFOLIO LOGIC
  * Route: /sodic
  * Central WhatsApp Number: +201277752731
@@ -56,6 +56,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const encodedMsg = encodeURIComponent(messageText);
       const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
 
+      // Trigger Google Ads Conversion Tracking for Form Submit
+      if (typeof window.gtag_report_conversion === 'function') {
+        try {
+          window.gtag_report_conversion();
+        } catch (err) {
+          console.warn('Conversion notice:', err);
+        }
+      }
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+            'value': 1.0,
+            'currency': 'EGP'
+          });
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+            'value': 1.0,
+            'currency': 'EGP'
+          });
+          window.gtag('event', 'generate_lead', {
+            event_category: 'form',
+            event_label: 'SODIC Lead Inquiry'
+          });
+        } catch (err) {
+          console.warn('GTag notice:', err);
+        }
+      }
+
       // Update Modal WhatsApp Button URL
       if (modalWhatsappLink) {
         modalWhatsappLink.href = waUrl;
@@ -103,6 +132,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Outbound WhatsApp Click Conversion Tracking (100% Delegated Coverage)
+  document.addEventListener('click', (e) => {
+    const waLink = e.target.closest('a[href*="wa.me"]');
+    if (waLink) {
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion(waLink.href);
+      } else if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+      }
+    }
+  });
 
   // Standalone Legal Links & Home Fallback for Local File Protocol
   if (window.location.protocol === 'file:') {

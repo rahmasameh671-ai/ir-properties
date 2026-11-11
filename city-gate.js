@@ -45,9 +45,23 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // Google Ads & Tag Lead Conversion Event for Form Submission
+      if (typeof gtag_report_conversion === 'function') {
+        try {
+          gtag_report_conversion();
+        } catch (err) {
+          console.warn('Conversion notice:', err);
+        }
+      }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD'
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
         });
         gtag('event', 'generate_lead', {
           event_category: 'form',
@@ -108,13 +122,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Outbound WhatsApp Click Conversion Tracking
-  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
+  // Outbound WhatsApp Click Conversion Tracking (Direct & Delegated)
+  document.addEventListener('click', function (e) {
+    const waLink = e.target.closest('a[href*="wa.me"]');
+    if (waLink) {
       if (typeof gtag_report_conversion === 'function') {
-        e.preventDefault();
-        gtag_report_conversion(this.href);
+        gtag_report_conversion(waLink.href);
+      } else if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
       }
-    });
+    }
   });
 });

@@ -1,21 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtm.js & gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MKL52MWH"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18564830215"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18125180547"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
+    gtag('config', 'AW-18564830215');
     gtag('config', 'AW-18125180547');
+
+    function gtag_report_conversion(url) {
+      var navigated = false;
+      var callback = function () {
+        if (!navigated && typeof(url) != 'undefined' && url) {
+          navigated = true;
+          window.location = url;
+        }
+      };
+      if (typeof(url) != 'undefined' && url) {
+        setTimeout(callback, 500);
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP',
+          'event_callback': callback
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+      } else {
+        callback();
+      }
+      return false;
+    }
   </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>IR-PROPERTIES | Independent Real Estate Consultancy & Authorized Advisory Partner</title>
-  <meta name="description" content="Your Gateway to Egypt’s Premier Real Estate Destinations. Objective market advisory connecting you seamlessly with leading developments across residential, coastal, and commercial sectors.">
+  <meta name="description" content="Your Gateway to Egyptâ€™s Premier Real Estate Destinations. Objective market advisory connecting you seamlessly with leading developments across residential, coastal, and commercial sectors.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%231A202C'>IR</text></svg>">
 </head>
@@ -45,11 +76,11 @@
           </div>
 
           <h1 class="hero-headline">
-            Your Gateway to Egypt’s Premier Real Estate Destinations
+            Your Gateway to Egyptâ€™s Premier Real Estate Destinations
           </h1>
 
           <p class="hero-subtitle">
-            As your independent strategic property partner, ir-properties provides objective market advisory, connecting you seamlessly with the nation’s leading developments across residential, coastal, and commercial sectors.
+            As your independent strategic property partner, ir-properties provides objective market advisory, connecting you seamlessly with the nationâ€™s leading developments across residential, coastal, and commercial sectors.
           </p>
 
           <!-- Quick Highlight Badges -->
@@ -122,21 +153,21 @@
                   <!-- Country Code dropdown on the left with properly encoded UTF-8 flags, defaulting to Egypt +20 -->
                   <div class="country-code-select-wrapper">
                     <select id="countryCode" name="countryCode" class="country-code-select" aria-label="Country Code">
-                      <option value="+20" selected>🇪🇬 +20</option>
-                      <option value="+966">🇸🇦 +966</option>
-                      <option value="+971">🇦🇪 +971</option>
-                      <option value="+965">🇰🇼 +965</option>
-                      <option value="+974">🇶🇦 +974</option>
-                      <option value="+968">🇴🇲 +968</option>
-                      <option value="+973">🇧🇭 +973</option>
-                      <option value="+44">🇬🇧 +44</option>
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+1">🇨🇦 +1</option>
-                      <option value="+49">🇩🇪 +49</option>
-                      <option value="+33">🇫🇷 +33</option>
-                      <option value="+41">🇨🇭 +41</option>
-                      <option value="+962">🇯🇴 +962</option>
-                      <option value="+961">🇱🇧 +961</option>
+                      <option value="+20" selected>ðŸ‡ªðŸ‡¬ +20</option>
+                      <option value="+966">ðŸ‡¸ðŸ‡¦ +966</option>
+                      <option value="+971">ðŸ‡¦ðŸ‡ª +971</option>
+                      <option value="+965">ðŸ‡°ðŸ‡¼ +965</option>
+                      <option value="+974">ðŸ‡¶ðŸ‡¦ +974</option>
+                      <option value="+968">ðŸ‡´ðŸ‡² +968</option>
+                      <option value="+973">ðŸ‡§ðŸ‡­ +973</option>
+                      <option value="+44">ðŸ‡¬ðŸ‡§ +44</option>
+                      <option value="+1">ðŸ‡ºðŸ‡¸ +1</option>
+                      <option value="+1">ðŸ‡¨ðŸ‡¦ +1</option>
+                      <option value="+49">ðŸ‡©ðŸ‡ª +49</option>
+                      <option value="+33">ðŸ‡«ðŸ‡· +33</option>
+                      <option value="+41">ðŸ‡¨ðŸ‡­ +41</option>
+                      <option value="+962">ðŸ‡¯ðŸ‡´ +962</option>
+                      <option value="+961">ðŸ‡±ðŸ‡§ +961</option>
                     </select>
                     <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="6 9 12 15 18 9"></polyline>
@@ -187,7 +218,7 @@
         </div>
         <h2 class="section-title">Handpicked Projects Across Every Premier Destination</h2>
         <p class="section-subtitle">
-          From high-appreciation urban growth corridors to tranquil Mediterranean coastlines and coastal sanctuaries, our advisory spans Egypt’s most prestigious developments.
+          From high-appreciation urban growth corridors to tranquil Mediterranean coastlines and coastal sanctuaries, our advisory spans Egyptâ€™s most prestigious developments.
         </p>
       </div>
 
@@ -230,7 +261,7 @@
                 </span>
               </div>
               <a href="#" class="destination-action-link" data-destination="East Cairo (New Cairo & Mostakbal City)">
-                Inquire on WhatsApp →
+                Inquire on WhatsApp â†’
               </a>
             </div>
           </div>
@@ -272,7 +303,7 @@
                 </span>
               </div>
               <a href="#" class="destination-action-link" data-destination="North Coast (Ras El Hekma & Sidi Heneish)">
-                Inquire on WhatsApp →
+                Inquire on WhatsApp â†’
               </a>
             </div>
           </div>
@@ -314,7 +345,7 @@
                 </span>
               </div>
               <a href="#" class="destination-action-link" data-destination="West Cairo (Sheikh Zayed & New Zayed)">
-                Inquire on WhatsApp →
+                Inquire on WhatsApp â†’
               </a>
             </div>
           </div>
@@ -356,7 +387,7 @@
                 </span>
               </div>
               <a href="#" class="destination-action-link" data-destination="Red Sea & Coastal Retreats">
-                Inquire on WhatsApp →
+                Inquire on WhatsApp â†’
               </a>
             </div>
           </div>
@@ -479,13 +510,13 @@
         <div class="developer-trust-title">Authorized Advisory Across Egypt's Top-Tier Developers</div>
         <div class="developer-badges-row">
           <span class="developer-badge-item">Emaar Misr</span>
-          <a href="/sodic" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="Explore Exclusive SODIC Portfolio">SODIC ↗</a>
-          <a href="/city-gate" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="City Gate New Cairo by Qatari Diar">City Gate (Qatari Diar) ↗</a>
-          <a href="/Madient-Masr" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="Madinet Masr Portfolio">Madinet Masr ↗</a>
+          <a href="/sodic" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="Explore Exclusive SODIC Portfolio">SODIC â†—</a>
+          <a href="/city-gate" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="City Gate New Cairo by Qatari Diar">City Gate (Qatari Diar) â†—</a>
+          <a href="/Madient-Masr" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="Madinet Masr Portfolio">Madinet Masr â†—</a>
           <span class="developer-badge-item">Palm Hills</span>
           <span class="developer-badge-item">Hassan Allam Properties</span>
           <span class="developer-badge-item">Ora Developers</span>
-          <a href="/mountain-view" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="Mountain View Exclusive Portfolio">Mountain View ↗</a>
+          <a href="/mountain-view" class="developer-badge-item" style="color: var(--text-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;" title="Mountain View Exclusive Portfolio">Mountain View â†—</a>
           <span class="developer-badge-item">Tatweer Misr</span>
           <span class="developer-badge-item">Talaat Moustafa Group</span>
           <span class="developer-badge-item">Misr Italia</span>
@@ -523,7 +554,7 @@
 
         <!-- Signature -->
         <div class="footer-signature">
-          © 2026 ir-properties — Strategic Partners
+          Â© 2026 ir-properties â€” Strategic Partners
         </div>
 
       </div>

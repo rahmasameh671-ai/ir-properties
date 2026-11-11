@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtm.js & gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MKL52MWH"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18564830215"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18125180547"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
+    gtag('config', 'AW-18564830215');
     gtag('config', 'AW-18125180547');
 
-    // Event snippet for Outbound WhatsApp Click Tracking & Lead Conversion
     function gtag_report_conversion(url) {
       var navigated = false;
       var callback = function () {
@@ -20,11 +21,20 @@
           window.location = url;
         }
       };
-      setTimeout(callback, 500);
+      if (typeof(url) != 'undefined' && url) {
+        setTimeout(callback, 500);
+      }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP',
           'event_callback': callback
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
         });
       } else {
         callback();
@@ -35,14 +45,14 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>City Gate New Cairo — Qatari Diar | By ir-properties</title>
+  <title>City Gate New Cairo â€” Qatari Diar | By ir-properties</title>
   <meta name="description" content="City Gate New Cairo by Qatari Diar. Fully Finished Riverside Apartments & Signature Golf Villas. 5% Down Payment and equal installments up to 10 Years. Presented by ir-properties, Independent Real Estate Consultancy.">
   <meta name="keywords" content="City Gate New Cairo, Qatari Diar Egypt, ir-properties, Riverside apartments, Signature Golf villas, golf community, new cairo real estate, independent real estate consultancy">
   <meta name="theme-color" content="#111827">
 
   <!-- Internal Page Canonical & Open Graph -->
   <link rel="canonical" href="https://ir-properties.com/city-gate">
-  <meta property="og:title" content="City Gate New Cairo — Qatari Diar | By ir-properties">
+  <meta property="og:title" content="City Gate New Cairo â€” Qatari Diar | By ir-properties">
   <meta property="og:description" content="Fully Finished Riverside Apartments & Signature Golf Villas. Secure your premium residence with a 5% Down Payment and equal installments up to 10 Years.">
   <meta property="og:url" content="https://ir-properties.com/city-gate">
   <meta property="og:type" content="website">
@@ -61,7 +71,7 @@
 <body>
 
   <!-- ==========================================================================
-       1. HERO SECTION (CORE OFFERS - BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO)
+       1. HERO SECTION (CORE OFFERS - BY IR-PROPERTIES â€¢ EXCLUSIVE PORTFOLIO)
        Starts directly at top: 0 (No Top Fixed Navbar)
        ========================================================================== -->
   <header class="cg-hero-section" id="hero">
@@ -100,7 +110,7 @@
             </div>
           </div>
 
-          <!-- Eyebrow Badge as requested: BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO -->
+          <!-- Eyebrow Badge as requested: BY IR-PROPERTIES â€¢ EXCLUSIVE PORTFOLIO -->
           <div class="cg-badge-row">
             <div class="cg-status-badge">
               <span class="cg-pulse-dot"></span>
@@ -162,7 +172,7 @@
             </a>
 
             <a href="#collections" class="btn-cg-ghost-light">
-              Explore Collections ↓
+              Explore Collections â†“
             </a>
           </div>
 
@@ -200,21 +210,21 @@
                 <div class="cg-phone-split">
                   <div class="cg-country-select-wrapper">
                     <select id="cgCountryCode" name="countryCode" class="cg-country-select" aria-label="Country Code">
-                      <option value="+20" selected>🇪🇬 +20</option>
-                      <option value="+966">🇸🇦 +966</option>
-                      <option value="+971">🇦🇪 +971</option>
-                      <option value="+974">🇶🇦 +974</option>
-                      <option value="+965">🇰🇼 +965</option>
-                      <option value="+973">🇧🇭 +973</option>
-                      <option value="+968">🇴🇲 +968</option>
-                      <option value="+44">🇬🇧 +44</option>
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+1">🇨🇦 +1</option>
-                      <option value="+49">🇩🇪 +49</option>
-                      <option value="+33">🇫🇷 +33</option>
-                      <option value="+39">🇮🇹 +39</option>
-                      <option value="+962">🇯🇴 +962</option>
-                      <option value="+961">🇱🇧 +961</option>
+                      <option value="+20" selected>ðŸ‡ªðŸ‡¬ +20</option>
+                      <option value="+966">ðŸ‡¸ðŸ‡¦ +966</option>
+                      <option value="+971">ðŸ‡¦ðŸ‡ª +971</option>
+                      <option value="+974">ðŸ‡¶ðŸ‡¦ +974</option>
+                      <option value="+965">ðŸ‡°ðŸ‡¼ +965</option>
+                      <option value="+973">ðŸ‡§ðŸ‡­ +973</option>
+                      <option value="+968">ðŸ‡´ðŸ‡² +968</option>
+                      <option value="+44">ðŸ‡¬ðŸ‡§ +44</option>
+                      <option value="+1">ðŸ‡ºðŸ‡¸ +1</option>
+                      <option value="+1">ðŸ‡¨ðŸ‡¦ +1</option>
+                      <option value="+49">ðŸ‡©ðŸ‡ª +49</option>
+                      <option value="+33">ðŸ‡«ðŸ‡· +33</option>
+                      <option value="+39">ðŸ‡®ðŸ‡¹ +39</option>
+                      <option value="+962">ðŸ‡¯ðŸ‡´ +962</option>
+                      <option value="+961">ðŸ‡±ðŸ‡§ +961</option>
                     </select>
                     <svg class="cg-select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="6 9 12 15 18 9"></polyline>
@@ -294,11 +304,11 @@
 
               <!-- Itemized Unit Breakdown as requested -->
               <div class="cg-unit-breakdown-list">
-                <!-- 1 Bedroom (89m²) -->
+                <!-- 1 Bedroom (89mÂ²) -->
                 <div class="cg-unit-row">
                   <div>
                     <div class="cg-unit-title">1 Bedroom</div>
-                    <div class="cg-unit-specs">89m² Built-up Area &bull; Fully Finished</div>
+                    <div class="cg-unit-specs">89mÂ² Built-up Area &bull; Fully Finished</div>
                   </div>
                   <div class="cg-unit-pricing-col">
                     <div class="cg-price-label">Starting From</div>
@@ -306,11 +316,11 @@
                   </div>
                 </div>
 
-                <!-- 3 Bedrooms Typical (138m² - 160m²) -->
+                <!-- 3 Bedrooms Typical (138mÂ² - 160mÂ²) -->
                 <div class="cg-unit-row">
                   <div>
                     <div class="cg-unit-title">3 Bedrooms Typical</div>
-                    <div class="cg-unit-specs">138m² &ndash; 160m² Built-up Area &bull; Options up to 17.3M EGP</div>
+                    <div class="cg-unit-specs">138mÂ² &ndash; 160mÂ² Built-up Area &bull; Options up to 17.3M EGP</div>
                   </div>
                   <div class="cg-unit-pricing-col">
                     <div class="cg-price-label">Starting From</div>
@@ -383,7 +393,7 @@
                 <div class="cg-unit-row">
                   <div>
                     <div class="cg-unit-title">V36 (3rd Row Golf)</div>
-                    <div class="cg-unit-specs">BUA 356m² | Land 524m² &bull; Standalone Villa</div>
+                    <div class="cg-unit-specs">BUA 356mÂ² | Land 524mÂ² &bull; Standalone Villa</div>
                   </div>
                   <div class="cg-unit-pricing-col">
                     <div class="cg-price-label">Starting From</div>
@@ -395,7 +405,7 @@
                 <div class="cg-unit-row">
                   <div>
                     <div class="cg-unit-title">V43 Standalone Villa</div>
-                    <div class="cg-unit-specs">BUA 423m² | Land 561m² &bull; Grand Layout</div>
+                    <div class="cg-unit-specs">BUA 423mÂ² | Land 561mÂ² &bull; Grand Layout</div>
                   </div>
                   <div class="cg-unit-pricing-col">
                     <div class="cg-price-label">Starting From</div>
@@ -407,7 +417,7 @@
                 <div class="cg-unit-row">
                   <div>
                     <div class="cg-unit-title">GV73 One-Story (2nd Row Golf)</div>
-                    <div class="cg-unit-specs">BUA 714m² | Land 1,201m² &bull; Rare Single-Story Master Villa</div>
+                    <div class="cg-unit-specs">BUA 714mÂ² | Land 1,201mÂ² &bull; Rare Single-Story Master Villa</div>
                   </div>
                   <div class="cg-unit-pricing-col">
                     <div class="cg-price-label">Starting From</div>
@@ -513,7 +523,7 @@
             </svg>
           </div>
           <div class="cg-amenity-text">
-            <h3>1M M² Ring Park</h3>
+            <h3>1M MÂ² Ring Park</h3>
             <p>80% green parkland.</p>
           </div>
         </div>
@@ -545,7 +555,7 @@
           </div>
           <div class="cg-amenity-text">
             <h3>Business Park</h3>
-            <p>720K M² corporate hub.</p>
+            <p>720K MÂ² corporate hub.</p>
           </div>
         </div>
 
@@ -560,7 +570,7 @@
           </div>
           <div class="cg-amenity-text">
             <h3>Commercial Town</h3>
-            <p>300K M² retail &amp; dining.</p>
+            <p>300K MÂ² retail &amp; dining.</p>
           </div>
         </div>
 
@@ -621,7 +631,7 @@
         <span class="cg-section-eyebrow">STRATEGIC ACCESSIBILITY</span>
         <h2 class="cg-section-title">At The Heart of New Cairo</h2>
         <p class="cg-section-lead">
-          Located 30 km southeast of Cairo, City Gate stands poised as the gateway to Egypt’s New Administrative Capital. Direct access ensures seamless connection across all major arteries.
+          Located 30 km southeast of Cairo, City Gate stands poised as the gateway to Egyptâ€™s New Administrative Capital. Direct access ensures seamless connection across all major arteries.
         </p>
       </div>
 
