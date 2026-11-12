@@ -7,8 +7,12 @@
 # Madinet Masr Portfolio Route (Exact slug: /Madient-Masr)
 /Madient-Masr      /Madient-Masr/index.html 200
 /madient-masr      /Madient-Masr/index.html 200
-/Madinet-Masr      /Madient-Masr/index.html 200
-/madinet-masr      /Madient-Masr/index.html 200
 
 # Mountain View Exclusive Portfolio Route (Exact slug: /mountain-view)
-/mountain-view      /mountain-view/index.html 200
+/mountain-view      /mountain-view.html 200
+
+# Hassan Allam Properties Portfolio Route (Exact slug: /hassan-allam)
+/hassan-allam/      /hassan-allam 301
+/hassanallam        /hassan-allam 301
+/hassanallam/       /hassan-allam 301
+/hassan-allam       /hassan-allam.html 200
