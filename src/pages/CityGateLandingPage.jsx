@@ -559,12 +559,12 @@ export default function CityGateLandingPage() {
               href={WHATSAPP_SUNRAY_LINK} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="btn-cg-green btn-cg-large"
+              className="btn-cg-green btn-cg-large btn-cg-sunray-btn"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
               </svg>
-              CHAT ON WHATSAPP &bull; SUNRAY LAGOON
+              CHAT ON WHATSAPP
             </a>
           </div>
 
