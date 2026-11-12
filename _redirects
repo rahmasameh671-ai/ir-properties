@@ -1,18 +1,11 @@
-# Static redirects & rewrites for ir-properties.com & properties-s.com
-/citygate          /city-gate          301
-/citygate/         /city-gate          301
-/city-gate         /city-gate/index.html 200
-/sodic             /sodic/index.html   200
-
-# Madinet Masr Portfolio Route (Exact slug: /Madient-Masr)
-/Madient-Masr      /Madient-Masr/index.html 200
-/madient-masr      /Madient-Masr/index.html 200
-
-# Mountain View Exclusive Portfolio Route (Exact slug: /mountain-view)
-/mountain-view      /mountain-view.html 200
-
-# Hassan Allam Properties Portfolio Route (Exact slug: /hassan-allam)
-/hassan-allam/      /hassan-allam 301
-/hassanallam        /hassan-allam 301
-/hassanallam/       /hassan-allam 301
-/hassan-allam       /hassan-allam.html 200
+# Canonical 301 redirects to clean URLs (No circular rewrites)
+/mountain-view/     /mountain-view     301
+/mountainview       /mountain-view     301
+/mountainview/      /mountain-view     301
+/hassanallam        /hassan-allam/     301
+/hassanallam/       /hassan-allam/     301
+/hassan-allam       /hassan-allam/     301
+/hassan-allam-properties  /hassan-allam/ 301
+/hassan-allam-properties/ /hassan-allam/ 301
+/privacy-policy/    /privacy-policy    301
+/terms-conditions/  /terms-conditions  301
