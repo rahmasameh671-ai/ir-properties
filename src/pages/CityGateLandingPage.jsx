@@ -3,14 +3,16 @@ import '../../city-gate/city-gate.css';
 
 /**
  * City Gate New Cairo Internal Landing Page Component
+ * Feature: Sunray Lagoon Residences (Alam El Rom) New Launch Integration
  * Internal Route: ir-properties.com/city-gate & ir-properties.com/citygate
  * Entity: By ir-properties — Independent Real Estate Consultancy
- * Aesthetic: Ultra-Chic Editorial Luxury | Strict Zero Gold Policy
+ * Aesthetic: Ultra-Chic Editorial Luxury | Warm Terracotta & Copper Palette
  * WhatsApp Number: +201277752731
  */
 export default function CityGateLandingPage() {
   const WHATSAPP_NUMBER = '201277752731';
-  const WHATSAPP_HERO_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20City%20Gate%20New%20Cairo`;
+  const WHATSAPP_SUNRAY_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20the%20New%20Launch%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20at%20City%20Gate`;
+  const WHATSAPP_HERO_LINK = WHATSAPP_SUNRAY_LINK;
   const WHATSAPP_RIVERSIDE_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20Riverside%20Apartments%20at%20City%20Gate`;
   const WHATSAPP_VILLAS_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20Golf%20Villas%20at%20City%20Gate`;
 
@@ -34,6 +36,7 @@ export default function CityGateLandingPage() {
     // Analytics / Dispatch
     console.log('City Gate Inquiry Dispatched:', {
       project: 'City Gate New Cairo',
+      launch: 'Sunray Lagoon Residences (Alam El Rom)',
       developer: 'Qatari Diar Egypt',
       consultancy: 'ir-properties',
       name: fullName.trim(),
@@ -65,7 +68,7 @@ export default function CityGateLandingPage() {
   return (
     <div className="city-gate-page">
       {/* ==========================================================================
-           1. HERO SECTION (CORE OFFERS - BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO)
+           1. HERO SECTION (NEW LAUNCH FOCUS - SUNRAY LAGOON RESIDENCES / ALAM EL ROM)
            Starts directly at top: 0 (No Top Fixed Navbar)
            ========================================================================== */}
       <header className="cg-hero-section" id="hero">
@@ -80,7 +83,7 @@ export default function CityGateLandingPage() {
               <div className="cg-hero-brand-plaque">
                 <img 
                   src="/qatari-diar-official.png" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/qatari-diar-official.png'; }}
                   alt="Qatari Diar Egypt Official Logo" 
                   className="cg-hero-qatari-logo" 
                   width="130" 
@@ -89,11 +92,20 @@ export default function CityGateLandingPage() {
                 <div className="cg-plaque-divider"></div>
                 <img 
                   src="/citygate-official.png" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/citygate-official.png'; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/citygate-official.png'; }}
                   alt="City Gate New Cairo Official Logo" 
                   className="cg-hero-citygate-logo" 
                   width="120" 
                   height="40"
+                />
+                <div className="cg-plaque-divider"></div>
+                <img 
+                  src="/alam-al-roum-seal-dark.png" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/alam-al-roum-seal-dark.png'; }}
+                  alt="Alam El Rom Seal علم الروم" 
+                  className="cg-hero-alam-seal" 
+                  width="44" 
+                  height="44"
                 />
                 <div className="cg-plaque-by-box">
                   <span className="cg-plaque-by-text">By ir-properties</span>
@@ -101,48 +113,48 @@ export default function CityGateLandingPage() {
                 </div>
               </div>
 
-              {/* Eyebrow Badge as requested: BY IR-PROPERTIES • EXCLUSIVE PORTFOLIO */}
+              {/* Eyebrow Badge as requested: NEW LAUNCH • CITY GATE */}
               <div className="cg-badge-row">
-                <div className="cg-status-badge">
+                <div className="cg-status-badge cg-status-badge-launch">
                   <span className="cg-pulse-dot"></span>
-                  BY IR-PROPERTIES &bull; EXCLUSIVE PORTFOLIO
+                  NEW LAUNCH &bull; CITY GATE
                 </div>
-                <div className="cg-price-badge">
-                  Starting from 9.07M EGP
+                <div className="cg-price-badge cg-price-badge-copper">
+                  Starting from 8.26M EGP
                 </div>
               </div>
 
-              {/* Main Title as requested: City Gate New Cairo */}
+              {/* Main Title as requested: City Gate: Sunray Lagoon Residences (Alam El Rom) */}
               <h1 className="cg-hero-title">
-                City Gate New Cairo
+                City Gate: Sunray Lagoon Residences <span className="cg-hero-arabic-title">(علم الروم)</span>
               </h1>
 
-              {/* Subtitle as requested: Fully Finished Riverside Apartments & Signature Golf Villas */}
+              {/* Subtitle as requested: Discover 'Life in New Light'. Premium residences delivered Fully Finished + Kitchen Cabinets. */}
               <div className="cg-hero-subtitle-bar">
-                <span>Fully Finished Riverside Apartments &amp; Signature Golf Villas</span>
+                <span>Discover &lsquo;Life in New Light&rsquo; &bull; Fully Finished + Kitchen Cabinets</span>
               </div>
 
               <p className="cg-hero-desc">
-                Secure your premium residence with a 5% Down Payment and equal installments up to 10 Years. Spanning 9 million square meters by Qatari Diar with an 18-hole championship USGA golf course and expansive green parks.
+                Discover &lsquo;Life in New Light&rsquo; at City Gate&rsquo;s marquee waterfront launch. Secure your premium residence with a <strong>5% Down Payment</strong> and equal installments up to <strong>10 Years</strong>. Spanning swimmable sandy beach lagoons with world-class master planning by Qatari Diar.
               </p>
 
               {/* Metric Highlights Strip */}
               <div className="cg-hero-metrics-grid">
                 <div className="cg-hero-metric-card">
+                  <div className="cg-metric-value">From 8.26M</div>
+                  <div className="cg-metric-label">Starting Price</div>
+                </div>
+                <div className="cg-hero-metric-card">
                   <div className="cg-metric-value">5% DP</div>
                   <div className="cg-metric-label">Down Payment</div>
                 </div>
                 <div className="cg-hero-metric-card">
-                  <div className="cg-metric-value">Up to 10 Yrs</div>
+                  <div className="cg-metric-value">10 Yrs</div>
                   <div className="cg-metric-label">Equal Installments</div>
                 </div>
                 <div className="cg-hero-metric-card">
-                  <div className="cg-metric-value">18-Hole</div>
-                  <div className="cg-metric-label">USGA Championship Golf</div>
-                </div>
-                <div className="cg-hero-metric-card">
-                  <div className="cg-metric-value">5 Mins</div>
-                  <div className="cg-metric-label">To AUC New Cairo</div>
+                  <div className="cg-metric-value">Finished</div>
+                  <div className="cg-metric-label">+ Kitchen Cabinets</div>
                 </div>
               </div>
 
@@ -157,11 +169,11 @@ export default function CityGateLandingPage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
                   </svg>
-                  CONTACT US
+                  INQUIRE ON WHATSAPP
                 </a>
 
-                <a href="#collections" className="btn-cg-ghost-light">
-                  Explore Collections ↓
+                <a href="#sunray" className="btn-cg-ghost-light">
+                  Explore Sunray Lagoon &darr;
                 </a>
               </div>
             </div>
@@ -260,16 +272,376 @@ export default function CityGateLandingPage() {
       </header>
 
       {/* ==========================================================================
-           2. UPDATED PROJECT PRICING & AVAILABILITY (SECTIONS A & B)
+           2. NEW DEDICATED SECTION: SUNRAY LAGOON RESIDENCES (علم الروم)
+           Rich Earthy Brown / Warm Copper Palette (#933D18) & Editorial Layout
+           ========================================================================== */}
+      <section className="cg-sunray-section" id="sunray">
+        <div className="cg-container">
+
+          {/* Official Twin Emblems & Brand Crest */}
+          <div className="cg-sunray-crest-row">
+            <div className="cg-sunray-emblems-box">
+              <img 
+                src="/alam-al-roum-seal-trans.png" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/alam-al-roum-seal-trans.png'; }}
+                alt="Alam El Rom Official Seal علم الروم" 
+                className="cg-sunray-seal-img" 
+                width="56" 
+                height="56" 
+                loading="lazy"
+              />
+              <div className="cg-sunray-compass-icon" aria-hidden="true">
+                <svg viewBox="0 0 100 100" width="52" height="52" fill="none" stroke="#FAF5F0" strokeWidth="2.5">
+                  <circle cx="50" cy="50" r="46" stroke="rgba(250, 245, 240, 0.45)" strokeWidth="1.5" />
+                  <path d="M50 8 L54 44 L92 50 L54 56 L50 92 L46 56 L8 50 L46 44 Z" fill="#FAF5F0" />
+                  <circle cx="50" cy="22" r="1.5" fill="#FAF5F0"/>
+                  <circle cx="78" cy="50" r="1.5" fill="#FAF5F0"/>
+                  <circle cx="50" cy="78" r="1.5" fill="#FAF5F0"/>
+                  <circle cx="22" cy="50" r="1.5" fill="#FAF5F0"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Section Header */}
+          <div className="cg-sunray-header">
+            <div className="cg-sunray-pill-badge">
+              OFFICIAL DEVELOPER LAUNCH &bull; QATARI DIAR EGYPT
+            </div>
+            <h2 className="cg-sunray-title">
+              Sunray Lagoon Residences
+              <span className="cg-sunray-sub-arabic">(علم الروم)</span>
+            </h2>
+            <div className="cg-sunray-tagline">Life in New Light</div>
+            <p className="cg-sunray-lead">
+              A welcoming waterfront enclave drawn around the calm of 28 kilometers of swimmable sandy-beach lagoons. Thoughtfully crafted low-rise residences delivered fully finished with integrated kitchen cabinets, offering flexible 10-year installment horizons.
+            </p>
+
+            {/* Specs Badge Bar */}
+            <div className="cg-sunray-specs-strip">
+              <div className="cg-sunray-spec-item">
+                <span className="cg-spec-dot"></span>
+                <strong>Finishing:</strong> Fully Finished + Kitchen Cabinets
+              </div>
+              <div className="cg-sunray-spec-divider"></div>
+              <div className="cg-sunray-spec-item">
+                <span className="cg-spec-dot"></span>
+                <strong>Payment Plan:</strong> 5% Down Payment | 10 Years Equal Installments
+              </div>
+              <div className="cg-sunray-spec-divider"></div>
+              <div className="cg-sunray-spec-item">
+                <span className="cg-spec-dot"></span>
+                <strong>Starting Price:</strong> From 8,260,000 EGP
+              </div>
+            </div>
+          </div>
+
+          {/* Editorial Visual Showcase (Lagoon Beach + Interior + Architecture) */}
+          <div className="cg-sunray-showcase-grid">
+            <div className="cg-showcase-card cg-showcase-main">
+              <img 
+                src="/sunray-lagoon-terrace.jpg" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/sunray-lagoon-terrace.jpg'; }}
+                alt="Sunray Lagoon Residences Waterfront Lifestyle" 
+                className="cg-showcase-img" 
+                loading="lazy" 
+                width="800" 
+                height="500"
+              />
+              <div className="cg-showcase-overlay">
+                <span className="cg-showcase-tag">THE LAGOON EXPERIENCE</span>
+                <h3>Sandy Beachfront &amp; Swimmable Lagoons</h3>
+                <p>Soft-edged turquoise waters at your private doorstep.</p>
+              </div>
+            </div>
+
+            <div className="cg-showcase-col">
+              <div className="cg-showcase-card">
+                <img 
+                  src="/sunray-living-lagoon.jpg" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/sunray-living-lagoon.jpg'; }}
+                  alt="Sunray Lagoon Residences Interior With Kitchen Cabinets" 
+                  className="cg-showcase-img" 
+                  loading="lazy" 
+                  width="450" 
+                  height="280"
+                />
+                <div className="cg-showcase-overlay">
+                  <span className="cg-showcase-tag">TURNKEY LUXURY</span>
+                  <h4>Fully Finished + Kitchen Cabinets</h4>
+                </div>
+              </div>
+
+              <div className="cg-showcase-card">
+                <img 
+                  src="/sunray-grand-exterior.jpg" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/sunray-grand-exterior.jpg'; }}
+                  alt="Grand Low-Rise Coastal Architecture" 
+                  className="cg-showcase-img" 
+                  loading="lazy" 
+                  width="450" 
+                  height="280"
+                />
+                <div className="cg-showcase-overlay">
+                  <span className="cg-showcase-tag">MASTER ARCHITECTURE</span>
+                  <h4>Low-Rise Buildings Designed by SOM</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Starting Prices By Typology (Extracted From Developer Brochure) */}
+          <div className="cg-sunray-typologies-wrap">
+            <div className="cg-sunray-subheading">
+              <h3>Starting Prices by Typology</h3>
+              <p>Verified developer pricing schedule across Grand (S), Light (J1), and Crest (J2) residential collections.</p>
+            </div>
+
+            <div className="cg-typology-cards-grid">
+
+              {/* 1 Bedroom */}
+              <div className="cg-typology-card">
+                <div className="cg-typology-badge">1 BEDROOM</div>
+                <div className="cg-typology-price-box">
+                  <span className="cg-typology-from">Starting From</span>
+                  <div className="cg-typology-price">8,260,000 <span className="cg-typology-curr">EGP</span></div>
+                  <span className="cg-typology-sub">Grand S (59m&sup2;)</span>
+                </div>
+                <div className="cg-typology-details">
+                  <div className="cg-typology-line">
+                    <span>BUA Horizon</span>
+                    <strong>59m&sup2; &ndash; 65m&sup2;</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Average Price</span>
+                    <strong>8.56M &ndash; 10.93M EGP</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Finishing</span>
+                    <strong>Fully Finished + Cabinets</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Collections</span>
+                    <strong>Grand S &bull; Light J1 &bull; Crest J2</strong>
+                  </div>
+                </div>
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20the%201%20Bedroom%20residences%20at%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20City%20Gate`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-cg-typology-cta"
+                >
+                  Inquire 1 Bedroom &rarr;
+                </a>
+              </div>
+
+              {/* 2 Bedrooms */}
+              <div className="cg-typology-card">
+                <div className="cg-typology-badge">2 BEDROOMS</div>
+                <div className="cg-typology-price-box">
+                  <span className="cg-typology-from">Starting From</span>
+                  <div className="cg-typology-price">13,000,000 <span className="cg-typology-curr">EGP</span></div>
+                  <span className="cg-typology-sub">Light J1 (92m&sup2;)</span>
+                </div>
+                <div className="cg-typology-details">
+                  <div className="cg-typology-line">
+                    <span>BUA Horizon</span>
+                    <strong>92m&sup2; &ndash; 111m&sup2;</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Average Price</span>
+                    <strong>14.10M &ndash; 17.97M EGP</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Finishing</span>
+                    <strong>Fully Finished + Cabinets</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Collections</span>
+                    <strong>Light J1 &bull; Crest J2 &bull; Grand S</strong>
+                  </div>
+                </div>
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20the%202%20Bedroom%20residences%20at%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20City%20Gate`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-cg-typology-cta"
+                >
+                  Inquire 2 Bedrooms &rarr;
+                </a>
+              </div>
+
+              {/* 3 Bedrooms */}
+              <div className="cg-typology-card">
+                <div className="cg-typology-badge">3 BEDROOMS</div>
+                <div className="cg-typology-price-box">
+                  <span className="cg-typology-from">Starting From</span>
+                  <div className="cg-typology-price">16,690,000 <span className="cg-typology-curr">EGP</span></div>
+                  <span className="cg-typology-sub">Crest J2 (117m&sup2;)</span>
+                </div>
+                <div className="cg-typology-details">
+                  <div className="cg-typology-line">
+                    <span>BUA Horizon</span>
+                    <strong>117m&sup2; &ndash; 133m&sup2;</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Average Price</span>
+                    <strong>18.02M &ndash; 21.95M EGP</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Finishing</span>
+                    <strong>Fully Finished + Cabinets</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Collections</span>
+                    <strong>Crest J2 &bull; Light J1 &bull; Grand S</strong>
+                  </div>
+                </div>
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20the%203%20Bedroom%20residences%20at%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20City%20Gate`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-cg-typology-cta"
+                >
+                  Inquire 3 Bedrooms &rarr;
+                </a>
+              </div>
+
+              {/* Penthouses (2 & 3 BR) */}
+              <div className="cg-typology-card highlight-card">
+                <div className="cg-typology-badge">PENTHOUSES (2 &amp; 3 BR)</div>
+                <div className="cg-typology-price-box">
+                  <span className="cg-typology-from">Starting From</span>
+                  <div className="cg-typology-price">20,250,000 <span className="cg-typology-curr">EGP</span></div>
+                  <span className="cg-typology-sub">Light J1 (164m&sup2;)</span>
+                </div>
+                <div className="cg-typology-details">
+                  <div className="cg-typology-line">
+                    <span>BUA Horizon</span>
+                    <strong>164m&sup2; &ndash; 197m&sup2;</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Average Price</span>
+                    <strong>21.02M &ndash; 27.20M EGP</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Features</span>
+                    <strong>Rooftop Sky Terraces</strong>
+                  </div>
+                  <div className="cg-typology-line">
+                    <span>Collections</span>
+                    <strong>Light J1 (2 &amp; 3 BR PH)</strong>
+                  </div>
+                </div>
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20the%20Penthouses%20at%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20City%20Gate`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-cg-typology-cta"
+                >
+                  Inquire Penthouses &rarr;
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Developer Verified Pricing Schedule Table */}
+          <div className="cg-sunray-table-section">
+            <div className="cg-sunray-table-header">
+              <div>
+                <h4>Official Developer Price Schedule</h4>
+                <p>Directly extracted from Qatari Diar Egypt official price sheet.</p>
+              </div>
+              <div className="cg-sunray-table-dev-logo">
+                <img 
+                  src="/qatari-diar-official.png" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/qatari-diar-official.png'; }}
+                  alt="Qatari Diar Egypt" 
+                  width="90" 
+                  height="32"
+                />
+              </div>
+            </div>
+
+            <div className="cg-table-responsive-wrapper">
+              <table className="cg-sunray-table">
+                <thead>
+                  <tr>
+                    <th>TYPE</th>
+                    <th>FEATURES</th>
+                    <th>BUA M&sup2;</th>
+                    <th>MIN. PRICE</th>
+                    <th>AVG. PRICE</th>
+                    <th>MAX. PRICE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Light (J1) */}
+                  <tr className="cg-row-heading"><td colSpan={6}>Light (J1) Collection</td></tr>
+                  <tr><td>Light (J1)</td><td>1 Br</td><td>60 m&sup2;</td><td>8,560,000 EGP</td><td>8,788,000 EGP</td><td>9,360,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>1 Br</td><td>65 m&sup2;</td><td>10,130,000 EGP</td><td>10,930,000 EGP</td><td>12,500,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>2 Br</td><td>92 m&sup2;</td><td>13,000,000 EGP</td><td>14,099,000 EGP</td><td>16,330,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>2 Br</td><td>111 m&sup2;</td><td>16,860,000 EGP</td><td>17,969,000 EGP</td><td>20,000,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>3 Br</td><td>119 m&sup2;</td><td>17,760,000 EGP</td><td>19,314,000 EGP</td><td>22,480,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>3 Br</td><td>127 m&sup2;</td><td>17,950,000 EGP</td><td>19,511,000 EGP</td><td>22,990,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>2 Br + Penthouse</td><td>164 m&sup2;</td><td>20,250,000 EGP</td><td>21,022,000 EGP</td><td>21,880,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>3 Br + Penthouse</td><td>187 m&sup2;</td><td>25,340,000 EGP</td><td>26,314,000 EGP</td><td>27,560,000 EGP</td></tr>
+                  <tr><td>Light (J1)</td><td>3 Br + Penthouse</td><td>197 m&sup2;</td><td>26,360,000 EGP</td><td>27,195,000 EGP</td><td>28,130,000 EGP</td></tr>
+
+                  {/* Crest (J2) */}
+                  <tr className="cg-row-heading"><td colSpan={6}>Crest (J2) Collection</td></tr>
+                  <tr><td>Crest (J2)</td><td>1 Br</td><td>63 m&sup2;</td><td>9,900,000 EGP</td><td>10,489,000 EGP</td><td>11,980,000 EGP</td></tr>
+                  <tr><td>Crest (J2)</td><td>2 Br</td><td>92 m&sup2;</td><td>13,970,000 EGP</td><td>14,857,000 EGP</td><td>17,120,000 EGP</td></tr>
+                  <tr><td>Crest (J2)</td><td>3 Br</td><td>117 m&sup2;</td><td>16,690,000 EGP</td><td>18,019,000 EGP</td><td>21,630,000 EGP</td></tr>
+
+                  {/* Grand (S) */}
+                  <tr className="cg-row-heading"><td colSpan={6}>Grand (S) Collection</td></tr>
+                  <tr><td>Grand (S)</td><td>1 Br</td><td>59 m&sup2;</td><td>8,260,000 EGP</td><td>8,564,000 EGP</td><td>9,090,000 EGP</td></tr>
+                  <tr><td>Grand (S)</td><td>2 Br</td><td>96 m&sup2;</td><td>14,520,000 EGP</td><td>15,350,000 EGP</td><td>17,540,000 EGP</td></tr>
+                  <tr><td>Grand (S)</td><td>2 Br</td><td>103 m&sup2;</td><td>15,980,000 EGP</td><td>16,915,000 EGP</td><td>19,010,000 EGP</td></tr>
+                  <tr><td>Grand (S)</td><td>3 Br</td><td>125 m&sup2;</td><td>18,240,000 EGP</td><td>19,575,000 EGP</td><td>22,730,000 EGP</td></tr>
+                  <tr><td>Grand (S)</td><td>3 Br</td><td>133 m&sup2;</td><td>20,980,000 EGP</td><td>21,947,000 EGP</td><td>24,410,000 EGP</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Marquee WhatsApp CTA Section */}
+          <div className="cg-sunray-cta-box">
+            <div className="cg-sunray-cta-text">
+              <h3>Secure Your Sunray Lagoon Allocation</h3>
+              <p>Direct priority reservation, floor plans, and verified payment structuring via our senior consultancy team.</p>
+            </div>
+            {/* Solid Green WhatsApp button (#25D366) with exact requested link */}
+            <a 
+              href={WHATSAPP_SUNRAY_LINK} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-cg-green btn-cg-large"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
+              </svg>
+              CHAT ON WHATSAPP &bull; SUNRAY LAGOON
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==========================================================================
+           3. PREVIOUS RESIDENTIAL PHASES (RIVERSIDE & SIGNATURE GOLF VILLAS)
+           Retained Lower Down As Available Inventory
            ========================================================================== */}
       <section className="cg-section cg-section-alabaster" id="collections">
         <div className="cg-container">
           
           <div className="cg-section-header">
-            <span className="cg-section-eyebrow">VERIFIED PROJECT INVENTORY &amp; PRICING</span>
-            <h2 className="cg-section-title">City Gate Residential Collections &amp; Terms</h2>
+            <span className="cg-section-eyebrow">AVAILABLE RESIDENTIAL INVENTORY</span>
+            <h2 className="cg-section-title">Established Collections: Riverside &amp; Signature Golf Villas</h2>
             <p className="cg-section-lead">
-              Select from City Gate's premier residential collections. Featuring verified starting prices, tailored developer installment horizons, and delivery schedules crafted for discerning buyers.
+              Explore additional verified residential inventory within City Gate New Cairo. Featuring fully finished riverside apartments and signature golf villas with tailored 8 to 10-year developer payment horizons.
             </p>
           </div>
 
@@ -282,7 +654,7 @@ export default function CityGateLandingPage() {
               <div className="cg-collection-media">
                 <img 
                   src="/apartment-interior.jpg" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/apartment-interior.jpg'; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/apartment-interior.jpg'; }}
                   alt="Riverside Fully Finished Apartments at City Gate New Cairo" 
                   className="cg-collection-img" 
                   loading="lazy" 
@@ -349,7 +721,7 @@ export default function CityGateLandingPage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
                   </svg>
-                  CONTACT US
+                  INQUIRE ON WHATSAPP
                 </a>
               </div>
             </article>
@@ -361,7 +733,7 @@ export default function CityGateLandingPage() {
               <div className="cg-collection-media">
                 <img 
                   src="/villas-exterior.jpg" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/villas-exterior.jpg'; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/villas-exterior.jpg'; }}
                   alt="Signature Golf Villas at City Gate New Cairo" 
                   className="cg-collection-img" 
                   loading="lazy" 
@@ -439,7 +811,7 @@ export default function CityGateLandingPage() {
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.879.809 2.796.809 3.183 0 5.77-2.587 5.77-5.766.001-3.187-2.575-5.996-5.77-5.996zm7.986 5.766c-.001 4.405-3.584 7.988-7.986 7.988-1.379 0-2.674-.356-3.812-1.002l-4.219 1.106 1.127-4.116c-.714-1.189-1.082-2.56-1.082-3.976.002-4.406 3.586-7.988 7.988-7.988 4.398.001 7.984 3.584 7.984 7.988z"/>
                   </svg>
-                  CONTACT US
+                  INQUIRE ON WHATSAPP
                 </a>
               </div>
             </article>
@@ -454,7 +826,7 @@ export default function CityGateLandingPage() {
       </section>
 
       {/* ==========================================================================
-           3. MASTER COMMUNITY AMENITIES (ZERO WHATSAPP BUTTONS AS REQUIRED)
+           4. MASTER COMMUNITY AMENITIES (ZERO WHATSAPP BUTTONS AS REQUIRED)
            ========================================================================== */}
       <section className="cg-section" id="amenities">
         <div className="cg-container">
@@ -594,7 +966,7 @@ export default function CityGateLandingPage() {
       </section>
 
       {/* ==========================================================================
-           4. STRATEGIC LOCATION & CONNECTIVITY
+           5. STRATEGIC LOCATION & CONNECTIVITY
            ========================================================================== */}
       <section className="cg-section cg-section-alabaster" id="location">
         <div className="cg-container">
@@ -603,7 +975,7 @@ export default function CityGateLandingPage() {
             <span className="cg-section-eyebrow">STRATEGIC ACCESSIBILITY</span>
             <h2 className="cg-section-title">At The Heart of New Cairo</h2>
             <p className="cg-section-lead">
-              Located 30 km southeast of Cairo, City Gate stands poised as the gateway to Egypt’s New Administrative Capital. Direct access ensures seamless connection across all major arteries.
+              Located 30 km southeast of Cairo, City Gate stands poised as the gateway to Egypt&rsquo;s New Administrative Capital. Direct access ensures seamless connection across all major arteries.
             </p>
           </div>
 
@@ -653,7 +1025,7 @@ export default function CityGateLandingPage() {
             <div className="cg-location-visual-card">
               <img 
                 src="/golf-championship.jpg" 
-                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/golf-championship.jpg'; }}
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/golf-championship.jpg'; }}
                 alt="City Gate New Cairo Golf Setting" 
                 className="cg-location-img" 
                 loading="lazy" 
@@ -667,7 +1039,7 @@ export default function CityGateLandingPage() {
       </section>
 
       {/* ==========================================================================
-           5. DEVELOPER HERITAGE & WHY CITY GATE THROUGH IR-PROPERTIES
+           6. DEVELOPER HERITAGE & WHY CITY GATE THROUGH IR-PROPERTIES
            ========================================================================== */}
       <section className="cg-section" id="developer">
         <div className="cg-container">
@@ -677,22 +1049,29 @@ export default function CityGateLandingPage() {
               <div className="cg-dev-logo-badge">
                 <img 
                   src="/citygate-official.png" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/citygate-official.png'; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/citygate-official.png'; }}
                   alt="City Gate New Cairo Official Logo" 
                   className="cg-dev-citygate-logo" 
                   width="135" 
                   height="45" 
-                  loading="lazy"
                 />
                 <div className="cg-dev-badge-divider"></div>
                 <img 
                   src="/qatari-diar-official.png" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/qatari-diar-official.png'; }}
                   alt="Qatari Diar Egypt Official Logo" 
                   className="cg-dev-qatari-logo" 
                   width="130" 
                   height="48" 
-                  loading="lazy"
+                />
+                <div className="cg-dev-badge-divider"></div>
+                <img 
+                  src="/alam-al-roum-seal-dark.png" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/alam-al-roum-seal-dark.png'; }}
+                  alt="Alam El Rom Seal علم الروم" 
+                  className="cg-hero-alam-seal" 
+                  width="44" 
+                  height="44" 
                 />
               </div>
               <div className="cg-dev-intro-text">
@@ -732,7 +1111,7 @@ export default function CityGateLandingPage() {
                   </svg>
                 </div>
                 <h4>Priority Unit Allocation</h4>
-                <p>Direct intermediary access to premium first-row golf, park, and high-demand residential inventories.</p>
+                <p>Direct intermediary access to premium first-row lagoon, golf, and high-demand residential allocations.</p>
               </div>
 
               <div className="cg-advisory-pillar">
@@ -764,7 +1143,7 @@ export default function CityGateLandingPage() {
       </section>
 
       {/* ==========================================================================
-           6. CORPORATE FOOTER & COMPLIANCE (BY IR-PROPERTIES)
+           7. CORPORATE FOOTER & COMPLIANCE (BY IR-PROPERTIES)
            ========================================================================== */}
       <footer className="cg-footer">
         <div className="cg-container cg-footer-inner">
@@ -772,21 +1151,27 @@ export default function CityGateLandingPage() {
             <div className="cg-footer-logos-card">
               <img 
                 src="/qatari-diar-official.png" 
-                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/qatari-diar-official.png'; }}
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/qatari-diar-official.png'; }}
                 alt="Qatari Diar Egypt Official Logo" 
                 className="cg-footer-qatari-logo" 
                 width="120" 
                 height="40" 
-                loading="lazy"
               />
               <img 
                 src="/citygate-official.png" 
-                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://properties-s.com/citygate-official.png'; }}
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/citygate-official.png'; }}
                 alt="City Gate New Cairo Official Logo" 
                 className="cg-footer-citygate-logo" 
                 width="110" 
                 height="34" 
-                loading="lazy"
+              />
+              <img 
+                src="/alam-al-roum-seal-dark.png" 
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/alam-al-roum-seal-dark.png'; }}
+                alt="Alam El Rom Seal علم الروم" 
+                className="cg-hero-alam-seal" 
+                width="38" 
+                height="38" 
               />
             </div>
             <div className="cg-footer-sub-branding">By <span>ir-properties</span></div>
@@ -795,7 +1180,7 @@ export default function CityGateLandingPage() {
 
           <div className="cg-footer-disclaimer-box">
             <p className="cg-footer-disclaimer-text">
-              <strong>Advertiser &amp; Agency Disclosure:</strong> This advertising campaign and internal landing page are managed and operated by <strong>ir-properties</strong>, an Independent Real Estate Consultancy and authorized marketing partner. This page is designed to provide consultations, master plans, and unit pricing for City Gate New Cairo on behalf of prospective buyers and investors. This is not the official corporate website of the master developer, Qatari Diar Egypt. All project names, renderings, logos, and trademarks are the property of their respective owners.
+              <strong>Advertiser &amp; Agency Disclosure:</strong> This advertising campaign and internal landing page are managed and operated by <strong>ir-properties</strong>, an Independent Real Estate Consultancy and authorized marketing partner. This page is designed to provide consultations, master plans, and unit pricing for City Gate New Cairo and the Sunray Lagoon Residences launch on behalf of prospective buyers and investors. This is not the official corporate website of the master developer, Qatari Diar Egypt. All project names, renderings, logos, and trademarks are the property of their respective owners.
             </p>
 
             <div className="cg-footer-corporate-info">
@@ -818,7 +1203,7 @@ export default function CityGateLandingPage() {
       </footer>
 
       {/* ==========================================================================
-           7. FLOATING WHATSAPP BUTTON (#25D366)
+           8. FLOATING WHATSAPP BUTTON (#25D366)
            ========================================================================== */}
       <a 
         href={WHATSAPP_HERO_LINK} 
@@ -833,7 +1218,7 @@ export default function CityGateLandingPage() {
       </a>
 
       {/* ==========================================================================
-           8. SUCCESS MODAL NOTIFICATION
+           9. SUCCESS MODAL NOTIFICATION (POLISHED AS REQUESTED)
            ========================================================================== */}
       {isModalOpen && (
         <div className="cg-modal-backdrop is-active" role="dialog" aria-modal="true" aria-labelledby="cgModalTitle" onClick={closeModal}>

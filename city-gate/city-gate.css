@@ -1932,3 +1932,631 @@ button, input, select, textarea {
     height: 52px;
   }
 }
+
+/* ==========================================================================
+   SUNRAY LAGOON RESIDENCES (ALAM EL ROM) - WARM COPPER BRANDING
+   Extracted Palette from Qatari Diar Official Brochure & Price Sheet:
+   Copper: #933D18 / #7E3313 / #68260B
+   Sand/Cream: #FAF5F0 / #F5EFEB / #FFFDF9
+   Crisp White: #FFFFFF
+   Charcoal: #2A170F
+   ========================================================================== */
+
+:root {
+  --cg-sunray-copper: #933D18;
+  --cg-sunray-copper-dark: #7A3112;
+  --cg-sunray-copper-light: #B24F25;
+  --cg-sunray-sand: #FAF5F0;
+  --cg-sunray-sand-tint: #F3EAE1;
+  --cg-sunray-sand-dark: #E2D3C4;
+  --cg-sunray-cream: #FFFDF9;
+  --cg-sunray-charcoal: #2A170F;
+}
+
+.cg-hero-alam-seal {
+  height: clamp(38px, 4.5vw, 48px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.cg-status-badge-launch {
+  background: rgba(147, 61, 24, 0.2) !important;
+  border-color: rgba(178, 79, 37, 0.5) !important;
+  color: #FFA775 !important;
+}
+
+.cg-status-badge-launch .cg-pulse-dot {
+  background: #FF7B3B !important;
+  box-shadow: 0 0 0 0 rgba(255, 123, 59, 0.7) !important;
+}
+
+.cg-price-badge-copper {
+  background: rgba(147, 61, 24, 0.35) !important;
+  border-color: rgba(178, 79, 37, 0.6) !important;
+  color: #FFF2EB !important;
+}
+
+.cg-hero-arabic-title {
+  font-family: inherit;
+  font-size: 0.85em;
+  font-weight: 500;
+  opacity: 0.92;
+  margin-left: 8px;
+}
+
+/* Sunray Section Container */
+.cg-sunray-section {
+  position: relative;
+  background: linear-gradient(165deg, #933D18 0%, #7E3313 50%, #68260B 100%);
+  color: #FFFFFF;
+  padding: 90px 0 100px 0;
+  overflow: hidden;
+}
+
+.cg-sunray-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cg-sunray-crest-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.cg-sunray-emblems-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 24px;
+  border-radius: var(--cg-radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.cg-sunray-seal-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+}
+
+.cg-sunray-compass-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cg-sunray-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 50px auto;
+}
+
+.cg-sunray-pill-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FFE6D8;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 6px 16px;
+  border-radius: var(--cg-radius-pill);
+  margin-bottom: 18px;
+}
+
+.cg-sunray-title {
+  font-family: var(--font-editorial);
+  font-size: clamp(32px, 4.4vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.cg-sunray-sub-arabic {
+  font-size: 0.8em;
+  font-weight: 400;
+  opacity: 0.9;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.cg-sunray-tagline {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: #FFE5D4;
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+}
+
+.cg-sunray-lead {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 760px;
+  margin: 0 auto 30px auto;
+}
+
+.cg-sunray-specs-strip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 12px 24px;
+  border-radius: var(--cg-radius-md);
+  margin: 0 auto;
+}
+
+.cg-sunray-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #FAF5F0;
+}
+
+.cg-sunray-spec-item strong {
+  color: #FFFFFF;
+}
+
+.cg-spec-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 0 6px rgba(37, 211, 102, 0.8);
+}
+
+.cg-sunray-spec-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Showcase Grid */
+.cg-sunray-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.cg-showcase-card {
+  position: relative;
+  border-radius: var(--cg-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #111827;
+}
+
+.cg-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cg-showcase-card:hover .cg-showcase-img {
+  transform: scale(1.03);
+}
+
+.cg-showcase-main {
+  min-height: 480px;
+}
+
+.cg-showcase-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cg-showcase-col .cg-showcase-card {
+  height: calc(240px - 12px);
+}
+
+.cg-showcase-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.88) 100%);
+  color: #FFFFFF;
+}
+
+.cg-showcase-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FFB38A;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.cg-showcase-overlay h3 {
+  font-family: var(--font-editorial);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #FFFFFF;
+}
+
+.cg-showcase-overlay h4 {
+  font-family: var(--font-editorial);
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.cg-showcase-overlay p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Typologies Cards Grid */
+.cg-sunray-typologies-wrap {
+  margin-bottom: 60px;
+}
+
+.cg-sunray-subheading {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 32px auto;
+}
+
+.cg-sunray-subheading h3 {
+  font-family: var(--font-editorial);
+  font-size: clamp(24px, 3vw, 34px);
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+
+.cg-sunray-subheading p {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.cg-typology-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cg-typology-card {
+  background: #FAF5F0;
+  color: var(--cg-charcoal);
+  border-radius: var(--cg-radius-lg);
+  padding: 28px 22px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.cg-typology-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.25);
+}
+
+.cg-typology-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--cg-sunray-copper);
+  background: var(--cg-sunray-sand-tint);
+  border: 1px solid var(--cg-sunray-sand-dark);
+  padding: 5px 12px;
+  border-radius: var(--cg-radius-pill);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.cg-typology-price-box {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cg-sunray-sand-dark);
+}
+
+.cg-typology-from {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7A5C4D;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.cg-typology-price {
+  font-family: var(--font-editorial);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--cg-sunray-copper-dark);
+  line-height: 1.15;
+}
+
+.cg-typology-curr {
+  font-size: 14px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: #8E3E1A;
+}
+
+.cg-typology-sub {
+  display: block;
+  font-size: 12px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+.cg-typology-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.cg-typology-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.cg-typology-line span {
+  color: #6B7280;
+}
+
+.cg-typology-line strong {
+  color: #111827;
+  font-weight: 600;
+  text-align: right;
+}
+
+.btn-cg-typology-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--cg-radius-md);
+  background: var(--cg-sunray-copper);
+  color: #FFFFFF !important;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease, transform 0.2s ease;
+  text-align: center;
+  min-height: 44px;
+}
+
+.btn-cg-typology-cta:hover {
+  background: var(--cg-sunray-copper-dark);
+  transform: translateY(-1px);
+}
+
+/* Highlight Penthouse Card */
+.cg-typology-card.highlight-card {
+  background: #FFFDF9;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
+}
+
+/* Price Schedule Table */
+.cg-sunray-table-section {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--cg-radius-lg);
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 50px;
+}
+
+.cg-sunray-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cg-sunray-table-header h4 {
+  font-family: var(--font-editorial);
+  font-size: 22px;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.cg-sunray-table-header p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cg-sunray-table-dev-logo img {
+  background: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 6px;
+  height: 36px;
+  width: auto;
+}
+
+.cg-table-responsive-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cg-sunray-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  color: #FFFFFF;
+  min-width: 640px;
+}
+
+.cg-sunray-table th {
+  background: rgba(0, 0, 0, 0.28);
+  color: #FFE6D8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.cg-sunray-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cg-sunray-table tr:hover td {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cg-row-heading td {
+  background: rgba(0, 0, 0, 0.45) !important;
+  color: #FFCDB2 !important;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 16px;
+}
+
+/* CTA Box */
+.cg-sunray-cta-box {
+  background: #FAF5F0;
+  border-radius: var(--cg-radius-lg);
+  padding: 36px 40px;
+  color: var(--cg-charcoal);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+  flex-wrap: wrap;
+}
+
+.cg-sunray-cta-text h3 {
+  font-family: var(--font-editorial);
+  font-size: clamp(22px, 2.5vw, 30px);
+  color: var(--cg-sunray-charcoal);
+  margin-bottom: 6px;
+}
+
+.cg-sunray-cta-text p {
+  font-size: 14.5px;
+  color: #55443B;
+  max-width: 580px;
+}
+
+.btn-cg-large {
+  padding: 16px 32px !important;
+  font-size: 15px !important;
+  white-space: nowrap;
+}
+
+/* Responsive Styles for Sunray Section */
+@media (max-width: 1024px) {
+  .cg-typology-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cg-sunray-section {
+    padding: 60px 0 70px 0;
+  }
+
+  .cg-hero-alam-seal {
+    height: 28px;
+  }
+
+  .cg-sunray-emblems-box {
+    padding: 8px 18px;
+    gap: 14px;
+  }
+
+  .cg-sunray-seal-img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .cg-sunray-specs-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 18px;
+  }
+
+  .cg-sunray-spec-divider {
+    display: none;
+  }
+
+  .cg-sunray-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cg-showcase-main {
+    min-height: 280px;
+  }
+
+  .cg-showcase-col .cg-showcase-card {
+    height: 200px;
+  }
+
+  .cg-typology-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cg-sunray-table-section {
+    padding: 20px 14px;
+  }
+
+  .cg-sunray-cta-box {
+    padding: 26px 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cg-sunray-cta-text p {
+    margin: 0 auto;
+  }
+
+  .btn-cg-large {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
