@@ -53,7 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // Google Ads & Tag Lead Conversion Event for Form Submission
-      if (typeof gtag_report_conversion === 'function') {
+      if (typeof window.gtag_report_form_conversion === 'function') {
+        try {
+          window.gtag_report_form_conversion();
+        } catch (err) {
+          console.warn('Form conversion notice:', err);
+        }
+      } else if (typeof gtag_report_conversion === 'function') {
         try {
           gtag_report_conversion();
         } catch (err) {
@@ -62,18 +68,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
-          'value': 1.0,
-          'currency': 'EGP'
-        });
-        gtag('event', 'conversion', {
           'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
           'value': 1.0,
           'currency': 'EGP'
         });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
         gtag('event', 'generate_lead', {
+          'send_to': 'AW-18125180547',
           event_category: 'form',
           event_label: 'City Gate Lead Inquiry'
+        });
+        gtag('event', 'lead_form_submission', {
+          'send_to': 'AW-18125180547'
         });
       }
 
@@ -160,14 +170,23 @@ document.addEventListener('DOMContentLoaded', function () {
         gtag_report_conversion(waLink.href);
       } else if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
           'value': 1.0,
           'currency': 'EGP'
         });
         gtag('event', 'conversion', {
-          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'send_to': 'AW-18125180547',
           'value': 1.0,
           'currency': 'EGP'
+        });
+        gtag('event', 'contact', {
+          'send_to': 'AW-18125180547',
+          'method': 'WhatsApp',
+          'event_category': 'WhatsApp',
+          'event_label': 'WhatsApp Click'
+        });
+        gtag('event', 'whatsapp_click', {
+          'send_to': 'AW-18125180547'
         });
       }
     }

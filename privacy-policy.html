@@ -13,33 +13,79 @@
     gtag('config', 'AW-18564830215');
     gtag('config', 'AW-18125180547');
 
+        var _lastWaConversionTime = 0;
     function gtag_report_conversion(url) {
-      var navigated = false;
-      var callback = function () {
-        if (!navigated && typeof(url) != 'undefined' && url) {
-          navigated = true;
-          window.location = url;
-        }
-      };
-      if (typeof(url) != 'undefined' && url) {
-        setTimeout(callback, 500);
+      var now = Date.now();
+      if (now - _lastWaConversionTime < 300) {
+        return true;
       }
+      _lastWaConversionTime = now;
+
       if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
-          'value': 1.0,
-          'currency': 'EGP',
-          'event_callback': callback
-        });
         gtag('event', 'conversion', {
           'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
           'value': 1.0,
           'currency': 'EGP'
         });
-      } else {
-        callback();
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'contact', {
+          'send_to': 'AW-18125180547',
+          'method': 'WhatsApp',
+          'event_category': 'WhatsApp',
+          'event_label': 'WhatsApp Click'
+        });
+        gtag('event', 'whatsapp_click', {
+          'send_to': 'AW-18125180547'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
       }
-      return false;
+      return true;
+    }
+
+    var _lastFormConversionTime = 0;
+    function gtag_report_form_conversion() {
+      var now = Date.now();
+      if (now - _lastFormConversionTime < 500) {
+        return true;
+      }
+      _lastFormConversionTime = now;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'generate_lead', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP',
+          'event_category': 'form',
+          'event_label': 'Lead Form Submission'
+        });
+        gtag('event', 'lead_form_submission', {
+          'send_to': 'AW-18125180547'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+      }
+      return true;
     }
   </script>
 

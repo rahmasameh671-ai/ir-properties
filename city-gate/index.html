@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtm.js & gtag.js) -->
@@ -13,33 +13,79 @@
     gtag('config', 'AW-18564830215');
     gtag('config', 'AW-18125180547');
 
+        var _lastWaConversionTime = 0;
     function gtag_report_conversion(url) {
-      var navigated = false;
-      var callback = function () {
-        if (!navigated && typeof(url) != 'undefined' && url) {
-          navigated = true;
-          window.location = url;
-        }
-      };
-      if (typeof(url) != 'undefined' && url) {
-        setTimeout(callback, 500);
+      var now = Date.now();
+      if (now - _lastWaConversionTime < 300) {
+        return true;
       }
+      _lastWaConversionTime = now;
+
       if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
-          'value': 1.0,
-          'currency': 'EGP',
-          'event_callback': callback
-        });
         gtag('event', 'conversion', {
           'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
           'value': 1.0,
           'currency': 'EGP'
         });
-      } else {
-        callback();
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'contact', {
+          'send_to': 'AW-18125180547',
+          'method': 'WhatsApp',
+          'event_category': 'WhatsApp',
+          'event_label': 'WhatsApp Click'
+        });
+        gtag('event', 'whatsapp_click', {
+          'send_to': 'AW-18125180547'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
       }
-      return false;
+      return true;
+    }
+
+    var _lastFormConversionTime = 0;
+    function gtag_report_form_conversion() {
+      var now = Date.now();
+      if (now - _lastFormConversionTime < 500) {
+        return true;
+      }
+      _lastFormConversionTime = now;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'generate_lead', {
+          'send_to': 'AW-18125180547',
+          'value': 1.0,
+          'currency': 'EGP',
+          'event_category': 'form',
+          'event_label': 'Lead Form Submission'
+        });
+        gtag('event', 'lead_form_submission', {
+          'send_to': 'AW-18125180547'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+      }
+      return true;
     }
   </script>
 
@@ -1157,7 +1203,7 @@
         <div class="cg-footer-corporate-info">
           <div class="cg-footer-corp-line"><strong>Operating Entity:</strong> ir-properties &mdash; Independent Real Estate Consultancy</div>
           <div class="cg-footer-corp-line"><strong>Physical Headquarters:</strong> New Cairo, Cairo, Egypt</div>
-          <div class="cg-footer-corp-line"><strong>Direct Support Desk:</strong> WhatsApp: <a href="https://wa.me/201277752731?text=Hello%2C%20I%20am%20inquiring%20about%20the%20New%20Launch%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20at%20City%20Gate" target="_blank" rel="noopener noreferrer">+20 127 775 2731</a> &bull; <a href="mailto:info@ir-properties.com">info@ir-properties.com</a></div>
+          <div class="cg-footer-corp-line"><strong>Direct Support Desk:</strong> WhatsApp: <a href="https://wa.me/201277752731?text=Hello%2C%20I%20am%20inquiring%20about%20the%20New%20Launch%20Sunray%20Lagoon%20(Alam%20El%20Rom)%20at%20City%20Gate" target="_blank" rel="noopener noreferrer" onclick="return gtag_report_conversion(this.href);">+20 127 775 2731</a> &bull; <a href="mailto:info@ir-properties.com">info@ir-properties.com</a></div>
         </div>
 
         <div class="cg-footer-legal-nav">
