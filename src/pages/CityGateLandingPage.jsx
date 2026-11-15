@@ -23,14 +23,17 @@ export default function CityGateLandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submittedName, setSubmittedName] = useState('');
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (!fullName.trim() || !phoneNumber.trim()) {
       return;
     }
 
-    setSubmittedName(fullName.trim());
+    const submittedFullName = fullName.trim();
+    const fullPhone = `${countryCode} ${phoneNumber.trim()}`;
+
+    setSubmittedName(submittedFullName);
     setIsModalOpen(true);
 
     // Analytics / Dispatch
@@ -39,8 +42,8 @@ export default function CityGateLandingPage() {
       launch: 'Sunray Lagoon Residences (Alam El Rom)',
       developer: 'Qatari Diar Egypt',
       consultancy: 'ir-properties',
-      name: fullName.trim(),
-      phone: `${countryCode} ${phoneNumber.trim()}`,
+      name: submittedFullName,
+      phone: fullPhone,
       timestamp: new Date().toISOString()
     });
 
@@ -53,6 +56,23 @@ export default function CityGateLandingPage() {
         event_category: 'form',
         event_label: 'City Gate Lead Inquiry'
       });
+    }
+
+    // Dispatch to Zapier Webhook (Lead Integration)
+    const zapierData = {
+      fullName: submittedFullName,
+      phoneNumber: fullPhone,
+      landingPageUrl: typeof window !== 'undefined' ? window.location.href : '',
+      submissionDate: new Date().toISOString(),
+    };
+
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+        method: "POST",
+        body: JSON.stringify(zapierData),
+      });
+    } catch (err) {
+      console.warn("Zapier notice:", err);
     }
 
     // Reset inputs

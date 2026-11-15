@@ -94,6 +94,21 @@ export default function MadinetMasrLandingPage() {
       });
     }
 
+    // Dispatch to Zapier Webhook (Lead Integration)
+    try {
+      fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
+        method: 'POST',
+        body: JSON.stringify({
+          fullName: clientName,
+          phoneNumber: fullPhone,
+          landingPageUrl: typeof window !== 'undefined' ? window.location.href : '',
+          submissionDate: new Date().toISOString()
+        })
+      }).catch((err) => console.warn('Zapier notice:', err));
+    } catch (err) {
+      console.warn('Zapier transmission notice:', err);
+    }
+
     // Background Dispatch to FormSubmit
     try {
       fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {

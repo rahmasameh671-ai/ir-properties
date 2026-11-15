@@ -51,6 +51,21 @@ export default function SodicLandingPage() {
       // Handled via modal link
     }
 
+    // Dispatch to Zapier Webhook (Lead Integration)
+    try {
+      fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
+        method: 'POST',
+        body: JSON.stringify({
+          fullName: fullName.trim(),
+          phoneNumber: fullPhone,
+          landingPageUrl: typeof window !== 'undefined' ? window.location.href : '',
+          submissionDate: new Date().toISOString()
+        })
+      }).catch((err) => console.warn('Zapier notice:', err));
+    } catch (err) {
+      console.warn('Zapier transmission notice:', err);
+    }
+
     // Reset Form
     setFullName('');
     setPhoneNumber('');

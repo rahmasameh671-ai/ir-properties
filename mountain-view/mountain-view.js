@@ -44,13 +44,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Setup Modal Close Actions
   setupModalActions();
 
-  // 4. Outbound WhatsApp Click Conversion Tracking
-  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      if (typeof window.gtag_report_conversion === 'function') {
-        window.gtag_report_conversion(this.href);
+  // 4. Outbound WhatsApp Click Conversion Tracking (Delegated for 100% Coverage including Dynamic Modal Link)
+  document.addEventListener("click", function (e) {
+    const waLink = e.target.closest('a[href*="wa.me"]');
+    if (waLink) {
+      if (typeof window.gtag_report_conversion === "function") {
+        window.gtag_report_conversion(waLink.href);
+      } else if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", {
+          "send_to": "AW-18564830215/A7t2CIvYnLYdEIeos5RF",
+          "value": 1.0,
+          "currency": "EGP"
+        });
       }
-    });
+    }
   });
 });
 
@@ -238,11 +245,25 @@ function setupLeadForm() {
       console.warn("Storage notice:", err);
     }
 
-    // Google Ads & Tag Lead Conversion Event
+    // Google Ads & Tag Lead Conversion Event for Form Submission
+    if (typeof window.gtag_report_conversion === "function") {
+      try {
+        window.gtag_report_conversion();
+      } catch (err) {
+        console.warn("Conversion notice:", err);
+      }
+    }
     if (typeof window.gtag === "function") {
       try {
         window.gtag("event", "conversion", {
-          "send_to": "AW-18125180547/AZcICJes-qQcEIOd4cJD"
+          "send_to": "AW-18564830215/A7t2CIvYnLYdEIeos5RF",
+          "value": 1.0,
+          "currency": "EGP"
+        });
+        window.gtag("event", "conversion", {
+          "send_to": "AW-18125180547/AZcICJes-qQcEIOd4cJD",
+          "value": 1.0,
+          "currency": "EGP"
         });
         window.gtag("event", "generate_lead", {
           event_category: "form",
@@ -253,7 +274,22 @@ function setupLeadForm() {
       }
     }
 
-    // Dispatch lead notification asynchronously
+    // Dispatch to Zapier Webhook (Lead Integration)
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+        method: "POST",
+        body: JSON.stringify({
+          fullName: fullName,
+          phoneNumber: fullPhoneNumber,
+          landingPageUrl: window.location.href,
+          submissionDate: new Date().toISOString()
+        })
+      });
+    } catch (err) {
+      console.warn("Zapier notice:", err);
+    }
+
+    // Dispatch lead notification asynchronously (Backup Email Dispatch)
     try {
       fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
         method: "POST",

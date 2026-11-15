@@ -1,6 +1,6 @@
 /**
  * IR-PROPERTIES | City Gate New Cairo Interactive Logic
- * Route: /city-gate
+ * Route: /city-gate & /citygate
  * Entity: By ir-properties — Independent Real Estate Consultancy
  * WhatsApp: +201277752731
  */
@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const modalLeadName = document.getElementById('modalLeadName');
 
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const fullNameInput = document.getElementById('cgFullName');
       const countryCodeInput = document.getElementById('cgCountryCode');
       const phoneInput = document.getElementById('cgPhoneNumber');
+      const submitBtn = form.querySelector('button[type="submit"]');
 
       const fullName = fullNameInput ? fullNameInput.value.trim() : '';
       const countryCode = countryCodeInput ? countryCodeInput.value : '+20';
@@ -33,6 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+      const fullPhoneNumber = `${countryCode} ${phoneNumber}`.trim();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SUBMITTING...';
+      }
+
       // Log inquiry for analytics/CRM dispatch
       console.log('Inquiry submitted to ir-properties Consultancy:', {
         project: 'City Gate New Cairo',
@@ -40,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         consultancy: 'ir-properties',
         role: 'Independent Real Estate Consultancy',
         name: fullName,
-        phone: countryCode + ' ' + phoneNumber,
+        phone: fullPhoneNumber,
         timestamp: new Date().toISOString()
       });
 
@@ -70,18 +78,25 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       // Dispatch to Zapier Webhook (Lead Integration)
+      const zapierData = {
+        fullName: fullName,
+        phoneNumber: fullPhoneNumber,
+        landingPageUrl: window.location.href,
+        submissionDate: new Date().toISOString()
+      };
+
       try {
-        fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+        await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
           method: "POST",
-          body: JSON.stringify({
-            fullName: fullName,
-            phoneNumber: countryCode + ' ' + phoneNumber,
-            landingPageUrl: window.location.href,
-            submissionDate: new Date().toISOString()
-          })
-        }).catch(err => console.warn("Zapier notice:", err));
+          body: JSON.stringify(zapierData)
+        });
       } catch (err) {
-        console.warn("Zapier webhook transmission notice:", err);
+        console.warn("Zapier notice:", err);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'SUBMIT';
+        }
       }
 
       // Update modal text
@@ -146,6 +161,11 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
           'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
           'value': 1.0,
           'currency': 'EGP'
         });

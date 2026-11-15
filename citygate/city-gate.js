@@ -1,6 +1,6 @@
 /**
  * IR-PROPERTIES | City Gate New Cairo Interactive Logic
- * Route: /city-gate
+ * Route: /city-gate & /citygate
  * Entity: By ir-properties — Independent Real Estate Consultancy
  * WhatsApp: +201277752731
  */
@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const modalLeadName = document.getElementById('modalLeadName');
 
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const fullNameInput = document.getElementById('cgFullName');
       const countryCodeInput = document.getElementById('cgCountryCode');
       const phoneInput = document.getElementById('cgPhoneNumber');
+      const submitBtn = form.querySelector('button[type="submit"]');
 
       const fullName = fullNameInput ? fullNameInput.value.trim() : '';
       const countryCode = countryCodeInput ? countryCodeInput.value : '+20';
@@ -33,6 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+      const fullPhoneNumber = `${countryCode} ${phoneNumber}`.trim();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SUBMITTING...';
+      }
+
       // Log inquiry for analytics/CRM dispatch
       console.log('Inquiry submitted to ir-properties Consultancy:', {
         project: 'City Gate New Cairo',
@@ -40,19 +48,55 @@ document.addEventListener('DOMContentLoaded', function () {
         consultancy: 'ir-properties',
         role: 'Independent Real Estate Consultancy',
         name: fullName,
-        phone: countryCode + ' ' + phoneNumber,
+        phone: fullPhoneNumber,
         timestamp: new Date().toISOString()
       });
 
       // Google Ads & Tag Lead Conversion Event for Form Submission
+      if (typeof gtag_report_conversion === 'function') {
+        try {
+          gtag_report_conversion();
+        } catch (err) {
+          console.warn('Conversion notice:', err);
+        }
+      }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
-          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD'
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
         });
         gtag('event', 'generate_lead', {
           event_category: 'form',
           event_label: 'City Gate Lead Inquiry'
         });
+      }
+
+      // Dispatch to Zapier Webhook (Lead Integration)
+      const zapierData = {
+        fullName: fullName,
+        phoneNumber: fullPhoneNumber,
+        landingPageUrl: window.location.href,
+        submissionDate: new Date().toISOString()
+      };
+
+      try {
+        await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+          method: "POST",
+          body: JSON.stringify(zapierData)
+        });
+      } catch (err) {
+        console.warn("Zapier notice:", err);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'SUBMIT';
+        }
       }
 
       // Update modal text
@@ -108,13 +152,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Outbound WhatsApp Click Conversion Tracking
-  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
+  // Outbound WhatsApp Click Conversion Tracking (Direct & Delegated)
+  document.addEventListener('click', function (e) {
+    const waLink = e.target.closest('a[href*="wa.me"]');
+    if (waLink) {
       if (typeof gtag_report_conversion === 'function') {
-        e.preventDefault();
-        gtag_report_conversion(this.href);
+        gtag_report_conversion(waLink.href);
+      } else if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18564830215/A7t2CIvYnLYdEIeos5RF',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18125180547/AZcICJes-qQcEIOd4cJD',
+          'value': 1.0,
+          'currency': 'EGP'
+        });
       }
-    });
+    }
   });
 });
