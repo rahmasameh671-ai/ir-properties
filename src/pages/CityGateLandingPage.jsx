@@ -99,7 +99,7 @@ export default function CityGateLandingPage() {
             {/* Hero Left Column: Editorial Narrative & Value Proposition */}
             <div className="cg-hero-narrative">
               
-              {/* PRISTINE WHITE LOGO PLAQUE: LOGOS ARE 100% CLEAR, SHARP, AND NOT WHITE */}
+              {/* PRISTINE WHITE LOGO PLAQUE: QATARI DIAR OFFICIAL LOGO */}
               <div className="cg-hero-brand-plaque">
                 <img 
                   src="/qatari-diar-official.png" 
@@ -110,23 +110,6 @@ export default function CityGateLandingPage() {
                   height="48"
                 />
                 <div className="cg-plaque-divider"></div>
-                <img 
-                  src="/citygate-official.png" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/citygate-official.png'; }}
-                  alt="City Gate New Cairo Official Logo" 
-                  className="cg-hero-citygate-logo" 
-                  width="120" 
-                  height="40"
-                />
-                <div className="cg-plaque-divider"></div>
-                <img 
-                  src="/alam-al-roum-seal-dark.png" 
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'images/alam-al-roum-seal-dark.png'; }}
-                  alt="Alam El Rom Seal علم الروم" 
-                  className="cg-hero-alam-seal" 
-                  width="44" 
-                  height="44"
-                />
                 <div className="cg-plaque-by-box">
                   <span className="cg-plaque-by-text">By ir-properties</span>
                   <span className="cg-plaque-role-text">Independent Real Estate Consultancy</span>
