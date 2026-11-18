@@ -297,11 +297,11 @@ function setupLeadForm() {
       }
     }
 
-    // REQUIREMENT 4: FORM SUBMISSION LOGIC (EMAIL THEN WHATSAPP)
-    // The data MUST first be securely routed and sent to our designated Email address.
-    // ONLY AFTER the email is successfully dispatched, trigger the Success Modal.
+    // STRICT EMAIL-FIRST FORM LOGIC:
+    // Lead data MUST first be securely sent to designated Email address.
+    // ONLY trigger the Success Modal after the email API returns a success response.
     try {
-      const emailPromise = fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
+      const emailResponse = await fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -319,50 +319,47 @@ function setupLeadForm() {
         })
       });
 
-      const zapierPromise = fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
-        method: "POST",
-        body: JSON.stringify({
-          fullName: fullName,
-          phoneNumber: fullPhoneNumber,
-          portfolio: "Hassan Allam Properties",
-          landingPageUrl: window.location.href,
-          submissionDate: new Date().toISOString()
-        })
-      });
+      if (emailResponse.ok) {
+        // Fire secondary Zapier webhook in background (non-blocking)
+        fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+          method: "POST",
+          body: JSON.stringify({
+            fullName: fullName,
+            phoneNumber: fullPhoneNumber,
+            portfolio: "Hassan Allam Properties",
+            landingPageUrl: window.location.href,
+            submissionDate: new Date().toISOString()
+          })
+        }).catch(() => {});
 
-      // Await email dispatch with a resilient safety timeout
-      const safetyTimeout = new Promise(resolve => setTimeout(resolve, 5000));
-      await Promise.race([
-        Promise.allSettled([emailPromise, zapierPromise]),
-        safetyTimeout
-      ]);
+        // ONLY trigger Success Modal after email API returns success response
+        const modal = document.getElementById("successModalOverlay");
+        const clientNameSpan = document.getElementById("modalClientName");
+        const modalWaBtn = document.getElementById("modalWhatsappAction");
+
+        if (clientNameSpan) clientNameSpan.textContent = fullName;
+        if (modalWaBtn) {
+          modalWaBtn.href = "https://wa.me/201277752731";
+        }
+
+        if (modal) {
+          modal.classList.add("is-active");
+          document.body.style.overflow = "hidden";
+        }
+
+        // Clear inputs
+        if (nameInput) nameInput.value = "";
+        if (phoneInput) phoneInput.value = "";
+      } else {
+        alert("Failed to send lead registration. Please try again.");
+      }
     } catch (err) {
-      console.warn("Dispatch warning:", err);
+      console.error("Email submission error:", err);
+      alert("Submission failed. Please check your connection and try again.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
     }
-
-    // Reset button
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalText;
-
-    // Prepare WhatsApp URL for Success Modal
-    const waUrl = `https://wa.me/${TARGET_WHATSAPP}?text=Hello%20ir-properties,%20I%20have%20just%20submitted%20my%20inquiry%20for%20Hassan%20Allam%20Properties%20on%20ir-properties.com%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away`;
-
-    // Trigger Success Modal ONLY AFTER email dispatch completes
-    const modal = document.getElementById("successModalOverlay");
-    const clientNameSpan = document.getElementById("modalClientName");
-    const modalWaBtn = document.getElementById("modalWhatsappAction");
-
-    if (clientNameSpan) clientNameSpan.textContent = fullName;
-    if (modalWaBtn) modalWaBtn.href = waUrl;
-
-    if (modal) {
-      modal.classList.add("is-active");
-      document.body.style.overflow = "hidden";
-    }
-
-    // Clear inputs
-    if (nameInput) nameInput.value = "";
-    if (phoneInput) phoneInput.value = "";
   });
 }
 

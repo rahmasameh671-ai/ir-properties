@@ -70,8 +70,8 @@ export default function HassanAllamLandingPage() {
       c.code.toLowerCase().includes(searchQuery.toLowerCase().trim())
   );
 
-  // Form Submission Handler (Email First, Then Success Modal)
-  const handleFormSubmit = async (e) => {
+  // Lead Capture Form Submission Handler (Strict Email-First Logic)
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!fullName.trim()) {
@@ -150,9 +150,12 @@ export default function HassanAllamLandingPage() {
       }
     }
 
-    // Requirement 4: Email Routed & Sent First, Then Success Modal
+    // STRICT EMAIL-FIRST FORM LOGIC:
+    // The code MUST send the lead data to the designated Email address FIRST.
+    // Remove any direct redirect to WhatsApp upon clicking submit.
+    // ONLY trigger the Success Modal state after the email API returns a success response.
     try {
-      const emailPromise = fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {
+      const emailResponse = await fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,30 +173,32 @@ export default function HassanAllamLandingPage() {
         })
       });
 
-      const zapierPromise = fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
-        method: 'POST',
-        body: JSON.stringify({
-          fullName: clientName,
-          phoneNumber: fullPhone,
-          portfolio: 'Hassan Allam Properties',
-          landingPageUrl: typeof window !== 'undefined' ? window.location.href : 'https://ir-properties.com/hassan-allam/',
-          submissionDate: new Date().toISOString()
-        })
-      });
+      if (emailResponse.ok) {
+        // Fire secondary Zapier webhook in background (non-blocking)
+        fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
+          method: 'POST',
+          body: JSON.stringify({
+            fullName: clientName,
+            phoneNumber: fullPhone,
+            portfolio: 'Hassan Allam Properties',
+            landingPageUrl: typeof window !== 'undefined' ? window.location.href : 'https://ir-properties.com/hassan-allam/',
+            submissionDate: new Date().toISOString()
+          })
+        }).catch(() => {});
 
-      const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 5000));
-      await Promise.race([
-        Promise.allSettled([emailPromise, zapierPromise]),
-        timeoutPromise
-      ]);
+        // ONLY trigger Success Modal after email API returns success response
+        setIsModalOpen(true);
+        setFullName('');
+        setPhoneNumber('');
+      } else {
+        alert('Failed to send registration via email. Please try again.');
+      }
     } catch (err) {
-      console.warn('Dispatch notice:', err);
+      console.error('Email submission error:', err);
+      alert('Submission failed. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
-    setIsModalOpen(true);
-    setFullName('');
-    setPhoneNumber('');
   };
 
   return (
@@ -250,7 +255,7 @@ export default function HassanAllamLandingPage() {
               <p>Direct dispatch to our senior consultancy team.</p>
             </div>
 
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleSubmit}>
               {/* Full Name (Blank input, NO placeholder) */}
               <div className="field-group">
                 <label htmlFor="reactLeadFullName" className="field-label">
@@ -696,35 +701,19 @@ export default function HassanAllamLandingPage() {
       </main>
 
       {/* =========================================================================
-           4. PRE-FOOTER SECTION (WHY IR-PROPERTIES)
+           4. PRE-FOOTER SECTION (WHY HASSAN ALLAM THROUGH IR-PROPERTIES)
            ========================================================================= */}
-      <section className="why-consultancy-section">
-        <div className="container">
-          <div className="why-minimalist-card">
-            <span className="why-minimalist-eyebrow">INDEPENDENT REAL ESTATE CONSULTANCY</span>
-            <h2 className="why-minimalist-title">Why Hassan Allam through ir-properties?</h2>
-            <div className="why-minimalist-content">
-              <p className="why-minimalist-text">
-                We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.
-              </p>
-              <p className="why-minimalist-text">
-                Our experts guide you step-by-step to secure prime units and tailor payment plans that perfectly fit your budget.
-              </p>
-            </div>
-            <div className="why-minimalist-cta">
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20consult%20an%20independent%20advisor%20about%20Hassan%20Allam%20projects.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp-solid"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
-                </svg>
-                <span>CONNECT WITH AN INDEPENDENT ADVISOR</span>
-              </a>
-            </div>
-          </div>
+      <section className="why-prefooter-section" style={{ backgroundColor: '#FFFFFF', padding: '64px 20px', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
+        <div className="container" style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '2rem', fontWeight: 800, color: '#1A202C', marginBottom: '20px', letterSpacing: '-0.02em', lineHeight: 1.25 }}>
+            Why Hassan Allam through ir-properties?
+          </h2>
+          <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '1.08rem', color: '#4A5568', lineHeight: 1.75, marginBottom: '16px' }}>
+            We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.
+          </p>
+          <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '1.08rem', color: '#4A5568', lineHeight: 1.75, margin: 0 }}>
+            Our experts guide you step-by-step to secure prime units and tailor payment plans that perfectly fit your budget.
+          </p>
         </div>
       </section>
 
@@ -820,15 +809,27 @@ export default function HassanAllamLandingPage() {
 
           {/* SOLID GREEN "CHAT ON WHATSAPP" BUTTON */}
           <a
-            href={modalWhatsappLink}
+            href="https://wa.me/201277752731"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-modal-whatsapp btn-modal-wa"
+            style={{
+              backgroundColor: '#25D366',
+              color: '#FFFFFF',
+              fontWeight: 700,
+              padding: '14px 28px',
+              borderRadius: '9999px',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px'
+            }}
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: 20, height: 20, fill: '#FFFFFF' }}>
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
             </svg>
-            <span>CHAT ON WHATSAPP</span>
+            CHAT ON WHATSAPP
           </a>
 
           {/* CLOSE WINDOW LINK */}
