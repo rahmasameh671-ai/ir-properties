@@ -1,6 +1,7 @@
 /**
  * HASSAN ALLAM PROPERTIES PORTFOLIO — INTERACTIVE LOGIC
- * By properties-y.com | Independent Real Estate Consultancy
+ * By ir-properties | Independent Real Estate Consultancy
+ * Route: /hassan-allam/ strictly under ir-properties.com
  * Global WhatsApp: +201277752731
  */
 
@@ -244,15 +245,15 @@ function setupLeadForm() {
       phone: fullPhoneNumber,
       timestamp: new Date().toISOString(),
       portfolio: "Hassan Allam Properties Portfolio",
-      consultancy: "properties-y.com (Independent Real Estate Consultancy)",
+      consultancy: "By ir-properties (Independent Real Estate Consultancy)",
       url: window.location.href
     };
 
     // Store in localStorage backup
     try {
-      const stored = JSON.parse(localStorage.getItem("properties_y_hassan_allam_leads") || "[]");
+      const stored = JSON.parse(localStorage.getItem("ir_properties_hassan_allam_leads") || "[]");
       stored.push(leadRecord);
-      localStorage.setItem("properties_y_hassan_allam_leads", JSON.stringify(stored));
+      localStorage.setItem("ir_properties_hassan_allam_leads", JSON.stringify(stored));
     } catch (err) {
       console.warn("Storage notice:", err);
     }
@@ -296,9 +297,29 @@ function setupLeadForm() {
       }
     }
 
-    // Dispatch to Zapier Webhook (Lead Integration)
+    // REQUIREMENT 4: FORM SUBMISSION LOGIC (EMAIL THEN WHATSAPP)
+    // The data MUST first be securely routed and sent to our designated Email address.
+    // ONLY AFTER the email is successfully dispatched, trigger the Success Modal.
     try {
-      await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+      const emailPromise = fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: fullName,
+          phone: fullPhoneNumber,
+          source: "Hassan Allam Properties Portfolio – ir-properties.com",
+          consultancy: "By ir-properties (Independent Real Estate Consultancy)",
+          _replyto: "Rahma@irtkaz.com",
+          _cc: "Mostafa.a.ashmawy@gmail.com,Mostafa.ashmawy@irtkaz.com",
+          _subject: `New Lead: Hassan Allam - ${fullName} (${fullPhoneNumber}) [ir-properties.com]`,
+          _template: "table"
+        })
+      });
+
+      const zapierPromise = fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
         method: "POST",
         body: JSON.stringify({
           fullName: fullName,
@@ -308,61 +329,40 @@ function setupLeadForm() {
           submissionDate: new Date().toISOString()
         })
       });
+
+      // Await email dispatch with a resilient safety timeout
+      const safetyTimeout = new Promise(resolve => setTimeout(resolve, 5000));
+      await Promise.race([
+        Promise.allSettled([emailPromise, zapierPromise]),
+        safetyTimeout
+      ]);
     } catch (err) {
-      console.warn("Zapier notice:", err);
+      console.warn("Dispatch warning:", err);
     }
 
-    // Backup Email Dispatch
-    try {
-      fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: fullName,
-          phone: fullPhoneNumber,
-          source: "Hassan Allam Properties Portfolio – properties-y.com",
-          consultancy: "properties-y.com Independent Real Estate Consultancy",
-          _replyto: "Rahma@irtkaz.com",
-          _cc: "Mostafa.a.ashmawy@gmail.com,Mostafa.ashmawy@irtkaz.com",
-          _subject: `New Lead: Hassan Allam - ${fullName} (${fullPhoneNumber}) [properties-y.com]`,
-          _template: "table"
-        })
-      }).catch(err => console.warn("Dispatch notice:", err));
-    } catch (err) {
-      console.warn("Transmission notice:", err);
+    // Reset button
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+
+    // Prepare WhatsApp URL for Success Modal
+    const waUrl = `https://wa.me/${TARGET_WHATSAPP}?text=Hello%20ir-properties,%20I%20have%20just%20submitted%20my%20inquiry%20for%20Hassan%20Allam%20Properties%20on%20ir-properties.com%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away`;
+
+    // Trigger Success Modal ONLY AFTER email dispatch completes
+    const modal = document.getElementById("successModalOverlay");
+    const clientNameSpan = document.getElementById("modalClientName");
+    const modalWaBtn = document.getElementById("modalWhatsappAction");
+
+    if (clientNameSpan) clientNameSpan.textContent = fullName;
+    if (modalWaBtn) modalWaBtn.href = waUrl;
+
+    if (modal) {
+      modal.classList.add("is-active");
+      document.body.style.overflow = "hidden";
     }
 
-    // Prepare WhatsApp URL
-    const waUrl = `https://wa.me/${TARGET_WHATSAPP}?text=Hello%20I%20have%20just%20submitted%20my%20inquiry%20for%20Hassan%20Allam%20Properties%20on%20properties-y.com%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away`;
-
-    // Reset button & display success modal
-    setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-
-      const modal = document.getElementById("successModalOverlay");
-      const clientNameSpan = document.getElementById("modalClientName");
-      const modalWaBtn = document.getElementById("modalWhatsappAction");
-
-      if (clientNameSpan) clientNameSpan.textContent = fullName;
-      if (modalWaBtn) modalWaBtn.href = waUrl;
-
-      if (modal) modal.classList.add("is-active");
-
-      // Attempt immediate WhatsApp handoff
-      try {
-        window.open(waUrl, "_blank", "noopener,noreferrer");
-      } catch {
-        // Handled via modal button
-      }
-
-      // Clear inputs
-      if (nameInput) nameInput.value = "";
-      if (phoneInput) phoneInput.value = "";
-    }, 450);
+    // Clear inputs
+    if (nameInput) nameInput.value = "";
+    if (phoneInput) phoneInput.value = "";
   });
 }
 
@@ -377,6 +377,7 @@ function setupModalActions() {
 
   function closeModal() {
     modal.classList.remove("is-active");
+    document.body.style.overflow = "";
   }
 
   if (closeBtn) {

@@ -13,3 +13,9 @@
 # Mountain View Exclusive Portfolio Route (Exact slug: /mountain-view)
 /mountain-view      /mountain-view/index.html 200
 /mountain-view/     /mountain-view/index.html 200
+
+# Hassan Allam Portfolio Route (Exact slug: /hassan-allam/)
+/hassanallam        /hassan-allam/     301
+/hassanallam/       /hassan-allam/     301
+/hassan-allam       /hassan-allam/index.html 200
+/hassan-allam/      /hassan-allam/index.html 200

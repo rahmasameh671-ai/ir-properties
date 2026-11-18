@@ -1,8 +1,8 @@
 /* ==========================================================================
    HASSAN ALLAM PROPERTIES PORTFOLIO — MODERN ULTRA-LUXURY DESIGN
-   By properties-y.com | Independent Real Estate Consultancy
-   Route: /hassan-allam/ strictly under properties-y.com
-   Final Live URL: https://properties-y.com/hassan-allam/
+   By ir-properties | Independent Real Estate Consultancy
+   Route: /hassan-allam/ strictly under ir-properties.com
+   Final Live URL: https://ir-properties.com/hassan-allam/
 
    AESTHETIC SPECIFICATION:
    - Modern Ultra-Luxury (Apple sleekness / Aman Resorts aesthetic)
@@ -838,6 +838,102 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   PRE-FOOTER SECTION (WHY HASSAN ALLAM THROUGH IR-PROPERTIES)
+   ========================================================================== */
+.why-consultancy-section {
+  padding: 88px 0;
+  background-color: #FAFCFD;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.why-minimalist-card {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 56px 48px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.04);
+}
+
+.why-minimalist-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.why-minimalist-title {
+  font-family: var(--font-brand);
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 24px;
+}
+
+.why-minimalist-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.why-minimalist-text {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+  color: #374151;
+  line-height: 1.75;
+  margin: 0 auto;
+  max-width: 740px;
+}
+
+.why-minimalist-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-whatsapp-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--whatsapp-green);
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--whatsapp-shadow);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-whatsapp-solid:hover {
+  background: var(--whatsapp-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(37, 211, 102, 0.45);
+  color: #FFFFFF !important;
+}
+
+.btn-whatsapp-solid svg {
+  width: 20px;
+  height: 20px;
+  fill: #FFFFFF;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
    4. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
    ========================================================================== */
 .hap-footer {
@@ -974,7 +1070,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 990;
+  z-index: 9999; /* Ultra-high z-index for guaranteed visibility and clickability */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1287,6 +1383,33 @@ h1, h2, h3, h4, h5, h6 {
 
   .floating-whatsapp-widget .widget-label {
     display: none;
+  }
+
+  /* Pre-Footer Why ir-properties Mobile Styling */
+  .why-consultancy-section {
+    padding: 52px 16px !important;
+  }
+
+  .why-minimalist-card {
+    padding: 36px 20px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .why-minimalist-title {
+    font-size: 1.55rem !important;
+    margin-bottom: 18px !important;
+  }
+
+  .why-minimalist-text {
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .why-minimalist-cta .btn-whatsapp-solid,
+  .why-cta-center .btn-whatsapp-solid {
+    width: 100% !important;
+    min-height: 50px !important;
+    box-sizing: border-box !important;
   }
 
   .footer-inner-container {

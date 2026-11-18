@@ -109,10 +109,48 @@ Nested under the `ir-properties.com` domain architecture:
 
 ---
 
+## Dedicated Route: `/hassan-allam/` (Hassan Allam Properties Exclusive Portfolio)
+Nested strictly under the `ir-properties.com` domain architecture:
+- **Live URL**: `https://ir-properties.com/hassan-allam/`
+- **Routing**: Explicitly configured for `/hassan-allam/` and `/hassan-allam` via `hassan-allam/index.html`, `hassan-allam.html`, and React Route mapping `<Route path="/hassan-allam" element={<HassanAllamLandingPage />} />` in `App.jsx` and `App.tsx`.
+- **Branding**: Globally signed with `By ir-properties`. Positioned strictly as an "Independent Real Estate Consultancy" & Strategic Marketing Partner (Zero Gold Policy).
+- **Hero Section (Park Central New Release Hook)**:
+  - Eyebrow Badge: `NEW RELEASE`
+  - Hero Title: `Park Central by Hassan Allam`
+  - Hero Subtitle: `Secure your premium residence in Mostakbal City's most highly-anticipated new phase today. Discover exclusive layouts and take advantage of our limited-time payment plans before they sell out.`
+- **Lead Capture Form & Strict Email-First Dispatch Logic**:
+  - Full Name: Clean blank input, NO placeholder text.
+  - Phone Number: Split input layout. Country Code dropdown on the left with proper UTF-8 flags (defaulting to Egypt `+20`), blank input on the right.
+  - Submission Logic (Strict Email-First): Form data is first securely dispatched via FormSubmit API to `Rahma@irtkaz.com` (CC: `Mostafa.a.ashmawy@gmail.com,Mostafa.ashmawy@irtkaz.com`). Do not redirect to WhatsApp upon clicking submit.
+  - Success Modal: Triggered ONLY after email dispatch successfully completes.
+    - Text: "Thank you {name}! Your registration has been securely dispatched to our senior consultancy team. A dedicated property advisor will contact you shortly with full brochures, master plans, and unit availability."
+    - Action: Solid green "CHAT ON WHATSAPP" button (+201277752731) alongside a "Close Window" link.
+- **Pre-Footer Section (Why Hassan Allam through ir-properties?)**:
+  - Title: `Why Hassan Allam through ir-properties?`
+  - Paragraph 1: `We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.`
+  - Paragraph 2: `Our experts guide you step-by-step to secure prime units and tailor payment plans that perfectly fit your budget.`
+  - Direct Advisory CTA button linking to WhatsApp +201277752731.
+- **Floating WhatsApp Widget**:
+  - Official crisp WhatsApp SVG icon with phone handset vector path.
+  - Solid vibrant Green (`#25D366`), `z-index: 9999` for prominent visibility and clickability on desktop and mobile.
+- **Featured Projects**:
+  1. **Park Central (Mostakbal City)**: 10% Down Payment | 5 Years Installments.
+  2. **The Valleys (Mostakbal City)**: Starting from **19.5M EGP** | 5% Down Payment | 8 Years Installments.
+  3. **Swanlake Residence (New Cairo)**: Starting from **14.2M EGP** | 5% Down Payment | 8 Years Installments.
+  4. **Encore Swanlake (El Gouna)**: Starting from **22M EGP** | 10% Down Payment | 6 Years Installments.
+  5. **Grova Easthills**: Prime curated development.
+
+---
+
 ## Platform Architecture & Files
-- `index.html` — Main Homepage & Destination Hub (with links to `/sodic`, `/city-gate`, `/Madient-Masr`, and `/mountain-view`)
+- `index.html` — Main Homepage & Destination Hub (with links to `/sodic`, `/city-gate`, `/Madient-Masr`, `/mountain-view`, and `/hassan-allam/`)
 - `styles.css` — Global Calm Luxury stylesheet
 - `script.js` — Global logic & WhatsApp integration
+- `hassan-allam/index.html` & `hassan-allam.html` — Dedicated Hassan Allam Landing Page (`/hassan-allam/`)
+- `hassan-allam.css` & `hassan-allam/hassan-allam.css` — Ultra-chic editorial styling for Hassan Allam (Zero Gold Policy)
+- `hassan-allam.js` & `hassan-allam/hassan-allam.js` — Hassan Allam country dropdown, lead capture form (Email then WhatsApp) & modal interaction
+- `src/pages/HassanAllamLandingPage.jsx` — Reusable React Hassan Allam landing page component
+- `images/hassan-allam/` & `public/images/hassan-allam/` — High-res project assets, logos, and visuals for Hassan Allam portfolio
 - `mountain-view/index.html` & `mountain-view.html` — Dedicated Mountain View Landing Page (`/mountain-view`)
 - `mountain-view/mountain-view.css` & `mountain-view.css` — Ultra-chic editorial styling for Mountain View (Zero Gold Policy)
 - `mountain-view/mountain-view.js` & `mountain-view.js` — Mountain View country dropdown, lead capture form & modal interaction

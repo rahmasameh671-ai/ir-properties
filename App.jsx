@@ -8,7 +8,7 @@ import HassanAllamLandingPage from './src/pages/HassanAllamLandingPage';
 
 /**
  * Main Application Routing Configuration
- * Directives: Explicit Routes under ir-properties.com / properties-y.com architecture
+ * Directives: Explicit Routes under ir-properties.com architecture
  * - /sodic: SODIC Signature Living
  * - /city-gate & /citygate: City Gate New Cairo by Qatari Diar
  * - /Madient-Masr: Madinet Masr Curated Portfolio (The Butterfly, Taj City Etaje, Sarai, Talala)

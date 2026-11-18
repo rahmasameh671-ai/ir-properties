@@ -1,0 +1,1422 @@
+/* ==========================================================================
+   HASSAN ALLAM PROPERTIES PORTFOLIO — MODERN ULTRA-LUXURY DESIGN
+   By ir-properties | Independent Real Estate Consultancy
+   Route: /hassan-allam/ strictly under ir-properties.com
+   Final Live URL: https://ir-properties.com/hassan-allam/
+
+   AESTHETIC SPECIFICATION:
+   - Modern Ultra-Luxury (Apple sleekness / Aman Resorts aesthetic)
+   - Typography: Premium Geometric & Modern Sans-Serif (Montserrat & Plus Jakarta Sans)
+   - Layout: Immersive, clean, structured, edge-to-edge imagery with sleek white floating cards.
+     Generous breathing room. Absolutely NO messy overlapping elements.
+   - Zero Gold Policy: Crisp pure whites (#FFFFFF), stone greys (#F8F9FA), deep charcoal (#1A202C).
+     NO gold, bronze, or yellow anywhere.
+   - Mobile: 100% thumb-friendly single column, 48px+ green WhatsApp CTAs.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Ultra-Luxury Monochromatic Palette (Strictly ZERO Gold or Yellow) */
+  --bg-white: #FFFFFF;
+  --bg-stone: #F8F9FA;
+  --bg-subtle: #F1F5F9;
+  --bg-card: #FFFFFF;
+
+  /* Typography Colors */
+  --text-dark: #1A202C;
+  --text-charcoal: #2D3748;
+  --text-slate: #4A5568;
+  --text-muted: #718096;
+  --text-light: #94A3B8;
+
+  /* Architectural Borders */
+  --border-subtle: #E2E8F0;
+  --border-mid: #CBD5E1;
+  --border-dark: #1A202C;
+
+  /* Solid Vibrant Green WhatsApp */
+  --whatsapp-green: #25D366;
+  --whatsapp-hover: #20BD5A;
+  --whatsapp-shadow: 0 10px 24px -4px rgba(37, 211, 102, 0.35);
+
+  /* Modern Ultra-Luxury Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 12px 32px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --shadow-floating: 0 24px 48px -12px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+  --shadow-modal: 0 32px 64px -16px rgba(0, 0, 0, 0.25);
+
+  /* Premium Sans-Serif Font Stacks */
+  --font-brand: 'Montserrat', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout Constants */
+  --container-width: 1200px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  overflow-x: hidden !important;
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  overflow-x: hidden !important;
+  line-height: 1.6;
+}
+
+.hap-page-wrapper {
+  width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+  background-color: var(--bg-white);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Screen Reader Only Utility for Semantic SEO */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Headings: Sleek Geometric Modern Sans */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-brand);
+  color: var(--text-dark);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+/* Hero Brand Logo (Replaces Hero Title) */
+.hero-brand-logo-wrap {
+  margin: 12px 0 10px;
+}
+
+.hero-brand-logo {
+  max-width: clamp(260px, 36vw, 380px);
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+/* Project Heading Logo (Replaces Project Titles) */
+.project-logo-wrap {
+  margin: 8px 0 16px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.project-heading-logo {
+  max-width: 280px;
+  width: auto;
+  max-height: 60px;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+/* Visual Image Frame Watermark Overlay */
+.visual-logo-watermark {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 3;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.visual-logo-watermark img {
+  max-height: 28px;
+  max-width: 140px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==========================================================================
+   1. SLEEK BRAND BAR / NAVIGATION (DEPRECATED & REMOVED: HERO AT TOP: 0)
+   ========================================================================== */
+.hap-navbar {
+  display: none !important;
+}
+
+/* ==========================================================================
+   2. IMMERSIVE HERO SECTION WITH SLEEK FLOATING FORM CARD (STARTS DIRECTLY AT TOP: 0)
+   ========================================================================== */
+.hap-hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  background: #0F172A;
+  overflow: hidden;
+  padding: 100px 0 95px;
+}
+
+/* Stunning Full-Width Background Image Layer */
+.hero-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hero-bg-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.45;
+  transform: scale(1.02);
+  transition: transform 10s ease;
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgba(15, 23, 42, 0.78) 50%,
+    rgba(15, 23, 42, 0.88) 100%
+  );
+  z-index: 2;
+}
+
+.hero-content-grid {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* Left Hero Typography */
+.hero-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-badge-pill {
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--whatsapp-green);
+  box-shadow: 0 0 10px var(--whatsapp-green);
+}
+
+/* Hero Title: Sleek, Bold, Expensive-Looking */
+.hero-title {
+  font-family: var(--font-brand);
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.hero-trust-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.trust-val {
+  font-family: var(--font-brand);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+}
+
+.trust-lbl {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* Sleek Floating White Lead Capture Form Card */
+.lead-card-floating {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-floating);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.card-heading {
+  margin-bottom: 22px;
+}
+
+.card-heading h3 {
+  font-family: var(--font-brand);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+.card-heading p {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.field-group {
+  margin-bottom: 18px;
+}
+
+.field-label {
+  font-family: var(--font-body);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-charcoal);
+  margin-bottom: 6px;
+}
+
+.field-input {
+  font-family: var(--font-body);
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--bg-stone);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  outline: none;
+}
+
+.field-input:focus {
+  background: #FFFFFF;
+  border-color: var(--border-dark);
+  box-shadow: 0 0 0 3px rgba(26, 32, 44, 0.08);
+}
+
+/* Split Phone Field Layout */
+.phone-split-container {
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+.country-selector-btn {
+  font-family: var(--font-body);
+  height: 50px;
+  padding: 0 12px;
+  width: 116px;
+  min-width: 116px;
+  background: var(--bg-stone);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+
+.country-selector-btn:hover,
+.country-selector-btn[aria-expanded="true"] {
+  border-color: var(--border-dark);
+  background: #FFFFFF;
+}
+
+.flag-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.dial-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.phone-main-input {
+  flex: 1;
+}
+
+/* Country Selector Popover */
+.country-popover-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 280px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-modal);
+  z-index: 60;
+  overflow: hidden;
+}
+
+.country-popover-panel.is-open {
+  display: block;
+}
+
+.country-filter-wrap {
+  padding: 10px;
+  background: var(--bg-stone);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.country-filter-input {
+  font-family: var(--font-body);
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  font-size: 0.84rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: #FFFFFF;
+}
+
+.country-filter-input:focus {
+  border-color: var(--border-dark);
+}
+
+.country-items-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.country-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.country-item-btn:hover,
+.country-item-btn.is-active {
+  background-color: var(--bg-stone);
+}
+
+.c-name {
+  font-family: var(--font-body);
+  flex: 1;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.c-dial {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+/* Solid Green Submit Button */
+.btn-submit-action {
+  font-family: var(--font-body);
+  width: 100%;
+  min-height: 50px;
+  background-color: var(--whatsapp-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--whatsapp-shadow);
+  margin-top: 14px;
+}
+
+.btn-submit-action:hover {
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -4px rgba(37, 211, 102, 0.45);
+}
+
+.btn-submit-action:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card-privacy-notice {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 14px;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   3. MODERN ULTRA-LUXURY PROJECT SHOWCASES (4 SECTIONS ONLY)
+   - Edge-to-edge high-quality imagery with sleek white floating cards
+   - Generous breathing room (padding/margins)
+   - Absolutely NO messy overlapping elements
+   - Essentials ONLY: Property type, price, payment plan
+   ========================================================================== */
+.portfolio-showcase-section {
+  padding: 80px 0 100px;
+  background-color: var(--bg-stone);
+}
+
+.portfolio-header-block {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.portfolio-header-block h2 {
+  font-family: var(--font-brand);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.03em;
+}
+
+.portfolio-header-block p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* Project Master Container */
+.project-showcase-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 48px;
+  transition: var(--transition);
+}
+
+.project-showcase-card:hover {
+  box-shadow: var(--shadow-floating);
+  border-color: var(--border-mid);
+}
+
+.project-showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+/* Expansive High-Quality Visual Frame */
+.project-visual-frame {
+  position: relative;
+  min-height: 480px;
+  background-color: #0F172A;
+  overflow: hidden;
+}
+
+.project-visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-showcase-card:hover .project-visual-frame img {
+  transform: scale(1.03);
+}
+
+/* Sleek Floating White Content Card */
+.project-detail-panel {
+  padding: 44px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+}
+
+.panel-header {
+  margin-bottom: 24px;
+}
+
+.location-pill {
+  font-family: var(--font-body);
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.project-heading {
+  font-family: var(--font-brand);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.025em;
+}
+
+/* Project Subtitle & Highlights Grid */
+.panel-header-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.project-subtitle-lead {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 6px 0 14px;
+  line-height: 1.5;
+}
+
+.project-highlights-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.highlight-pill {
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-charcoal);
+  background: var(--bg-stone);
+  border: 1px solid var(--border-subtle);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.01em;
+}
+
+.highlight-pill.highlight-pill-discount {
+  color: var(--text-dark);
+  background: #FFFFFF;
+  border: 1.5px solid var(--text-dark);
+  font-weight: 800;
+}
+
+/* Essential Specs Grid */
+.specs-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.spec-tile {
+  background: var(--bg-stone);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  transition: var(--transition);
+}
+
+.spec-tile:hover {
+  background: #FFFFFF;
+  border-color: var(--border-mid);
+}
+
+.spec-tag {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.spec-inventory {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-charcoal);
+  line-height: 1.4;
+}
+
+.spec-price-range {
+  font-family: var(--font-brand);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.015em;
+  margin-top: 6px;
+}
+
+.spec-badge {
+  font-family: var(--font-body);
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-slate);
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  margin-top: 8px;
+}
+
+/* Sleek Payment Plan Strip */
+.payment-terms-box {
+  background: var(--bg-stone);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--text-dark);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+}
+
+.terms-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.terms-description {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+/* Solid Green WhatsApp CTA Button */
+.btn-whatsapp-chat {
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  background-color: var(--whatsapp-green);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--whatsapp-shadow);
+  transition: var(--transition);
+  align-self: flex-start;
+}
+
+.btn-whatsapp-chat:hover {
+  background-color: var(--whatsapp-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(37, 211, 102, 0.45);
+}
+
+.btn-whatsapp-chat svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   PRE-FOOTER SECTION (WHY HASSAN ALLAM THROUGH IR-PROPERTIES)
+   ========================================================================== */
+.why-consultancy-section {
+  padding: 88px 0;
+  background-color: #FAFCFD;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.why-minimalist-card {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 56px 48px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.04);
+}
+
+.why-minimalist-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.why-minimalist-title {
+  font-family: var(--font-brand);
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 24px;
+}
+
+.why-minimalist-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.why-minimalist-text {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+  color: #374151;
+  line-height: 1.75;
+  margin: 0 auto;
+  max-width: 740px;
+}
+
+.why-minimalist-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-whatsapp-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--whatsapp-green);
+  color: #FFFFFF !important;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--whatsapp-shadow);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-whatsapp-solid:hover {
+  background: var(--whatsapp-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(37, 211, 102, 0.45);
+  color: #FFFFFF !important;
+}
+
+.btn-whatsapp-solid svg {
+  width: 20px;
+  height: 20px;
+  fill: #FFFFFF;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   4. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
+   ========================================================================== */
+.hap-footer {
+  background-color: #F8F9FA;
+  border-top: 1px solid var(--border-subtle);
+  padding: 64px 0 48px;
+}
+
+.footer-inner-container {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-brand-logo {
+  max-width: 190px;
+  height: auto;
+  max-height: 48px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.footer-signature-bar {
+  font-family: var(--font-brand);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.footer-consultancy-badge {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.footer-consultation-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #FFFFFF;
+  color: var(--text-dark);
+  border: 1px solid #E2E8F0;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-brand);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 28px;
+}
+
+.footer-consultation-btn:hover {
+  background: var(--whatsapp-green);
+  color: #FFFFFF;
+  border-color: var(--whatsapp-green);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.25);
+}
+
+.footer-btn-wa-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.footer-compliance-text {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #718096;
+  line-height: 1.7;
+  margin: 0 0 22px;
+  padding: 22px 0 0;
+  border-top: 1px solid #E2E8F0;
+}
+
+.footer-compliance-text strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-legal-links a {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-legal-links a:hover {
+  color: var(--text-dark);
+  text-decoration: underline;
+}
+
+.footer-legal-sep {
+  color: #CBD5E0;
+  font-size: 0.75rem;
+}
+
+.footer-copyright-line {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  color: #A0AEC0;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   5. FLOATING WHATSAPP BUTTON (+201277752731)
+   ========================================================================== */
+.floating-whatsapp-widget {
+  font-family: var(--font-body);
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999; /* Ultra-high z-index for guaranteed visibility and clickability */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--whatsapp-green);
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.floating-whatsapp-widget:hover {
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+.floating-whatsapp-widget svg {
+  width: 22px;
+  height: 22px;
+  fill: #FFFFFF;
+}
+
+/* ==========================================================================
+   6. SUCCESS MODAL UI
+   ========================================================================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.is-active {
+  display: flex;
+}
+
+.modal-dialog-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 100%;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-modal);
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.modal-success-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  background: #E8F8EE;
+  color: var(--whatsapp-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-success-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.modal-header-title {
+  font-family: var(--font-brand);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.modal-body-text {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--text-slate);
+  margin-bottom: 26px;
+}
+
+.modal-body-text strong {
+  font-family: var(--font-brand);
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.btn-modal-whatsapp {
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 50px;
+  background-color: var(--whatsapp-green);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--whatsapp-shadow);
+  transition: var(--transition);
+  margin-bottom: 14px;
+}
+
+.btn-modal-whatsapp:hover {
+  background-color: var(--whatsapp-hover);
+  color: #FFFFFF;
+}
+
+.btn-modal-whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.btn-modal-dismiss {
+  font-family: var(--font-body);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px;
+  transition: var(--transition);
+}
+
+.btn-modal-dismiss:hover {
+  color: var(--text-dark);
+}
+
+/* ==========================================================================
+   7. STRICT MOBILE-VIEW OPTIMIZATION (< 768px)
+   - 100% thumb-friendly single-column layout
+   - Essentials ONLY: Property type, price, payment plan
+   - Global overflow-x: hidden
+   - Full-width, solid Green WhatsApp buttons (min 48px tap height)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-visual-frame {
+    min-height: 280px;
+    max-height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  html, body, .hap-page-wrapper {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  .hap-hero {
+    padding: 60px 0 60px;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .hero-trust-row {
+    gap: 16px;
+  }
+
+  .trust-val {
+    font-size: 1.15rem;
+  }
+
+  .lead-card-floating {
+    padding: 26px 20px;
+  }
+
+  .phone-split-container {
+    gap: 6px;
+  }
+
+  .country-selector-btn {
+    width: 102px;
+    min-width: 102px;
+    padding: 0 8px;
+  }
+
+  .portfolio-showcase-section {
+    padding: 50px 0 70px;
+  }
+
+  .portfolio-header-block {
+    margin-bottom: 36px;
+  }
+
+  .portfolio-header-block h2 {
+    font-size: 1.75rem;
+  }
+
+  .project-showcase-card {
+    margin-bottom: 32px;
+  }
+
+  .project-detail-panel {
+    padding: 26px 20px;
+  }
+
+  .hero-brand-logo {
+    max-width: 250px;
+    max-height: 110px;
+  }
+
+  .project-logo-wrap {
+    margin: 6px 0 14px;
+    min-height: 44px;
+  }
+
+  .project-heading-logo {
+    max-width: 220px;
+    max-height: 48px;
+  }
+
+  .visual-logo-watermark {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+  }
+
+  .visual-logo-watermark img {
+    max-height: 22px;
+    max-width: 110px;
+  }
+
+  .project-heading {
+    font-size: 1.45rem;
+  }
+
+  .project-subtitle-lead {
+    font-size: 0.88rem;
+    margin: 4px 0 10px;
+  }
+
+  .project-highlights-grid {
+    gap: 6px;
+  }
+
+  .highlight-pill {
+    font-size: 0.69rem;
+    padding: 4px 9px;
+  }
+
+  .spec-price-range {
+    font-size: 1.15rem;
+  }
+
+  /* CRITICAL: Full-width, solid Green WhatsApp buttons with min 48px tap height */
+  .btn-whatsapp-chat,
+  a.btn-whatsapp-chat {
+    width: 100% !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: var(--whatsapp-green) !important;
+    color: #FFFFFF !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    padding: 14px 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .floating-whatsapp-widget {
+    bottom: 18px;
+    right: 18px;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .floating-whatsapp-widget .widget-label {
+    display: none;
+  }
+
+  /* Pre-Footer Why ir-properties Mobile Styling */
+  .why-consultancy-section {
+    padding: 52px 16px !important;
+  }
+
+  .why-minimalist-card {
+    padding: 36px 20px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .why-minimalist-title {
+    font-size: 1.55rem !important;
+    margin-bottom: 18px !important;
+  }
+
+  .why-minimalist-text {
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .why-minimalist-cta .btn-whatsapp-solid,
+  .why-cta-center .btn-whatsapp-solid {
+    width: 100% !important;
+    min-height: 50px !important;
+    box-sizing: border-box !important;
+  }
+
+  .footer-inner-container {
+    padding: 0 10px;
+  }
+
+  .footer-compliance-text {
+    font-size: 0.74rem;
+  }
+}

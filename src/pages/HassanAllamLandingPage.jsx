@@ -1,11 +1,11 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../hassan-allam.css';
 
 /**
  * Hassan Allam Properties Portfolio Landing Page Component
- * Route: /hassan-allam/ strictly under properties-y.com domain architecture
- * Final Live URL: https://properties-y.com/hassan-allam/
- * Branding: 'By properties-y' | Independent Real Estate Consultancy
+ * Route: /hassan-allam/ strictly under ir-properties.com domain architecture
+ * Final Live URL: https://ir-properties.com/hassan-allam/
+ * Branding: 'By ir-properties' | Independent Real Estate Consultancy
  * Aesthetic: Modern Ultra-Luxury (Apple sleekness / Aman Resorts aesthetic)
  * Global WhatsApp: +201277752731 (Solid Vibrant Green #25D366, min 48px tap height)
  */
@@ -61,7 +61,7 @@ export default function HassanAllamLandingPage() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  const modalWhatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20have%20just%20submitted%20my%20inquiry%20for%20the%20Hassan%20Allam%20Properties%20portfolio%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away.`;
+  const modalWhatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20have%20just%20submitted%20my%20inquiry%20for%20the%20Hassan%20Allam%20Properties%20portfolio%20on%20ir-properties.com%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away.`;
 
   const filteredCountries = COUNTRIES.filter(
     (c) =>
@@ -70,7 +70,7 @@ export default function HassanAllamLandingPage() {
       c.code.toLowerCase().includes(searchQuery.toLowerCase().trim())
   );
 
-  // Form Submission Handler
+  // Form Submission Handler (Email First, Then Success Modal)
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -90,15 +90,15 @@ export default function HassanAllamLandingPage() {
 
     // Save Lead Locally
     try {
-      const stored = JSON.parse(localStorage.getItem('properties_y_hassan_allam_leads') || '[]');
+      const stored = JSON.parse(localStorage.getItem('ir_properties_hassan_allam_leads') || '[]');
       stored.push({
         name: clientName,
         phone: fullPhone,
         timestamp: new Date().toISOString(),
         portfolio: 'Hassan Allam Properties Portfolio',
-        consultancy: 'properties-y.com Independent Real Estate Consultancy'
+        consultancy: 'By ir-properties (Independent Real Estate Consultancy)'
       });
-      localStorage.setItem('properties_y_hassan_allam_leads', JSON.stringify(stored));
+      localStorage.setItem('ir_properties_hassan_allam_leads', JSON.stringify(stored));
     } catch (err) {
       console.warn('Storage notice:', err);
     }
@@ -150,25 +150,9 @@ export default function HassanAllamLandingPage() {
       }
     }
 
-    // Dispatch to Zapier Webhook
+    // Requirement 4: Email Routed & Sent First, Then Success Modal
     try {
-      await fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
-        method: 'POST',
-        body: JSON.stringify({
-          fullName: clientName,
-          phoneNumber: fullPhone,
-          portfolio: 'Hassan Allam Properties',
-          landingPageUrl: typeof window !== 'undefined' ? window.location.href : 'https://properties-y.com/hassan-allam/',
-          submissionDate: new Date().toISOString()
-        })
-      });
-    } catch (err) {
-      console.warn('Zapier notice:', err);
-    }
-
-    // Backup Email Dispatch
-    try {
-      fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {
+      const emailPromise = fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -177,32 +161,39 @@ export default function HassanAllamLandingPage() {
         body: JSON.stringify({
           name: clientName,
           phone: fullPhone,
-          source: 'Hassan Allam Properties Portfolio – properties-y.com',
-          consultancy: 'properties-y.com Independent Real Estate Consultancy',
+          source: 'Hassan Allam Properties Portfolio – ir-properties.com',
+          consultancy: 'By ir-properties (Independent Real Estate Consultancy)',
           _replyto: 'Rahma@irtkaz.com',
           _cc: 'Mostafa.a.ashmawy@gmail.com,Mostafa.ashmawy@irtkaz.com',
-          _subject: `New Lead: Hassan Allam - ${clientName} (${fullPhone}) [properties-y.com]`,
+          _subject: `New Lead: Hassan Allam - ${clientName} (${fullPhone}) [ir-properties.com]`,
           _template: 'table'
         })
-      }).catch((err) => console.warn('Dispatch notice:', err));
+      });
+
+      const zapierPromise = fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
+        method: 'POST',
+        body: JSON.stringify({
+          fullName: clientName,
+          phoneNumber: fullPhone,
+          portfolio: 'Hassan Allam Properties',
+          landingPageUrl: typeof window !== 'undefined' ? window.location.href : 'https://ir-properties.com/hassan-allam/',
+          submissionDate: new Date().toISOString()
+        })
+      });
+
+      const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 5000));
+      await Promise.race([
+        Promise.allSettled([emailPromise, zapierPromise]),
+        timeoutPromise
+      ]);
     } catch (err) {
-      console.warn('Transmission notice:', err);
+      console.warn('Dispatch notice:', err);
     }
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsModalOpen(true);
-
-      // Attempt immediate WhatsApp handoff
-      try {
-        window.open(modalWhatsappLink, '_blank', 'noopener,noreferrer');
-      } catch {
-        // Handled via modal CTA
-      }
-
-      setFullName('');
-      setPhoneNumber('');
-    }, 450);
+    setIsSubmitting(false);
+    setIsModalOpen(true);
+    setFullName('');
+    setPhoneNumber('');
   };
 
   return (
@@ -224,7 +215,7 @@ export default function HassanAllamLandingPage() {
           <div className="hero-narrative">
             <div className="hero-badge-pill">
               <span className="hero-badge-dot" />
-              <span>By properties-y • Independent Real Estate Consultancy</span>
+              <span>NEW RELEASE</span>
             </div>
 
             <div className="hero-brand-logo-wrap">
@@ -233,9 +224,12 @@ export default function HassanAllamLandingPage() {
                 alt="Hassan Allam Properties"
                 className="hero-brand-logo"
               />
-              <h1 className="sr-only">Hassan Allam Properties</h1>
             </div>
-            <p className="hero-subtitle">Discover the Exclusive Portfolio.</p>
+
+            <h1 className="hero-title">Park Central by Hassan Allam</h1>
+            <p className="hero-subtitle">
+              Secure your premium residence in Mostakbal City's most highly-anticipated new phase today. Discover exclusive layouts and take advantage of our limited-time payment plans before they sell out.
+            </p>
 
             <div className="hero-trust-row">
               <div className="trust-item">
@@ -416,13 +410,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20Park%20Central%20Mostakbal%20City.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20Park%20Central%20Mostakbal%20City.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -476,13 +470,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20The%20Valleys%20Mostakbal%20City.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20The%20Valleys%20Mostakbal%20City.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -541,13 +535,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20Swanlake%20Residence%20New%20Cairo.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20Swanlake%20Residence%20New%20Cairo.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -601,13 +595,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20Encore%20Swanlake%20El%20Gouna.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20Encore%20Swanlake%20El%20Gouna.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -685,13 +679,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20Grova%20Easthills%20by%20Hassan%20Allam`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20am%20inquiring%20about%20Grova%20Easthills%20by%20Hassan%20Allam`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -702,7 +696,40 @@ export default function HassanAllamLandingPage() {
       </main>
 
       {/* =========================================================================
-           4. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
+           4. PRE-FOOTER SECTION (WHY IR-PROPERTIES)
+           ========================================================================= */}
+      <section className="why-consultancy-section">
+        <div className="container">
+          <div className="why-minimalist-card">
+            <span className="why-minimalist-eyebrow">INDEPENDENT REAL ESTATE CONSULTANCY</span>
+            <h2 className="why-minimalist-title">Why Hassan Allam through ir-properties?</h2>
+            <div className="why-minimalist-content">
+              <p className="why-minimalist-text">
+                We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.
+              </p>
+              <p className="why-minimalist-text">
+                Our experts guide you step-by-step to secure prime units and tailor payment plans that perfectly fit your budget.
+              </p>
+            </div>
+            <div className="why-minimalist-cta">
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20consult%20an%20independent%20advisor%20about%20Hassan%20Allam%20projects.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp-solid"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+                </svg>
+                <span>CONNECT WITH AN INDEPENDENT ADVISOR</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+           5. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
            ========================================================================= */}
       <footer className="hap-footer">
         <div className="container footer-inner-container">
@@ -713,23 +740,23 @@ export default function HassanAllamLandingPage() {
             loading="lazy"
           />
 
-          <div className="footer-signature-bar">By properties-y</div>
+          <div className="footer-signature-bar">By ir-properties</div>
           <div className="footer-consultancy-badge">Independent Real Estate Consultancy</div>
 
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20Properties%20portfolio.`}
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20Properties%20portfolio.`}
             target="_blank"
             rel="noopener noreferrer"
             className="footer-consultation-btn"
           >
             <svg viewBox="0 0 24 24" className="footer-btn-wa-icon" aria-hidden="true">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
             </svg>
             <span>Direct WhatsApp Consultation</span>
           </a>
 
           <p className="footer-compliance-text">
-            This landing page is presented by <strong>properties-y.com</strong>, an Independent Real Estate Consultancy. It is not an
+            This landing page is presented by <strong>ir-properties.com</strong>, an Independent Real Estate Consultancy. It is not an
             official direct web property of Hassan Allam Properties. All trademarks, project designations, and architectural visualizations
             belong to their respective developers. Displayed prices, terms, and inventory availability are subject to official developer
             verification and market change without notice.
@@ -742,29 +769,29 @@ export default function HassanAllamLandingPage() {
           </div>
 
           <div className="footer-copyright-line">
-            &copy; 2026 properties-y.com &mdash; Independent Real Estate Consultancy. All Rights Reserved.
+            &copy; 2026 ir-properties.com &mdash; Independent Real Estate Consultancy. All Rights Reserved.
           </div>
         </div>
       </footer>
 
       {/* =========================================================================
-           5. FLOATING WHATSAPP BUTTON (+201277752731)
+           6. FLOATING WHATSAPP BUTTON (+201277752731)
            ========================================================================= */}
       <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20portfolio.`}
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20portfolio.`}
         target="_blank"
         rel="noopener noreferrer"
         className="floating-whatsapp-widget"
         aria-label="Direct WhatsApp Consultation"
       >
-        <svg viewBox="0 0 24 24">
-          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
         </svg>
         <span className="widget-label">Chat on WhatsApp</span>
       </a>
 
       {/* =========================================================================
-           6. SUCCESS MODAL OVERLAY (EXACT REQUIRED TEXT)
+           7. SUCCESS MODAL OVERLAY (EXACT REQUIRED TEXT)
            ========================================================================= */}
       <div
         className={`modal-overlay success-modal-overlay ${isModalOpen ? 'is-active' : ''}`}
@@ -798,8 +825,8 @@ export default function HassanAllamLandingPage() {
             rel="noopener noreferrer"
             className="btn-modal-whatsapp btn-modal-wa"
           >
-            <svg viewBox="0 0 24 24">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
             </svg>
             <span>CHAT ON WHATSAPP</span>
           </a>
