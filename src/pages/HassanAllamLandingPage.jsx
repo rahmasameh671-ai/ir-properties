@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import '../../hassan-allam.css';
 
 /**
  * Hassan Allam Properties Portfolio Landing Page Component
- * Route: /hassan-allam/ strictly under ir-properties.com domain architecture
- * Final Live URL: https://ir-properties.com/hassan-allam/
- * Branding: 'By ir-properties' | Independent Real Estate Consultancy
+ * Route: /hassan-allam/ strictly under properties-y.com domain architecture
+ * Final Live URL: https://properties-y.com/hassan-allam/
+ * Branding: 'By properties-y' | Independent Real Estate Consultancy
  * Aesthetic: Modern Ultra-Luxury (Apple sleekness / Aman Resorts aesthetic)
  * Global WhatsApp: +201277752731 (Solid Vibrant Green #25D366, min 48px tap height)
  */
@@ -61,7 +61,7 @@ export default function HassanAllamLandingPage() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  const modalWhatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20have%20just%20submitted%20my%20inquiry%20for%20the%20Hassan%20Allam%20Properties%20portfolio%20on%20ir-properties.com%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away.`;
+  const modalWhatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20have%20just%20submitted%20my%20inquiry%20for%20the%20Hassan%20Allam%20Properties%20portfolio%20and%20would%20like%20to%20receive%20the%20brochures%20and%20availability%20right%20away.`;
 
   const filteredCountries = COUNTRIES.filter(
     (c) =>
@@ -70,8 +70,8 @@ export default function HassanAllamLandingPage() {
       c.code.toLowerCase().includes(searchQuery.toLowerCase().trim())
   );
 
-  // Lead Capture Form Submission Handler (Strict Email-First Logic)
-  const handleSubmit = async (e) => {
+  // Form Submission Handler
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (!fullName.trim()) {
@@ -90,15 +90,15 @@ export default function HassanAllamLandingPage() {
 
     // Save Lead Locally
     try {
-      const stored = JSON.parse(localStorage.getItem('ir_properties_hassan_allam_leads') || '[]');
+      const stored = JSON.parse(localStorage.getItem('properties_y_hassan_allam_leads') || '[]');
       stored.push({
         name: clientName,
         phone: fullPhone,
         timestamp: new Date().toISOString(),
         portfolio: 'Hassan Allam Properties Portfolio',
-        consultancy: 'By ir-properties (Independent Real Estate Consultancy)'
+        consultancy: 'properties-y.com Independent Real Estate Consultancy'
       });
-      localStorage.setItem('ir_properties_hassan_allam_leads', JSON.stringify(stored));
+      localStorage.setItem('properties_y_hassan_allam_leads', JSON.stringify(stored));
     } catch (err) {
       console.warn('Storage notice:', err);
     }
@@ -150,12 +150,25 @@ export default function HassanAllamLandingPage() {
       }
     }
 
-    // STRICT EMAIL-FIRST FORM LOGIC:
-    // The code MUST send the lead data to the designated Email address FIRST.
-    // Remove any direct redirect to WhatsApp upon clicking submit.
-    // ONLY trigger the Success Modal state after the email API returns a success response.
+    // Dispatch to Zapier Webhook
     try {
-      const emailResponse = await fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {
+      await fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
+        method: 'POST',
+        body: JSON.stringify({
+          fullName: clientName,
+          phoneNumber: fullPhone,
+          portfolio: 'Hassan Allam Properties',
+          landingPageUrl: typeof window !== 'undefined' ? window.location.href : 'https://properties-y.com/hassan-allam/',
+          submissionDate: new Date().toISOString()
+        })
+      });
+    } catch (err) {
+      console.warn('Zapier notice:', err);
+    }
+
+    // Backup Email Dispatch
+    try {
+      fetch('https://formsubmit.co/ajax/Rahma@irtkaz.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -164,41 +177,32 @@ export default function HassanAllamLandingPage() {
         body: JSON.stringify({
           name: clientName,
           phone: fullPhone,
-          source: 'Hassan Allam Properties Portfolio – ir-properties.com',
-          consultancy: 'By ir-properties (Independent Real Estate Consultancy)',
+          source: 'Hassan Allam Properties Portfolio – properties-y.com',
+          consultancy: 'properties-y.com Independent Real Estate Consultancy',
           _replyto: 'Rahma@irtkaz.com',
           _cc: 'Mostafa.a.ashmawy@gmail.com,Mostafa.ashmawy@irtkaz.com',
-          _subject: `New Lead: Hassan Allam - ${clientName} (${fullPhone}) [ir-properties.com]`,
+          _subject: `New Lead: Hassan Allam - ${clientName} (${fullPhone}) [properties-y.com]`,
           _template: 'table'
         })
-      });
-
-      if (emailResponse.ok) {
-        // Fire secondary Zapier webhook in background (non-blocking)
-        fetch('https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/', {
-          method: 'POST',
-          body: JSON.stringify({
-            fullName: clientName,
-            phoneNumber: fullPhone,
-            portfolio: 'Hassan Allam Properties',
-            landingPageUrl: typeof window !== 'undefined' ? window.location.href : 'https://ir-properties.com/hassan-allam/',
-            submissionDate: new Date().toISOString()
-          })
-        }).catch(() => {});
-
-        // ONLY trigger Success Modal after email API returns success response
-        setIsModalOpen(true);
-        setFullName('');
-        setPhoneNumber('');
-      } else {
-        alert('Failed to send registration via email. Please try again.');
-      }
+      }).catch((err) => console.warn('Dispatch notice:', err));
     } catch (err) {
-      console.error('Email submission error:', err);
-      alert('Submission failed. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
+      console.warn('Transmission notice:', err);
     }
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsModalOpen(true);
+
+      // Attempt immediate WhatsApp handoff
+      try {
+        window.open(modalWhatsappLink, '_blank', 'noopener,noreferrer');
+      } catch {
+        // Handled via modal CTA
+      }
+
+      setFullName('');
+      setPhoneNumber('');
+    }, 450);
   };
 
   return (
@@ -220,7 +224,7 @@ export default function HassanAllamLandingPage() {
           <div className="hero-narrative">
             <div className="hero-badge-pill">
               <span className="hero-badge-dot" />
-              <span>NEW RELEASE</span>
+              <span>By properties-y • Independent Real Estate Consultancy</span>
             </div>
 
             <div className="hero-brand-logo-wrap">
@@ -229,12 +233,9 @@ export default function HassanAllamLandingPage() {
                 alt="Hassan Allam Properties"
                 className="hero-brand-logo"
               />
+              <h1 className="sr-only">Hassan Allam Properties</h1>
             </div>
-
-            <h1 className="hero-title">Park Central by Hassan Allam</h1>
-            <p className="hero-subtitle">
-              Secure your premium residence in Mostakbal City's most highly-anticipated new phase today. Discover exclusive layouts and take advantage of our limited-time payment plans before they sell out.
-            </p>
+            <p className="hero-subtitle">Discover the Exclusive Portfolio.</p>
 
             <div className="hero-trust-row">
               <div className="trust-item">
@@ -255,7 +256,7 @@ export default function HassanAllamLandingPage() {
               <p>Direct dispatch to our senior consultancy team.</p>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleFormSubmit}>
               {/* Full Name (Blank input, NO placeholder) */}
               <div className="field-group">
                 <label htmlFor="reactLeadFullName" className="field-label">
@@ -355,17 +356,123 @@ export default function HassanAllamLandingPage() {
       {/* =========================================================================
            3. REFINED PROJECT DATA (ESSENTIALS ONLY — EXACTLY 4 PROJECTS)
            ========================================================================= */}
-      <main className="portfolio-showcase-section">
+            <main className="portfolio-showcase-section">
         <div className="container">
           <div className="portfolio-header-block">
             <h2>Featured Developments</h2>
             <p>Key unit types, starting prices, and official payment plans.</p>
           </div>
 
+          {/* Quick Portfolio Jump Navigation Bar */}
+          <nav className="portfolio-nav-bar" aria-label="Developments Quick Navigation">
+            <div className="portfolio-nav-scroll">
+              <a href="#grova-easthills" className="portfolio-nav-chip active">
+                <span className="chip-dot"></span> Grova Easthills
+                <span className="nav-chip-badge">New Launch</span>
+              </a>
+              <a href="#park-central" className="portfolio-nav-chip">
+                <span className="chip-dot"></span> Park Central
+              </a>
+              <a href="#swanlake-residence" className="portfolio-nav-chip">
+                <span className="chip-dot"></span> Swanlake Residence
+              </a>
+              <a href="#the-valleys" className="portfolio-nav-chip">
+                <span className="chip-dot"></span> The Valleys
+              </a>
+              <a href="#encore-elgouna" className="portfolio-nav-chip">
+                <span className="chip-dot"></span> Encore El Gouna
+              </a>
+            </div>
+          </nav>
+
           {/* =====================================================================
-               SECTION 1: PARK CENTRAL (Mostakbal City)
+               SECTION 1: GROVA EASTHILLS (VILLAS ONLY COMMUNITY - FLAGSHIP LAUNCH)
                ===================================================================== */}
-          <article className="project-showcase-card" id="park-central">
+          <article className="project-showcase-card project-card-featured" id="grova-easthills">
+            <div className="project-showcase-grid">
+              <div className="project-visual-frame">
+                <img
+                  src="/images/hassan-allam/grova-easthills-villas.jpg?v=20261116v1"
+                  alt="Grova Easthills by Hassan Allam"
+                  loading="lazy"
+                />
+                <div className="visual-logo-watermark">
+                  <img src="/images/hassan-allam/logo-grova-easthills.png" alt="Grova Easthills" />
+                </div>
+              </div>
+              <div className="project-detail-panel">
+                <div>
+                  <div className="panel-header">
+                    <div className="panel-header-badges">
+                      <span className="location-pill location-pill-launch">New Launch &bull; New Cairo</span>
+                      <span className="spec-badge">Villas Only</span>
+                      <span className="spec-badge">Fully Finished</span>
+                    </div>
+
+                    <div className="project-logo-wrap">
+                      <img
+                        src="/images/hassan-allam/logo-grova-easthills-dark.png"
+                        alt="Grova Easthills by Hassan Allam"
+                        className="project-heading-logo"
+                      />
+                      <h3 className="sr-only">Grova Easthills</h3>
+                    </div>
+
+                    <p className="project-subtitle-lead">An exclusive Villas-Only community by Hassan Allam Holding.</p>
+
+                    <div className="project-highlights-grid">
+                      <span className="highlight-pill">300 Feddans &bull; 15% Footprint &bull; 1,217 Keys</span>
+                      <span className="highlight-pill">Villas Only &bull; Fully Finished</span>
+                      <span className="highlight-pill highlight-pill-discount">Exclusive Offer: 25% Cash Discount</span>
+                    </div>
+                  </div>
+
+                  <div className="specs-overview-grid">
+                    <div className="spec-tile">
+                      <div className="spec-tag">Townhouses (Middle &amp; Corner)</div>
+                      <div className="spec-inventory">BUA: 263 SQM</div>
+                      <div className="spec-price-range">Starting from 35,800,000 EGP</div>
+                    </div>
+
+                    <div className="spec-tile">
+                      <div className="spec-tag">Twin Houses (Type A &amp; B)</div>
+                      <div className="spec-inventory">BUA: 276 &ndash; 287 SQM</div>
+                      <div className="spec-price-range">Starting from 43,600,000 EGP</div>
+                    </div>
+
+                    <div className="spec-tile">
+                      <div className="spec-tag">Signature Villas (V1 &amp; V2B)</div>
+                      <div className="spec-inventory">BUA: 332 &ndash; 397 SQM</div>
+                      <div className="spec-price-range">Starting from 49,800,000 EGP (Up to 77.9M)</div>
+                    </div>
+                  </div>
+
+                  <div className="payment-terms-box">
+                    <span className="terms-label">Payment Plan</span>
+                    <div className="terms-description">5% Down Payment + 5% After 3 Months | 8 Years Equal Installments &bull; 7% Maintenance</div>
+                  </div>
+                </div>
+
+                {/* CTA: Chat on WhatsApp */}
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%2C%20I%20am%20inquiring%20about%20Grova%20Easthills%20by%20Hassan%20Allam`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp-chat"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  </svg>
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          {/* =====================================================================
+               SECTION 2: PARK CENTRAL (Mostakbal City) - REVERSE LAYOUT ON DESKTOP
+               ===================================================================== */}
+          <article className="project-showcase-card project-card-reverse" id="park-central">
             <div className="project-showcase-grid">
               <div className="project-visual-frame">
                 <img
@@ -415,73 +522,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20Park%20Central%20Mostakbal%20City.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20Park%20Central%20Mostakbal%20City.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
-                  </svg>
-                  <span>Chat on WhatsApp</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          {/* =====================================================================
-               SECTION 2: THE VALLEYS (Mostakbal City)
-               ===================================================================== */}
-          <article className="project-showcase-card" id="the-valleys">
-            <div className="project-showcase-grid">
-              <div className="project-visual-frame">
-                <img
-                  src="/images/hassan-allam/the-valleys-villas.jpg"
-                  alt="The Valleys Mostakbal City"
-                  loading="lazy"
-                />
-                <div className="visual-logo-watermark">
-                  <img src="/images/hassan-allam/logo-the-valleys.png" alt="The Valleys" />
-                </div>
-              </div>
-              <div className="project-detail-panel">
-                <div>
-                  <div className="panel-header">
-                    <span className="location-pill">Mostakbal City</span>
-                    <div className="project-logo-wrap">
-                      <img
-                        src="/images/hassan-allam/logo-the-valleys-dark.png"
-                        alt="The Valleys"
-                        className="project-heading-logo"
-                      />
-                      <h3 className="sr-only">The Valleys</h3>
-                    </div>
-                  </div>
-
-                  <div className="specs-overview-grid">
-                    <div className="spec-tile">
-                      <div className="spec-tag">Exclusive Villas</div>
-                      <div className="spec-inventory">Townhouses, Twinhouses, and Standalones</div>
-                      <div className="spec-price-range">Starting from 29M to 55.6M EGP</div>
-                      <span className="spec-badge">Fully Finished</span>
-                    </div>
-                  </div>
-
-                  <div className="payment-terms-box">
-                    <span className="terms-label">Payment Plan</span>
-                    <div className="terms-description">5% Down Payment + 5% after 3 months over 9 Years</div>
-                  </div>
-                </div>
-
-                {/* CTA: Chat on WhatsApp */}
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20The%20Valleys%20Mostakbal%20City.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-whatsapp-chat"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -540,13 +587,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20Swanlake%20Residence%20New%20Cairo.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20Swanlake%20Residence%20New%20Cairo.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -555,7 +602,67 @@ export default function HassanAllamLandingPage() {
           </article>
 
           {/* =====================================================================
-               SECTION 4: ENCORE SWANLAKE (El Gouna)
+               SECTION 4: THE VALLEYS (Mostakbal City) - REVERSE LAYOUT ON DESKTOP
+               ===================================================================== */}
+          <article className="project-showcase-card project-card-reverse" id="the-valleys">
+            <div className="project-showcase-grid">
+              <div className="project-visual-frame">
+                <img
+                  src="/images/hassan-allam/the-valleys-villas.jpg"
+                  alt="The Valleys Mostakbal City"
+                  loading="lazy"
+                />
+                <div className="visual-logo-watermark">
+                  <img src="/images/hassan-allam/logo-the-valleys.png" alt="The Valleys" />
+                </div>
+              </div>
+              <div className="project-detail-panel">
+                <div>
+                  <div className="panel-header">
+                    <span className="location-pill">Mostakbal City</span>
+                    <div className="project-logo-wrap">
+                      <img
+                        src="/images/hassan-allam/logo-the-valleys-dark.png"
+                        alt="The Valleys"
+                        className="project-heading-logo"
+                      />
+                      <h3 className="sr-only">The Valleys</h3>
+                    </div>
+                  </div>
+
+                  <div className="specs-overview-grid">
+                    <div className="spec-tile">
+                      <div className="spec-tag">Exclusive Villas</div>
+                      <div className="spec-inventory">Townhouses, Twinhouses, and Standalones</div>
+                      <div className="spec-price-range">Starting from 29M to 55.6M EGP</div>
+                      <span className="spec-badge">Fully Finished</span>
+                    </div>
+                  </div>
+
+                  <div className="payment-terms-box">
+                    <span className="terms-label">Payment Plan</span>
+                    <div className="terms-description">5% Down Payment + 5% after 3 months over 9 Years</div>
+                  </div>
+                </div>
+
+                {/* CTA: Chat on WhatsApp */}
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20The%20Valleys%20Mostakbal%20City.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp-chat"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
+                  </svg>
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          {/* =====================================================================
+               SECTION 5: ENCORE SWANLAKE (El Gouna)
                ===================================================================== */}
           <article className="project-showcase-card" id="encore-elgouna">
             <div className="project-showcase-grid">
@@ -572,7 +679,7 @@ export default function HassanAllamLandingPage() {
               <div className="project-detail-panel">
                 <div>
                   <div className="panel-header">
-                    <span className="location-pill">El Gouna</span>
+                    <span className="location-pill location-pill-gouna">El Gouna</span>
                     <div className="project-logo-wrap">
                       <img
                         src="/images/hassan-allam/logo-encore-swanlake-dark.png"
@@ -600,97 +707,13 @@ export default function HassanAllamLandingPage() {
 
                 {/* CTA: Chat on WhatsApp */}
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20Encore%20Swanlake%20El%20Gouna.`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20Encore%20Swanlake%20El%20Gouna.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-chat"
                 >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
-                  </svg>
-                  <span>Chat on WhatsApp</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          {/* =====================================================================
-               SECTION 5: GROVA EASTHILLS (VILLAS ONLY COMMUNITY)
-               ===================================================================== */}
-          <article className="project-showcase-card" id="grova-easthills">
-            <div className="project-showcase-grid">
-              <div className="project-visual-frame">
-                <img
-                  src="/images/hassan-allam/grova-easthills-villas.jpg?v=20261116v1"
-                  alt="Grova Easthills by Hassan Allam"
-                  loading="lazy"
-                />
-                <div className="visual-logo-watermark">
-                  <img src="/images/hassan-allam/logo-grova-easthills.png" alt="Grova Easthills" />
-                </div>
-              </div>
-              <div className="project-detail-panel">
-                <div>
-                  <div className="panel-header">
-                    <div className="panel-header-badges">
-                      <span className="location-pill">New Launch &bull; New Cairo</span>
-                      <span className="spec-badge">Villas Only</span>
-                      <span className="spec-badge">Fully Finished</span>
-                    </div>
-
-                    <div className="project-logo-wrap">
-                      <img
-                        src="/images/hassan-allam/logo-grova-easthills-dark.png"
-                        alt="Grova Easthills by Hassan Allam"
-                        className="project-heading-logo"
-                      />
-                      <h3 className="sr-only">Grova Easthills</h3>
-                    </div>
-
-                    <p className="project-subtitle-lead">An exclusive Villas-Only community by Hassan Allam Holding.</p>
-
-                    <div className="project-highlights-grid">
-                      <span className="highlight-pill">300 Feddans &bull; 15% Footprint &bull; 1,217 Keys</span>
-                      <span className="highlight-pill">Villas Only &bull; Fully Finished</span>
-                      <span className="highlight-pill highlight-pill-discount">Exclusive Offer: 25% Cash Discount</span>
-                    </div>
-                  </div>
-
-                  <div className="specs-overview-grid">
-                    <div className="spec-tile">
-                      <div className="spec-tag">Townhouses (Middle &amp; Corner)</div>
-                      <div className="spec-inventory">BUA: 263 SQM</div>
-                      <div className="spec-price-range">Starting from 35,800,000 EGP</div>
-                    </div>
-
-                    <div className="spec-tile">
-                      <div className="spec-tag">Twin Houses (Type A &amp; B)</div>
-                      <div className="spec-inventory">BUA: 276 &ndash; 287 SQM</div>
-                      <div className="spec-price-range">Starting from 43,600,000 EGP</div>
-                    </div>
-
-                    <div className="spec-tile">
-                      <div className="spec-tag">Signature Villas (V1 &amp; V2B)</div>
-                      <div className="spec-inventory">BUA: 332 &ndash; 397 SQM</div>
-                      <div className="spec-price-range">Starting from 49,800,000 EGP (Up to 77.9M)</div>
-                    </div>
-                  </div>
-
-                  <div className="payment-terms-box">
-                    <span className="terms-label">Payment Plan</span>
-                    <div className="terms-description">5% Down Payment + 5% After 3 Months | 8 Years Equal Installments &bull; 7% Maintenance</div>
-                  </div>
-                </div>
-
-                {/* CTA: Chat on WhatsApp */}
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20am%20inquiring%20about%20Grova%20Easthills%20by%20Hassan%20Allam`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-whatsapp-chat"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
                   </svg>
                   <span>Chat on WhatsApp</span>
                 </a>
@@ -701,24 +724,7 @@ export default function HassanAllamLandingPage() {
       </main>
 
       {/* =========================================================================
-           4. PRE-FOOTER SECTION (WHY HASSAN ALLAM THROUGH IR-PROPERTIES)
-           ========================================================================= */}
-      <section className="why-prefooter-section" style={{ backgroundColor: '#FFFFFF', padding: '64px 20px', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
-        <div className="container" style={{ maxWidth: '820px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '2rem', fontWeight: 800, color: '#1A202C', marginBottom: '20px', letterSpacing: '-0.02em', lineHeight: 1.25 }}>
-            Why Hassan Allam through ir-properties?
-          </h2>
-          <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '1.08rem', color: '#4A5568', lineHeight: 1.75, marginBottom: '16px' }}>
-            We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.
-          </p>
-          <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '1.08rem', color: '#4A5568', lineHeight: 1.75, margin: 0 }}>
-            Our experts guide you step-by-step to secure prime units and tailor payment plans that perfectly fit your budget.
-          </p>
-        </div>
-      </section>
-
-      {/* =========================================================================
-           5. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
+           4. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
            ========================================================================= */}
       <footer className="hap-footer">
         <div className="container footer-inner-container">
@@ -729,23 +735,23 @@ export default function HassanAllamLandingPage() {
             loading="lazy"
           />
 
-          <div className="footer-signature-bar">By ir-properties</div>
+          <div className="footer-signature-bar">By properties-y</div>
           <div className="footer-consultancy-badge">Independent Real Estate Consultancy</div>
 
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20Properties%20portfolio.`}
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20Properties%20portfolio.`}
             target="_blank"
             rel="noopener noreferrer"
             className="footer-consultation-btn"
           >
             <svg viewBox="0 0 24 24" className="footer-btn-wa-icon" aria-hidden="true">
-              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
             </svg>
             <span>Direct WhatsApp Consultation</span>
           </a>
 
           <p className="footer-compliance-text">
-            This landing page is presented by <strong>ir-properties.com</strong>, an Independent Real Estate Consultancy. It is not an
+            This landing page is presented by <strong>properties-y.com</strong>, an Independent Real Estate Consultancy. It is not an
             official direct web property of Hassan Allam Properties. All trademarks, project designations, and architectural visualizations
             belong to their respective developers. Displayed prices, terms, and inventory availability are subject to official developer
             verification and market change without notice.
@@ -758,29 +764,29 @@ export default function HassanAllamLandingPage() {
           </div>
 
           <div className="footer-copyright-line">
-            &copy; 2026 ir-properties.com &mdash; Independent Real Estate Consultancy. All Rights Reserved.
+            &copy; 2026 properties-y.com &mdash; Independent Real Estate Consultancy. All Rights Reserved.
           </div>
         </div>
       </footer>
 
       {/* =========================================================================
-           6. FLOATING WHATSAPP BUTTON (+201277752731)
+           5. FLOATING WHATSAPP BUTTON (+201277752731)
            ========================================================================= */}
       <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20ir-properties,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20portfolio.`}
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20properties-y,%20I%20would%20like%20to%20inquire%20about%20the%20Hassan%20Allam%20portfolio.`}
         target="_blank"
         rel="noopener noreferrer"
         className="floating-whatsapp-widget"
         aria-label="Direct WhatsApp Consultation"
       >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+        <svg viewBox="0 0 24 24">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
         </svg>
         <span className="widget-label">Chat on WhatsApp</span>
       </a>
 
       {/* =========================================================================
-           7. SUCCESS MODAL OVERLAY (EXACT REQUIRED TEXT)
+           6. SUCCESS MODAL OVERLAY (EXACT REQUIRED TEXT)
            ========================================================================= */}
       <div
         className={`modal-overlay success-modal-overlay ${isModalOpen ? 'is-active' : ''}`}
@@ -809,27 +815,15 @@ export default function HassanAllamLandingPage() {
 
           {/* SOLID GREEN "CHAT ON WHATSAPP" BUTTON */}
           <a
-            href="https://wa.me/201277752731"
+            href={modalWhatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-modal-whatsapp btn-modal-wa"
-            style={{
-              backgroundColor: '#25D366',
-              color: '#FFFFFF',
-              fontWeight: 700,
-              padding: '14px 28px',
-              borderRadius: '9999px',
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '10px'
-            }}
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: 20, height: 20, fill: '#FFFFFF' }}>
-              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.69 12.05 3.69C14.25 3.69 16.31 4.55 17.87 6.11C19.42 7.67 20.28 9.73 20.28 11.93C20.27 16.48 16.59 20.15 12.05 20.15ZM16.56 14.33C16.31 14.2 15.09 13.6 14.86 13.52C14.64 13.44 14.47 13.4 14.31 13.65C14.15 13.9 13.68 14.45 13.54 14.61C13.4 14.77 13.26 14.79 13.01 14.66C12.76 14.54 11.96 14.27 11.01 13.43C10.27 12.77 9.77 11.96 9.63 11.71C9.49 11.46 9.61 11.33 9.74 11.2C9.85 11.09 9.99 10.91 10.12 10.76C10.25 10.61 10.29 10.5 10.37 10.33C10.45 10.16 10.41 10.02 10.35 9.89C10.29 9.76 9.79 8.54 9.59 8.04C9.39 7.56 9.18 7.62 9.03 7.61C8.89 7.6 8.72 7.6 8.55 7.6C8.38 7.6 8.11 7.66 7.88 7.91C7.65 8.16 7 8.77 7 10.01C7 11.25 7.9 12.44 8.02 12.61C8.14 12.77 9.8 15.33 12.33 16.42C12.93 16.68 13.4 16.84 13.76 16.95C14.36 17.14 14.91 17.12 15.34 17.05C15.82 16.98 16.82 16.45 17.03 15.86C17.23 15.27 17.23 14.77 17.17 14.66C17.11 14.56 16.95 14.49 16.7 14.37L16.56 14.33Z" />
+            <svg viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.05-1.92-.472-1.488-.604-2.457-2.125-2.531-2.224-.075-.099-.607-.808-.607-1.543s.385-1.096.521-1.246c.136-.149.297-.187.396-.187.099 0 .198.001.284.006.091.004.213-.035.333.253.124.298.423 1.033.46 1.107.037.075.062.162.012.261-.049.099-.074.161-.148.248-.075.087-.157.195-.224.262-.075.074-.153.155-.066.304.087.149.387.639.83 1.034.57.508 1.05.665 1.199.739.149.075.236.062.324-.037.087-.099.373-.434.472-.583.099-.149.198-.124.334-.075.137.049.868.409 1.017.483.149.074.248.112.285.174.037.062.037.36-.107.765z" />
             </svg>
-            CHAT ON WHATSAPP
+            <span>CHAT ON WHATSAPP</span>
           </a>
 
           {/* CLOSE WINDOW LINK */}
