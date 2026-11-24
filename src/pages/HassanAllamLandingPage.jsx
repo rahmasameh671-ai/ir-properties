@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../hassan-allam.css';
 
 /**
@@ -732,7 +732,7 @@ export default function HassanAllamLandingPage() {
       <section className="why-prefooter-section">
         <div className="container why-prefooter-container">
           <h2 className="why-prefooter-title">
-            Why Hassan Allam through ir-properties?
+            Why Hassan Allam through properties-y.com?
           </h2>
           <p className="why-prefooter-text">
             We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.
