@@ -224,7 +224,7 @@ export default function HassanAllamLandingPage() {
           <div className="hero-narrative">
             <div className="hero-badge-pill">
               <span className="hero-badge-dot" />
-              <span>By properties-y • Independent Real Estate Consultancy</span>
+              <span>NEW RELEASE • LUXURY LIVING</span>
             </div>
 
             <div className="hero-brand-logo-wrap">
@@ -235,7 +235,7 @@ export default function HassanAllamLandingPage() {
               />
               <h1 className="sr-only">Hassan Allam Properties</h1>
             </div>
-            <p className="hero-subtitle">Discover the Exclusive Portfolio.</p>
+            <p className="hero-subtitle">Experience unmatched luxury and timeless architecture in our newest releases across New Cairo, Mostakbal City, and El Gouna — with flexible payment plans up to 10 years.</p>
 
             <div className="hero-trust-row">
               <div className="trust-item">
@@ -726,6 +726,23 @@ export default function HassanAllamLandingPage() {
       {/* =========================================================================
            4. ULTRA-LUXURY EDITORIAL FOOTER & COMPLIANCE
            ========================================================================= */}
+      {/* =========================================================================
+           PRE-FOOTER SECTION (WHY HASSAN ALLAM THROUGH IR-PROPERTIES)
+           ========================================================================= */}
+      <section className="why-prefooter-section">
+        <div className="container why-prefooter-container">
+          <h2 className="why-prefooter-title">
+            Why Hassan Allam through ir-properties?
+          </h2>
+          <p className="why-prefooter-text">
+            We provide 100% unbiased consultations to ensure Hassan Allam is the absolute best match for your investment goals compared to the entire market.
+          </p>
+          <p className="why-prefooter-text">
+            Our experts guide you step-by-step to secure prime units and tailor payment plans that perfectly fit your budget.
+          </p>
+        </div>
+      </section>
+
       <footer className="hap-footer">
         <div className="container footer-inner-container">
           <img
